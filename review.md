@@ -40,6 +40,8 @@ Lee et al. (2024) make wellness and care a concrete GBLS service area through a 
 # Programming Formats and Service Models
 ## Circulating and In-Library Collections
 ## Clubs and Recurring Play Groups
+Copeland et al. (2013) show that tabletop gaming in school libraries can follow multiple service paths: curriculum-integrated role-play, after-school board game clubs, shared standards-aligned game collections, life-skills programming, and tabletop game design workshops. Their practitioner cases emphasize affordability, portability, rule reading, social interaction, cross-age friendship, curricular alignment, flexible facilitation, and post-game reflection, making tabletop games a practical bridge between recreation and instruction.
+
 ## Tournaments and Esports
 ## Escape Rooms and Breakout Boxes
 Cho et al. (2023) provide one of the strongest empirical examples of an escape-room format in public-library information literacy. In 17 sessions across five Washington public-library systems, *The Euphorigen Investigation* used collaborative play, a fictional misinformation scenario, a designed deepfake failure, and librarian-led debriefing to increase awareness of misinformation tactics, prompt reflection on confirmation bias and vulnerability, and encourage more cautious attitudes toward sharing information online.
