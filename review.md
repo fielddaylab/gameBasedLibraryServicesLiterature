@@ -39,6 +39,8 @@ Lee et al. (2024) make wellness and care a concrete GBLS service area through a 
 
 # Programming Formats and Service Models
 ## Circulating and In-Library Collections
+Forsythe (2021) gives a practical academic-library model for board games as a non-traditional collection and recurring program. Her community-college case links needs assessment, language-independent selection for international students, BoardGameGeek-informed criteria, box and component preservation, in-library tracking, student feedback, partnerships, and pandemic-era virtual options, showing that tabletop collections require the same policy, maintenance, marketing, and facilitation infrastructure as other library services.
+
 ## Clubs and Recurring Play Groups
 Copeland et al. (2013) show that tabletop gaming in school libraries can follow multiple service paths: curriculum-integrated role-play, after-school board game clubs, shared standards-aligned game collections, life-skills programming, and tabletop game design workshops. Their practitioner cases emphasize affordability, portability, rule reading, social interaction, cross-age friendship, curricular alignment, flexible facilitation, and post-game reflection, making tabletop games a practical bridge between recreation and instruction.
 
