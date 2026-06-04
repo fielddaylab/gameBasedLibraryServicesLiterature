@@ -50,6 +50,8 @@
 ## Infrastructure and Metadata Gaps
 ## Assessment Gaps
 ## Survey Agenda
+Baker (2024) makes the survey agenda explicit by proposing paired staff and patron instruments for a national needs assessment of games-based library services. Although the proposal does not report findings, it identifies the field-level data still needed: which GBLS formats libraries offer, how they are funded and promoted, what implementation barriers staff face, how prepared staff feel, which patrons use or want these services, and how interest varies by community and demographic context.
+
 
 # 8. Conclusion
 
