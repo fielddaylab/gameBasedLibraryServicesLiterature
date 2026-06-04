@@ -35,6 +35,8 @@ Watson et al. (2024) show how a TTRPG program can be designed as library outreac
 
 Kaylor (2017) strengthens the literacy rationale for teen TTRPG programs through interviews with seven people who played TRPGs as teenagers. Participants reported that play supported speaking, reading, listening, writing, and leisure reading, with long-term players describing broader effects; the study is small and exploratory, but it shows why libraries might treat TTRPG rulebooks, groups, and campaigns as access points to narrative, social, and multimodal literacy rather than as recreation alone.
 
+Torres-Roman and Snow (2014) provide the practitioner handbook behind much teen-library TTRPG work, framing tabletop RPGs as low-cost, literacy-rich, social programs that fit library spaces and teen-service missions. Their guide also makes clear that TTRPG services extend beyond events: libraries must select, collect, catalog, describe, facilitate, promote, and defend RPG materials and groups in ways that welcome new players rather than reproducing gatekeeping from hobbyist cultures.
+
 ## VR, AR, and Immersive Technology
 ## Game Design Workshops and Jams
 ## Programs Inside Game Worlds and Virtual Platforms
