@@ -37,6 +37,8 @@ Kaylor (2017) strengthens the literacy rationale for teen TTRPG programs through
 
 Torres-Roman and Snow (2014) provide the practitioner handbook behind much teen-library TTRPG work, framing tabletop RPGs as low-cost, literacy-rich, social programs that fit library spaces and teen-service missions. Their guide also makes clear that TTRPG services extend beyond events: libraries must select, collect, catalog, describe, facilitate, promote, and defend RPG materials and groups in ways that welcome new players rather than reproducing gatekeeping from hobbyist cultures.
 
+Sanders (1982) provides an early public-library precedent for Dungeons & Dragons programming. His account of a Michigan City Public Library club describes peer-led tables, long Sunday sessions, a tournament, strong teen attendance, parent questions, and local controversy; it is not an assessment study, but it shows that libraries have long used TTRPGs as teen outreach, community service, and collaborative story-making spaces.
+
 ## VR, AR, and Immersive Technology
 ## Game Design Workshops and Jams
 ## Programs Inside Game Worlds and Virtual Platforms
