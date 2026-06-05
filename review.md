@@ -91,6 +91,8 @@ Post et al. (2023) extend the metadata discussion from game artifacts to catalog
 
 Bianchini and Munini (2025) extend game description from metadata records to shelf classification and player-facing selection through ClaG, a classification system for plays and games developed for the Italian Games Archive. Built through play/game theory, Ranganathanian classification principles, expert testing, and iterative classification of more than 200 mostly tabletop games, ClaG organizes games by space, materials, setting, game outcome, genre, and age so toy libraries and libraries with game collections can arrange, identify, research, and deliver games according to how patrons actually choose and use them.
 
+Adetayo, Oladipo, Adeleke, and Odunewu (2023) move cataloging and classification from collection description into LIS education by proposing a gamified model for teaching Nigerian students cataloguing tools, descriptive work, subject access, class marks, and shelving logic. Their model uses cloud delivery, short-term tasks, rewards, scaffolded task design, and teamwork to make technical metadata labor more practice-based and motivating, though it remains a conceptual framework rather than a tested intervention.
+
 
 ## Instruction, Orientation, and Information Literacy
 Abrams and Van Eck (2021) frame videogame programming as a site of videogame literacies: multimodal, social, participatory meaning-making involving games, players, spectators, spaces, rules, and digital and nondigital resources. Their national survey of 1,016 U.S. librarians found that fewer than half reported videogame programming, most existing programs were recent, and adoption was shaped by first-order barriers such as funding, training, hardware, and space as well as second-order barriers such as confidence, beliefs about games, and assumptions about teen behavior.
@@ -243,10 +245,14 @@ Miller's (2019) evidence summary of Kaneko et al.'s mobile *Library Adventure* s
 
 # Gaps in the Literature and Future Research Agenda
 ## Evidence Gaps
+Adetayo et al. (2023) illustrate a common evidence gap in GBLS-adjacent literature: a detailed gameful model may be theoretically plausible and locally relevant, but still lack classroom testing, learning-outcome data, cost analysis, and implementation evidence. Their cataloguing and classification proposal is therefore useful as a design agenda, not yet as proof of effectiveness.
+
 ## Equity and Access Gaps
 ## Professional Practice and Training Gaps
 Elkins and Hollister (2020) identify a professional-preparation gap behind GBLS implementation: in a survey of 24 U.S. LIS educators, 41.7% neither used nor discussed gaming in their courses, and many gaming-exclusive respondents cited uncertainty about relevance, integration, knowledge, course-change constraints, or lack of student interest. Their findings suggest that reusable course modules, assignments, best-practices guides, conference workshops, and administrative support are part of the infrastructure needed to make game-based library services teachable in LIS programs.
 Capdarest-Arest, Opuda, and Stark (2019) make professional preparation more concrete through a ninety-minute MLA workshop that taught health sciences librarians low-tech game design and design-thinking methods. Participants used ordinary materials to prototype database-instruction games, and self-reported confidence using gamification rose from 28% before the session to 83% after it; the study is short-term and self-reported, but it shows that GBLS training can focus on rapid prototyping, rule testing, shared repositories, and low-cost instructional design rather than only on finished game examples.
+
+Adetayo et al. (2023) broaden the training gap from practicing librarians to LIS students and faculty. Their proposed gamified cataloguing and classification model assumes that students need repeated practice and motivational scaffolding, but it also notes that faculty may need technology training, institutional support, and stakeholder coordination before such systems can be implemented in Nigerian library schools.
 
 
 ## Infrastructure and Metadata Gaps
