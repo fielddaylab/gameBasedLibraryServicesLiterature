@@ -36,6 +36,8 @@ Nicholson (2013) also helps define the GBLS service field by distinguishing game
 
 Hill (2016) offers a synthetic professional map of library gaming modalities, grouping digital games, video games, role-playing games, tabletop games, gamification, and game creation across public, school, and academic libraries. Because it is a literature review rather than original assessment, its main value is definitional: it shows how mid-2010s library discourse connected games to access, new literacies, community building, collections, programming, partnerships, orientation, information literacy, and advocacy.
 
+Storie's (2010) review of Nicholson's *Everyone Plays at the Library* characterizes Nicholson's practitioner framework as one organized around gaming experiences rather than formats alone: knowledge, strategy, action, narrative, and social gaming. The review is secondary rather than empirical, but it helps show why GBLS modality decisions should consider library goals, audience age, cost, player count, complexity, play time, facilitation, marketing, evaluation, and the skills a game invites.
+
 ## Games, Gamification, and Play
 Seay (2018) captures the practitioner-facing vocabulary that often bundles games, serious games, escape rooms, and gamification together in library discourse. The column is anecdotal rather than evaluative, but it is useful for distinguishing related service logics: escape rooms as information-seeking and problem-solving instruction, serious games as purposeful simulation, gamification as user-engagement design, and game nights or board game collections as expressions of the library as community space.
 
