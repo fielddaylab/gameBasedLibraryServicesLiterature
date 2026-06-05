@@ -20,6 +20,8 @@ Seay's companion column on "The G Word" sharpens this distinction by defining ga
 ## Analog, Digital, and Hybrid Forms
 Seay (2018) offers a practitioner argument for analog, co-present game forms as distinct from many screen-based educational games. Although not an empirical study, the column usefully frames escape rooms, Edu-LARPs, and megagames as collaborative, multiplayer, immersive activities whose value lies in real-time social interaction, role assumption, communication, and problem solving, reinforcing the GBLS principle that libraries should match game form to learning and community goals rather than treating digital novelty as inherently superior.
 
+Seay's later "Space Guardians" column adds a complementary practitioner rationale for analog game services: board games, books, makerspaces, and physical library spaces can answer a longing for tactile, face-to-face, slower social interaction amid digital overload. The essay is speculative rather than evidentiary, but it helps explain why analog GBLS formats may be valuable precisely because they gather bodies, materials, attention, and conversation in shared public space.
+
 ## Key Game Studies Debates Relevant to Libraries
 
 # Major Areas of Game-Based Library Service
