@@ -1,0 +1,392 @@
+summarize-from-zotero
+
+Continue the Games-Based Library Services (GBLS) Zotero-to-literature-review workflow.
+
+RUN CONFIGURATION
+BATCH_SIZE: <NUMBER_OF_SOURCES>
+SELECTION_ORDER: <BOTTOM_UP or TOP_DOWN>
+COMMIT_AFTER_EACH_SOURCE: <YES or NO>
+
+ZOTERO_LIBRARY: "IMLS Games and Libraries"
+COLLECTION_COMPLETE: "Summary Complete"
+COLLECTION_EXCLUDE: "Explicitly Excluded"
+
+PROJECT_ROOT: /Users/djgagnon/Library/CloudStorage/GoogleDrive-djgagnon@wisc.edu/.shortcut-targets-by-id/1P-yeNAX497qAu3txZnKjZZ1ztx8V2nSJ/Phase I - Research, Needs Assessment, and Lit Review Resources/GBLS Lit Review Working Docs
+SUMMARY_FOLDER: ${PROJECT_ROOT}/1-coded-summaries
+METADATA_SCHEMA_FILE: ${PROJECT_ROOT}/0-human-sources/metadata-schema-and-lexicon.md
+OUTLINE_FILE: ${PROJECT_ROOT}/0-human-sources/outline_structure.md
+VALUES_FILE: ${PROJECT_ROOT}/0-human-sources/explicit_values.md
+
+PER-SOURCE DERIVED VARIABLES
+For each selected source, determine and retain:
+
+SOURCE_APA_CITATION: <complete APA-style citation>
+SOURCE_AUTHOR_LASTNAME: <first author's filesystem-safe last name or responsible organization>
+SOURCE_YEAR: <four-digit publication year or n.d.>
+SOURCE_ZOTERO_ITEM_KEY: <Zotero parent item key>
+SOURCE_CITATION_KEY: <Better BibTeX citation key or other stable citation key>
+SOURCE_ATTACHMENT_KEY: <PDF attachment key>
+SOURCE_AUTHOR_YEAR: <author-year label used in reports and commit messages>
+SOURCE_SUMMARY_FILENAME: <resolved standalone Markdown filename>
+SOURCE_SUMMARY_FILE: ${SUMMARY_FOLDER}/${SOURCE_SUMMARY_FILENAME}
+
+SUMMARY_FILENAME_TEMPLATE: ${SOURCE_CITATION_KEY}.md
+SUMMARY_FILENAME_FALLBACK_TEMPLATE: ${SOURCE_AUTHOR_LASTNAME}-${SOURCE_YEAR}-${SOURCE_ZOTERO_ITEM_KEY}.md
+
+Treat every value above as a variable. Use the variable names throughout the workflow rather than repeating or assuming literal collection names, paths, filenames, or run settings. Resolve variables before performing file or Zotero operations.
+
+The project at `${PROJECT_ROOT}` is git-managed.
+
+OBJECTIVE
+
+Process `${BATCH_SIZE}` eligible sources from `${ZOTERO_LIBRARY}` in `${SELECTION_ORDER}` order. Read each source closely. Create one new Markdown file per source in `${SUMMARY_FOLDER}`, record suggested contributions to the literature review within that source's standalone summary, file the Zotero item in the appropriate configured collections, verify completion, and commit after each source when `${COMMIT_AFTER_EACH_SOURCE}` is `YES`.
+
+Never append a source summary to a shared or cumulative summaries file. Each source must have its own standalone summary file.
+
+This is a summary-only workflow. Never open, read, modify, stage, or commit `review.md` or any full review document. Suggested review contributions and placements must exist only inside `${SOURCE_SUMMARY_FILE}`.
+
+Treat `${METADATA_SCHEMA_FILE}`, `${OUTLINE_FILE}`, and `${VALUES_FILE}` as provisional analytic tools. Use them consistently where they fit, but remain open to sources that challenge, exceed, contradict, or require revision of those frameworks.
+
+Resolve `${SOURCE_SUMMARY_FILENAME}` as follows:
+
+1. Use `${SUMMARY_FILENAME_TEMPLATE}` when a Better BibTeX citation key exists.
+2. Otherwise use `${SUMMARY_FILENAME_FALLBACK_TEMPLATE}`.
+3. Replace filesystem-unsafe characters with hyphens.
+4. Preserve a final `.md` extension.
+5. Do not overwrite an existing file.
+6. If the resolved filename already exists but represents a different source, append `${SOURCE_ZOTERO_ITEM_KEY}` before `.md`.
+
+SOURCE SELECTION
+
+1. Identify parent items in `${ZOTERO_LIBRARY}` that:
+   - have at least one readable PDF attachment;
+   - are not in `${COLLECTION_COMPLETE}`;
+   - have not already been summarized in any Markdown file under `${SUMMARY_FOLDER}`;
+
+2. Select items according to `${SELECTION_ORDER}`.
+
+3. Before processing and again immediately before writing:
+   - verify that the item remains eligible;
+   - search all Markdown files under `${SUMMARY_FOLDER}` for the source's Zotero item key, citation key, title, DOI, and authors;
+   - verify that `${SOURCE_SUMMARY_FILE}` does not already contain or represent the source;
+   - avoid duplicating work performed by another agent.
+
+4. Use the Zotero local API when possible.
+
+5. Avoid unnecessary Zotero restarts. Another process may be opening or closing Zotero, so retry temporary connection failures after a short delay.
+
+6. Do not rely on any singular cumulative summary file for output or duplicate detection. Search the full `${SUMMARY_FOLDER}` corpus instead.
+
+PREPARATION
+
+Before summarizing sources:
+
+1. Read `${METADATA_SCHEMA_FILE}`.
+2. Read `${OUTLINE_FILE}`.
+3. Read `${VALUES_FILE}`.
+4. Inspect recent standalone Markdown files in `${SUMMARY_FOLDER}` and follow their current formatting where it remains compatible with this prompt.
+5. Check git status in `${PROJECT_ROOT}` and preserve unrelated changes.
+6. Confirm that `${SUMMARY_FOLDER}` exists.
+7. Derive all per-source variables and confirm that `${SOURCE_SUMMARY_FILE}` is unique before reading or writing output.
+8. Do not inspect or use `review.md`; derive suggested placements only from `${OUTLINE_FILE}` and the source.
+
+SOURCE FIDELITY
+
+Read each source closely enough to identify:
+
+- purpose and scope;
+- central arguments;
+- definitions and conceptual framework;
+- methods, participants, setting, and data;
+- evidence and findings;
+- limitations;
+- implications;
+- relevance to GBLS.
+
+Maintain clear distinctions among:
+
+- claims made by the source's author;
+- empirical findings reported by the source;
+- interpretations offered by the source;
+- your synthesis for the GBLS project;
+- priorities drawn from `${VALUES_FILE}`.
+
+Do not attribute the project author's values to the source author.
+
+Use `${VALUES_FILE}` as an attention framework rather than as a predetermined conclusion. It may help foreground access, equity, cultural stewardship, facilitation, infrastructure, local context, learning, belonging, sustainability, public purpose, or evidence quality when these topics are genuinely supported by the source.
+
+Do not use `${VALUES_FILE}` to:
+
+- invent findings or interpretations;
+- add themes unsupported by the source;
+- imply that a source endorses the project author's values;
+- dismiss a source because it advances different values;
+- criticize a source merely because it does not discuss every project priority;
+- convert an adjacent implication into an empirical result.
+
+When moving from source description to GBLS interpretation, signal the transition explicitly with language such as "For the larger GBLS project..." or "Read in relation to GBLS...".
+
+PRODUCTIVE INCONGRUENCE AND CHALLENGE
+
+Do not force a source to conform to `${METADATA_SCHEMA_FILE}`, `${OUTLINE_FILE}`, or `${VALUES_FILE}`. Treat these documents as provisional frameworks rather than boundaries on what the literature is allowed to say.
+
+Identify cases where the source:
+
+- advances concepts `${METADATA_SCHEMA_FILE}` cannot represent adequately;
+- crosses or challenges categories in `${OUTLINE_FILE}`;
+- presents evidence, assumptions, priorities, or conclusions that conflict with `${VALUES_FILE}`;
+- exposes blind spots, tensions, exclusions, or unsupported assumptions in the project framework;
+- defines games, play, libraries, evidence, learning, culture, access, or public purpose differently from the project;
+- supplies evidence that qualifies or contradicts a project assumption;
+- suggests that an existing category, value, or structural distinction should be revised.
+
+Distinguish among:
+
+- Omission: the project framework does not address something important in the source.
+- Category mismatch: the source does not fit cleanly within the available metadata or outline.
+- Conceptual disagreement: the source and project framework interpret an issue differently.
+- Evidentiary challenge: the source supplies evidence that weakens, complicates, or contradicts a project assumption.
+- Value tension: the source advances priorities that conflict with or substantially qualify `${VALUES_FILE}`.
+
+Do not manufacture disagreement merely because a source does not discuss a project priority. Report an incongruence only when supported by the article's text, methods, evidence, or argument.
+
+An article may be valuable precisely because it challenges the project's assumptions. Do not exclude it, minimize its contribution, or lower `Coding_Confidence` solely because it conflicts with the existing framework or authorial values.
+
+SUMMARY FILE
+
+Create exactly one standalone summary file for each processed source at:
+
+`${SOURCE_SUMMARY_FILE}`
+
+Do not append the summary to any existing cumulative file. Do not create a batch-level summaries file. Do not modify other source summary files.
+
+Each `${SOURCE_SUMMARY_FILE}` must be independently understandable and contain:
+
+1. `${SOURCE_APA_CITATION}` as the H1 heading.
+2. Zotero item key `${SOURCE_ZOTERO_ITEM_KEY}`.
+3. Better BibTeX or other stable citation key `${SOURCE_CITATION_KEY}`.
+4. Attachment key `${SOURCE_ATTACHMENT_KEY}`.
+5. Metadata coded according to `${METADATA_SCHEMA_FILE}`.
+6. A prose summary of approximately 500-800 words.
+7. A clearly identified discussion of relevance to the larger GBLS project.
+8. A `Productive Incongruences and Challenges` section.
+9. Suggested contributions to the full review, recorded only in `${SOURCE_SUMMARY_FILE}`.
+10. Limitations and evidence cautions where material.
+
+Use this document order:
+
+# ${SOURCE_APA_CITATION}
+
+## Metadata
+
+<metadata fields>
+
+## Summary
+
+<source-grounded prose summary and GBLS application>
+
+## Productive Incongruences and Challenges
+
+<incongruence analysis or the required no-incongruence statement>
+
+## Suggested Review Contributions
+
+<structured contributions>
+
+## Evidence Cautions and Limitations
+
+<limitations, or a concise statement when no additional cautions are needed>
+
+METADATA FORMAT
+
+Use these fields:
+
+Citation_Key: ${SOURCE_CITATION_KEY}
+Year: ${SOURCE_YEAR}
+Zotero_Item_Key: ${SOURCE_ZOTERO_ITEM_KEY}
+Better_BibTeX_Citation_Key: ${SOURCE_CITATION_KEY}
+Attachment_Key: ${SOURCE_ATTACHMENT_KEY}
+
+Source_Type:
+Evidence_Type:
+Methodology:
+Library_Context:
+Game_Format:
+Service_Area:
+Audience:
+Outcome:
+Theme:
+Contribution_Type:
+Design_Principles:
+Coding_Confidence:
+
+METADATA RULES
+
+- Use field names exactly as specified in this prompt and values defined by `${METADATA_SCHEMA_FILE}`.
+- Use existing controlled values when they adequately represent the source.
+- Use YAML-style lists for fields with multiple values.
+- Select the smallest defensible set of values; do not over-tag.
+- Base metadata on the source, not on `${VALUES_FILE}`.
+- Use the schema's corresponding unspecified value when evidence does not support a more specific classification.
+- Set `Coding_Confidence` to `high`, `medium`, or `low` based on source clarity and coding certainty.
+- Use `no_clear_design_principle_extracted` when no listed design principle is supported.
+- Do not distort the source merely to make it fit `${METADATA_SCHEMA_FILE}`.
+- When no controlled value adequately represents the source, use the closest defensible existing value and document the mismatch under `Productive Incongruences and Challenges`.
+- Do not silently introduce new controlled values into metadata fields.
+
+PRODUCTIVE INCONGRUENCES SECTION
+
+In `${SOURCE_SUMMARY_FILE}`, after the main prose summary and GBLS application discussion, include:
+
+## Productive Incongruences and Challenges
+
+Describe any meaningful omission, category mismatch, conceptual disagreement, evidentiary challenge, or value tension.
+
+For every identified incongruence:
+
+1. Name its type.
+2. Describe the relevant idea, argument, or evidence in the source.
+3. Identify which part of `${METADATA_SCHEMA_FILE}`, `${OUTLINE_FILE}`, or `${VALUES_FILE}` it challenges.
+4. Explain why the current framework does not represent it adequately.
+5. Recommend a response when appropriate.
+
+Possible recommendations include:
+
+- a proposed controlled-vocabulary term;
+- revision or expansion of an existing metadata definition;
+- a new review subsection;
+- movement or reorganization of an outline section;
+- qualification or reconsideration of an authorial value;
+- retention of the disagreement as an unresolved tension in the review.
+
+Clearly label all such recommendations as proposals. Do not automatically modify `${METADATA_SCHEMA_FILE}`, `${OUTLINE_FILE}`, or `${VALUES_FILE}`.
+
+If no meaningful incongruence is present, write:
+
+"No substantial incongruence identified. The source can be represented adequately by the current metadata schema, outline, and values framework."
+
+SUGGESTED REVIEW CONTRIBUTIONS
+
+Use sections and subsections from `${OUTLINE_FILE}` whenever they adequately represent the source.
+
+For each defensible contribution, write the following in `${SOURCE_SUMMARY_FILE}`:
+
+Contributions:
+- Target_Section: "[exact heading from ${OUTLINE_FILE}]"
+  Target_Section_Raw: "[exact heading from ${OUTLINE_FILE}]"
+  Placement: "[precise location within that section]"
+  Contribution_Text: >
+    [Concise review-ready prose synthesizing the source and naming the author and year.]
+
+Contribution rules:
+
+- Quote existing target headings from `${OUTLINE_FILE}` exactly.
+- Select the most specific appropriate subsection.
+- Synthesize rather than repeat the full summary.
+- Distinguish empirical evidence, historical precedent, practitioner knowledge, methodological caution, and theoretical argument.
+- Do not present practitioner reflection as causal evidence.
+- Do not use historical examples as contemporary outcome evidence.
+- Do not imply that engagement proves learning, belonging, wellness, or transfer.
+- Multiple contributions are permitted only when the source makes genuinely distinct contributions.
+- Preserve disagreement when a source complicates the review's existing argument.
+
+If the source does not fit `${OUTLINE_FILE}`, do not force placement. Instead write:
+
+Contributions:
+- Target_Section: proposed_new_section
+  Target_Section_Raw: "[proposed heading]"
+  Placement: "[proposed location in ${OUTLINE_FILE}]"
+  Contribution_Text: >
+    [Review-ready text.]
+  Rationale: >
+    [Why no existing section represents this contribution adequately.]
+
+Clearly identify this as a proposed structural change. Do not silently add or rename sections in `${OUTLINE_FILE}`.
+
+If no review contribution is warranted, use `unspecified` and explain briefly why the source should be filed in `${COLLECTION_EXCLUDE}`.
+
+All suggested review contributions are advisory. Record them only under `## Suggested Review Contributions` in `${SOURCE_SUMMARY_FILE}`. Do not apply them to `review.md`, another review draft, `${OUTLINE_FILE}`, or any other project file.
+
+ZOTERO FILING
+
+After successfully writing and verifying `${SOURCE_SUMMARY_FILE}`:
+
+1. Add the parent item to `${COLLECTION_COMPLETE}`.
+2. Add it to collections corresponding to its proposed review placement when appropriate.
+3. If no review contribution is recommended, add it to `${COLLECTION_EXCLUDE}`.
+4. Do not classify a source as excluded solely because it challenges `${METADATA_SCHEMA_FILE}`, `${OUTLINE_FILE}`, or `${VALUES_FILE}`.
+5. Move only the parent item unless attachment handling requires otherwise.
+6. Verify that the item is no longer eligible or unprocessed.
+7. Do not file an item as complete until `${SOURCE_SUMMARY_FILE}` has been written and verified.
+
+GIT AND CONCURRENCY
+
+For every source:
+
+1. Check git status in `${PROJECT_ROOT}` before editing.
+2. Preserve unrelated changes and untracked files.
+3. Re-read live files immediately before applying an update.
+4. Stage only `${SOURCE_SUMMARY_FILE}`.
+5. Never stage another source's summary file as part of the current source's commit.
+6. Never stage or commit `review.md`, `${OUTLINE_FILE}`, `${METADATA_SCHEMA_FILE}`, or `${VALUES_FILE}` as part of this workflow.
+7. Review the staged diff for:
+   - duplicate summaries;
+   - malformed metadata;
+   - accidental deletions;
+   - unsupported claims;
+   - edits belonging to another agent.
+8. If `${COMMIT_AFTER_EACH_SOURCE}` is `YES`, commit after each source.
+9. If `${COMMIT_AFTER_EACH_SOURCE}` is `NO`, do not create commits.
+
+Use a simple `${SOURCE_AUTHOR_YEAR}` commit message:
+
+Add ${SOURCE_AUTHOR_YEAR} GBLS summary
+
+For a source filed in `${COLLECTION_EXCLUDE}`:
+
+Add ${SOURCE_AUTHOR_YEAR} GBLS exclusion
+
+Do not combine multiple sources into one commit.
+
+QUALITY CHECK
+
+Before marking each source complete, verify:
+
+- the citation in `${SOURCE_SUMMARY_FILE}` is complete and accurate;
+- identifiers in `${SOURCE_SUMMARY_FILE}` match Zotero;
+- `${SOURCE_SUMMARY_FILE}` is the only newly created summary file for the source;
+- no duplicate exists anywhere under `${SUMMARY_FOLDER}`;
+- no cumulative summaries file was created or modified;
+- metadata uses values from `${METADATA_SCHEMA_FILE}` or clearly documents mismatches;
+- the summary accurately represents the source;
+- source claims are distinguished from GBLS interpretation;
+- authorial values from `${VALUES_FILE}` have not been attributed to the source;
+- disagreement with the project framework has not been suppressed;
+- incongruences are grounded in the source rather than invented;
+- suggested review headings match `${OUTLINE_FILE}` or are explicitly labeled as proposed additions;
+- suggested contribution text is concise and calibrated to the evidence;
+- all suggested review contributions appear only in `${SOURCE_SUMMARY_FILE}`;
+- `review.md` and all full review documents were not opened, modified, staged, or committed;
+- limitations and evidentiary boundaries are clear;
+- the Zotero parent is in `${COLLECTION_COMPLETE}`;
+- exclusions are in `${COLLECTION_EXCLUDE}`;
+- no unrelated repository changes were committed.
+
+FINAL REPORT
+
+Proceed end to end without requesting approval for each source. Stop after `${BATCH_SIZE}` sources or when no eligible sources remain.
+
+Report:
+
+- sources processed;
+- `${SOURCE_SUMMARY_FILE}` created for each source;
+- `${SOURCE_ZOTERO_ITEM_KEY}`;
+- `${SOURCE_CITATION_KEY}`;
+- suggested review placements recorded in each `${SOURCE_SUMMARY_FILE}`;
+- proposed metadata, outline, or values revisions;
+- Zotero filing destinations;
+- commit hashes when `${COMMIT_AFTER_EACH_SOURCE}` is `YES`;
+- confirmation that no cumulative summaries file was created or modified;
+- skipped or blocked sources and the reasons.
+
+Before starting, interactively ask me to clarify any of the undefined variables at the top. 
