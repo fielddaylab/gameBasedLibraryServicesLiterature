@@ -97,16 +97,11 @@ Verified source support: Smith is the strongest citation for TTRPG vocabulary pr
 ## Library Services Inside Games and Virtual Worlds
 
 # Cross-Cutting Conditions for Effective Games-Based Library Services (2,250 words)
-## Begin with Purpose, Audience, and Local Need
-## Match Game Form to Service Goal
-## Treat Facilitation as Core Infrastructure
-## Curate for Inclusion, Accessibility, and Cultural Relevance
-## Connect Discovery, Advisory, and Cross-Media Engagement
-## Build Partnerships and Community Leadership Pathways
-## Develop Staff Expertise and Professional Preparation
-## Plan for Operations, Licensing, Preservation, and Sustainability
-## Design for Reflection, Learning Transfer, and Participant Agency
-## Evaluate Outcomes Beyond Attendance and Enjoyment
+## Ground Services in Purpose, Audience, and Institutional Context
+## Select, Describe, and Provide Access to Appropriate Games
+## Facilitate Inclusive and Meaningful Participation
+## Build Institutional Capacity and Sustainable Service Models
+## Evaluate, Adapt, and Decide What to Sustain
 
 # Gaps in the Literature and Future Research Agenda (1,250 words)
 ## Evidence Quality and Outcome Gaps
