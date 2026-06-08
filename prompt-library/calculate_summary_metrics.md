@@ -20,6 +20,7 @@ The project root is:
 Use these folders:
 
 - Input: `<project root>/1-coded-summaries`
+- Human-authored sources: `<project root>/0-human-sources`
 - Output root: `<project root>/2-outputs`
 - Metrics output: `<project root>/2-outputs/metrics`
 - JavaScript explorer folder: `<project root>/metrics-explorer`
@@ -45,31 +46,34 @@ unless necessary.
    Do not invent publication years.
 8. Counts represent coded article presence. A source contributes no more than one count to a particular
    feature label, regardless of how often that concept appears in prose.
+9. At run time, enumerate the non-hidden documents directly inside
+   `0-human-sources` and identify by contents the document that defines the
+   metadata schema and controlled lexicon. Do not rely solely on a remembered
+   filename.
+10. Parse that live schema into a run-time contract containing every
+    controlled field, its order, allowed values, definitions, cardinality,
+    and null/unknown conventions when specified.
+11. The run-time contract is the only authority for controlled feature
+    groups. Do not use field names, values, group roles, or prior-schema
+    compatibility assumptions embedded in code, this prompt, old outputs, or
+    memory.
 
 ## Fields to Parse
 
-Parse these scalar metadata fields when present:
+Parse durable identifiers and bibliographic values present in each summary,
+including:
 
 - `Citation_Key`
 - `Year`
 - `Zotero_Item_Key`
 - `Better_BibTeX_Citation_Key`
 - `Attachment_Key`
-- `Coding_Confidence`
 
-Parse these as multi-label fields, accepting either a single inline value or a Markdown bullet list:
-
-- `Source_Type`
-- `Evidence_Type`
-- `Methodology`
-- `Library_Context`
-- `Game_Format`
-- `Service_Area`
-- `Audience`
-- `Outcome`
-- `Theme`
-- `Contribution_Type`
-- `Design_Principles`
+In addition, parse every controlled metadata field defined by the run-time
+schema. Derive scalar versus multi-label behavior from the live schema. If the
+schema does not state cardinality, accept both inline and Markdown-list forms,
+preserve all distinct values, record the ambiguity, and do not hardcode a
+field-specific inference for future runs.
 
 Also extract:
 
@@ -93,14 +97,14 @@ For each article calculate:
 - `year_status`: `known` or `not_dated`
 - `decade`
 - Citation and Zotero identifiers
-- `coding_confidence`
 - `summary_word_count`
 - `summary_character_count`
 - `contribution_count`
 - `target_sections`, pipe-delimited
 - `source_path`
 - `summary_text`
-- One pipe-delimited column for every multi-label field
+- One column for every controlled metadata field
+- Pipe-delimited values for every multi-label field
 - A `<field>_count` column for every multi-label field
 
 Use lowercase snake_case column names. Store multi-label values in readable article tables with `|`
@@ -124,58 +128,63 @@ headers and no dataframe index:
    - One row per article-feature assignment
    - Columns: `article_id`, `year`, `feature_group`, `feature_value`, `feature_column`, `present`
    - `present` must always equal `1`
-   - Include `coding_confidence` as a feature group
+   - Include every field in the run-time controlled metadata contract as a
+     feature group
+   - A scalar controlled field contributes exactly one assignment per article; a multi-label field
+     contributes one assignment for each distinct coded value
 
 4. `article_feature_matrix.csv`
    - One row per article
-   - Identity columns first: `article_id`, `year`, `decade`, `citation`, `coding_confidence`,
+   - Identity columns first: `article_id`, `year`, `decade`, `citation`,
      `summary_word_count`
    - One integer binary column per unique coded feature using
      `<feature_group>__<snake_case_feature_value>`
 
-5. `article_topic_matrix.csv`
-   - Identity columns plus only `service_area__*` binary columns
+5. One schema-derived matrix for every controlled feature group:
+   `<feature_group>_matrix.csv`
+   - Identity columns plus only that run-time feature group's binary columns
+   - Derive `<feature_group>` from the live schema using lowercase snake case
+   - Do not retain a matrix for a feature group that no longer exists in the
+     live schema
 
-6. `article_theme_matrix.csv`
-   - Identity columns plus only `theme__*` binary columns
-
-7. `contributions.csv`
+6. `contributions.csv`
    - One row per extracted proposed contribution
    - Columns: `article_id`, `contribution_number`, `target_section`, `contribution_text`
 
 ### Aggregate tables
 
-8. `feature_counts.csv`
+7. `feature_counts.csv`
    - One row per unique feature label
    - Columns: `feature_group`, `feature_value`, `article_count`, `total_articles`, `article_pct`,
      `rank_within_group`
    - `article_pct = article_count / total_articles * 100`
    - Use dense descending rank within each feature group
 
-9. `topic_area_counts.csv`
-   - The `service_area` rows from `feature_counts.csv`
+8. One schema-derived count table for every controlled feature group:
+   `<feature_group>_counts.csv`
+   - The corresponding feature-group rows from `feature_counts.csv`
+   - Derive filenames from the live schema using lowercase snake case
+   - Do not retain a count table for a feature group that no longer exists in
+     the live schema
 
-10. `theme_counts.csv`
-    - The `theme` rows from `feature_counts.csv`
-
-11. `publication_year_counts.csv`
+9. `publication_year_counts.csv`
     - One row per publication year plus `n.d.`
     - Columns: `year_label`, `article_count`, `article_pct`
 
-12. `feature_year_counts.csv`
+10. `feature_year_counts.csv`
     - One row per year-feature combination that occurs
     - Columns: `year`, `feature_group`, `feature_value`, `article_count`, `total_articles`,
       `article_pct_in_year`
     - Use the number of articles published in that year as the denominator
 
-13. `feature_cooccurrence.csv`
+11. `feature_cooccurrence.csv`
     - One row per unordered pair of distinct coded features assigned to the same article
     - Columns: `feature_group_a`, `feature_value_a`, `feature_group_b`, `feature_value_b`,
       `article_count`, `article_pct`
     - Include pairs occurring in at least two articles
     - Sort primarily by descending `article_count`
 
-14. `dataset_summary.csv`
+12. `dataset_summary.csv`
     - One row per metric with columns `metric`, `value`
     - Include at least:
       - `total_articles`
@@ -187,14 +196,14 @@ headers and no dataframe index:
       - `median_summary_word_count`
       - `articles_with_contributions`
 
-15. `data_dictionary.csv`
+13. `data_dictionary.csv`
     - Document every generated data file, its grain, purpose, and primary key
 
 ## Documentation and Validation
 
 Create or replace these metric-specific support files inside `2-outputs/metrics`:
 
-16. `FEATURE_DATASETS_README.md`
+14. `FEATURE_DATASETS_README.md`
     - Explain the tables and recommend:
 
       ```python
@@ -210,7 +219,7 @@ Create or replace these metric-specific support files inside `2-outputs/metrics`
     - Explain denominators used by percentage columns
     - Note any undated records
 
-17. `validation_report.json`
+15. `validation_report.json`
     - Include:
       - Source Markdown count excluding the template
       - Parsed article count
@@ -229,7 +238,10 @@ Validation must confirm:
 - `article_features_long.present` contains only `1`
 - The number of matrix rows equals the article count
 - The sum of `feature_counts.article_count` equals the number of long-table feature assignments
-- Topic and theme count files exactly match their corresponding `feature_counts` subsets
+- Parsed feature groups exactly match the run-time controlled metadata contract
+- No feature group absent from the live schema is emitted
+- Every schema-derived matrix and count file exactly matches its corresponding
+  subset of the long table or `feature_counts.csv`
 - All generated CSV files can be loaded by pandas
 
 Stop and report a clear error if any source cannot be parsed. Do not silently omit files.
@@ -239,15 +251,17 @@ Stop and report a clear error if any source cannot be parsed. Do not silently om
 Create or replace `2-outputs/metrics/gbls_feature_overview.xlsx` with clean, machine-readable sheets:
 
 - Dashboard
-- Topic Areas
-- Themes
 - Year Counts
 - All Feature Counts
 - Data Dictionary
+- One sheet for every controlled feature group discovered from the live schema,
+  named from its field label and shortened safely only when required by Excel
 
-The Dashboard must show headline corpus metrics and charts for the top topic areas and themes. Use
-plain headers, frozen header rows, filters or Excel tables where useful, and avoid merged multi-row
-table headers.
+The Dashboard must show headline corpus metrics and compact prevalence views
+for the run-time controlled feature groups. Derive labels and display order
+from the live schema; do not privilege particular groups in this prompt or
+code. Use plain headers, frozen header rows, filters or Excel tables where
+useful, and avoid merged multi-row table headers.
 
 ## Refresh the JavaScript Explorer
 
@@ -265,7 +279,10 @@ If `<project root>/metrics-explorer/index.html` and
    - Feature-year counts
 4. Keep the existing HTML, CSS, and interaction logic unless a schema change requires a narrowly scoped
    compatibility fix.
-5. Verify that `metrics-explorer/index.html` loads with no console errors and shows the newly
+5. Build feature-family controls, labels, tables, and chart choices
+   dynamically from the generated run-time feature groups. Do not hardcode
+   schema field names or display labels in the explorer.
+6. Verify that `metrics-explorer/index.html` loads with no console errors and shows the newly
    calculated total article count.
 
 The explorer HTML, CSS, application script, and README are siblings in the project-root
@@ -285,6 +302,9 @@ references in `metrics-explorer/index.html` valid:
 - If optional Parquet libraries are already available, Parquet copies may also be created, but they are
   not required. Do not install dependencies solely for Parquet.
 - Write generated metric artifacts only inside `2-outputs/metrics`.
+- Maintain a generated-artifact manifest. After a successful validated build,
+  remove obsolete schema-derived metric files from previous schemas so stale
+  groups cannot appear current. Never delete unrelated files.
 - Do not overwrite unrelated files in `2-outputs`, including literature-review drafts, audit notes,
   section folders, or the generic `README.md`.
 - Keep the explorer HTML, CSS, application script, and README inside the project-root

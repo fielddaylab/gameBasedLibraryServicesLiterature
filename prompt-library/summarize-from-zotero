@@ -26,9 +26,11 @@ COLLECTION_EXCLUDE_KEY: 4YRAP7AJ
 
 PROJECT_ROOT: /Users/djgagnon/Library/CloudStorage/GoogleDrive-djgagnon@wisc.edu/.shortcut-targets-by-id/1P-yeNAX497qAu3txZnKjZZ1ztx8V2nSJ/Phase I - Research, Needs Assessment, and Lit Review Resources/GBLS Lit Review Working Docs
 SUMMARY_FOLDER: ${PROJECT_ROOT}/1-coded-summaries
+HUMAN_SOURCES_FOLDER: ${PROJECT_ROOT}/0-human-sources
 METADATA_SCHEMA_FILE: ${PROJECT_ROOT}/0-human-sources/metadata-schema-and-lexicon.md
 BASELINE_FILE: ${PROJECT_ROOT}/0-human-sources/baseline_structure_and_prose.md
 VALUES_FILE: ${PROJECT_ROOT}/0-human-sources/explicit_values.md
+PUBLISHABILITY_FILE: ${PROJECT_ROOT}/0-human-sources/publishability_rubric.md
 
 PER-SOURCE DERIVED VARIABLES
 For each selected source, determine and retain:
@@ -61,7 +63,13 @@ Never append a source summary to a shared or cumulative summaries file. Each sou
 
 This is a summary-only workflow. Never open, read, modify, stage, or commit `review.md` or any full review document. Suggested review contributions and placements must exist only inside `${SOURCE_SUMMARY_FILE}`.
 
-Treat `${METADATA_SCHEMA_FILE}`, `${BASELINE_FILE}`, and `${VALUES_FILE}` as provisional analytic tools. Use them consistently where they fit, but remain open to sources that challenge, exceed, contradict, or require revision of those frameworks.
+Treat the live documents in `${HUMAN_SOURCES_FOLDER}` as the only authority
+for the project's controlled vocabulary, review structure, declared values,
+and quality criteria. Load them at run time; do not rely on field names,
+allowed values, section headings, priorities, or rubric criteria remembered
+from this prompt or a previous run. Treat those documents as provisional
+analytic tools and remain open to sources that challenge, exceed, contradict,
+or require revision of them.
 
 Resolve `${SOURCE_SUMMARY_FILENAME}` as follows:
 
@@ -197,16 +205,36 @@ PREPARATION
 
 Before summarizing sources:
 
-1. Read `${METADATA_SCHEMA_FILE}`.
-2. Read `${BASELINE_FILE}`.
-3. Read `${VALUES_FILE}`.
-4. Inspect `${SUMMARY_FOLDER}/template.md`, when present, plus a small sample
+1. Enumerate every non-hidden source document directly inside
+   `${HUMAN_SOURCES_FOLDER}` and read the documents that define metadata,
+   review structure, authorial values, and quality or publishability criteria.
+2. Verify that `${METADATA_SCHEMA_FILE}`, `${BASELINE_FILE}`,
+   `${VALUES_FILE}`, and `${PUBLISHABILITY_FILE}` still represent those roles.
+   If a configured file is missing or its role has moved, rediscover the
+   appropriate document by its contents and use the live file. Do not infer
+   its contents from the filename alone.
+3. Build a run-time project contract that records:
+   - every metadata field in source order;
+   - every allowed controlled value and definition;
+   - field cardinality, null/unknown conventions, and formatting rules when
+     the source documents specify them;
+   - the exact review heading hierarchy and any placement directives;
+   - the declared values and interpretive cautions;
+   - applicable quality and publishability criteria.
+4. Do not supplement that contract with remembered or prompt-embedded
+   vocabulary or headings. If a semantic or structural rule is genuinely
+   absent from `${HUMAN_SOURCES_FOLDER}`, use a neutral flexible
+   representation, report the ambiguity, and do not promote the temporary
+   choice into project policy.
+5. Inspect `${SUMMARY_FOLDER}/template.md`, when present, plus a small sample
    of recent standalone summaries. Follow the template and current formatting
    where they remain compatible with this prompt.
-5. Check git status in `${PROJECT_ROOT}` and preserve unrelated changes.
-6. Confirm that `${SUMMARY_FOLDER}` exists.
-7. Derive all per-source variables and confirm that `${SOURCE_SUMMARY_FILE}` is unique before reading or writing output.
-8. Do not inspect or use `review.md`; derive suggested placements only from `${BASELINE_FILE}` and the source.
+6. Check git status in `${PROJECT_ROOT}` and preserve unrelated changes.
+7. Confirm that `${SUMMARY_FOLDER}` exists.
+8. Derive all per-source variables and confirm that `${SOURCE_SUMMARY_FILE}` is unique before reading or writing output.
+9. Do not inspect or use `review.md`; derive suggested placements only from
+   the run-time review structure loaded from `${HUMAN_SOURCES_FOLDER}` and the
+   source.
 
 SOURCE FIDELITY
 
@@ -231,7 +259,10 @@ Maintain clear distinctions among:
 
 Do not attribute the project author's values to the source author.
 
-Use `${VALUES_FILE}` as an attention framework rather than as a predetermined conclusion. It may help foreground access, equity, cultural stewardship, facilitation, infrastructure, local context, learning, belonging, sustainability, public purpose, or evidence quality when these topics are genuinely supported by the source.
+Use the live values document as an attention framework rather than as a
+predetermined conclusion. Foreground only priorities actually declared there
+and genuinely supported by the source; do not import priorities from this
+prompt or memory.
 
 Do not use `${VALUES_FILE}` to:
 
@@ -250,13 +281,13 @@ Do not force a source to conform to `${METADATA_SCHEMA_FILE}`, `${BASELINE_FILE}
 
 Identify cases where the source:
 
-- advances concepts `${METADATA_SCHEMA_FILE}` cannot represent adequately;
-- crosses or challenges categories in `${BASELINE_FILE}`;
-- presents evidence, assumptions, priorities, or conclusions that conflict with `${VALUES_FILE}`;
-- exposes blind spots, tensions, exclusions, or unsupported assumptions in the project framework;
-- defines games, play, libraries, evidence, learning, culture, access, or public purpose differently from the project;
-- supplies evidence that qualifies or contradicts a project assumption;
-- suggests that an existing category, value, or structural distinction should be revised.
+- cannot be represented adequately by the run-time metadata contract;
+- crosses or challenges the run-time review hierarchy;
+- conflicts with, qualifies, or exposes an omission in the run-time values or
+  quality criteria;
+- supplies evidence that weakens or complicates a project assumption;
+- suggests that a live category, value, criterion, or structural distinction
+  should be revised.
 
 Distinguish among:
 
@@ -268,7 +299,10 @@ Distinguish among:
 
 Do not manufacture disagreement merely because a source does not discuss a project priority. Report an incongruence only when supported by the article's text, methods, evidence, or argument.
 
-An article may be valuable precisely because it challenges the project's assumptions. Do not exclude it, minimize its contribution, or lower `Coding_Confidence` solely because it conflicts with the existing framework or authorial values.
+An article may be valuable precisely because it challenges the project's
+assumptions. Do not exclude it, minimize its contribution, or lower any
+schema-defined confidence assessment solely because it conflicts with the
+existing framework or authorial values.
 
 SUMMARY FILE
 
@@ -317,7 +351,7 @@ Use this document order:
 
 METADATA FORMAT
 
-Use these fields:
+Begin with the source identifiers required for durable linking:
 
 Citation_Key: ${SOURCE_CITATION_KEY}
 Year: ${SOURCE_YEAR}
@@ -325,29 +359,24 @@ Zotero_Item_Key: ${SOURCE_ZOTERO_ITEM_KEY}
 Better_BibTeX_Citation_Key: ${SOURCE_CITATION_KEY}
 Attachment_Key: ${SOURCE_ATTACHMENT_KEY}
 
-Source_Type:
-Evidence_Type:
-Methodology:
-Library_Context:
-Game_Format:
-Service_Area:
-Audience:
-Outcome:
-Theme:
-Contribution_Type:
-Design_Principles:
-Coding_Confidence:
+After those identifiers, render every controlled metadata field discovered
+from `${METADATA_SCHEMA_FILE}`, exactly once and in the order defined by that
+live document. Do not embed, assume, preserve, or reconstruct any field that
+is not present in the run-time schema.
 
 METADATA RULES
 
-- Use field names exactly as specified in this prompt and values defined by `${METADATA_SCHEMA_FILE}`.
-- Use existing controlled values when they adequately represent the source.
-- Use YAML-style lists for fields with multiple values.
+- Use the run-time project contract as authoritative for metadata field names,
+  order, allowed values, definitions, cardinality, and formatting.
+- Use only fields and values present in the live schema.
+- Apply scalar or multi-label formatting according to the live schema. When
+  cardinality is not explicit, allow either one inline value or a Markdown
+  list as the source requires, and report that the schema leaves cardinality
+  open.
 - Select the smallest defensible set of values; do not over-tag.
 - Base metadata on the source, not on `${VALUES_FILE}`.
-- Use the schema's corresponding unspecified value when evidence does not support a more specific classification.
-- Set `Coding_Confidence` to `high`, `medium`, or `low` based on source clarity and coding certainty.
-- Use `no_clear_design_principle_extracted` when no listed design principle is supported.
+- Use a schema-defined null, unknown, unspecified, or not-applicable value only
+  when the live schema provides it and its definition fits.
 - Do not distort the source merely to make it fit `${METADATA_SCHEMA_FILE}`.
 - When no controlled value adequately represents the source, use the closest defensible existing value and document the mismatch under `Productive Incongruences and Challenges`.
 - Do not silently introduce new controlled values into metadata fields.
