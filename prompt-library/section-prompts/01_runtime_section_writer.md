@@ -1,58 +1,64 @@
 # Runtime Section Writer
 
-Read `00_shared_section_contract.md` and the runtime values supplied by the
-master orchestrator. Reread the corresponding H1 block from
-`0-human-sources/baseline_structure_and_prose.md` before writing.
+This prompt can be invoked in a fresh task with no conversation history. Read
+`00_shared_section_contract.md`, resolve `PROJECT_ROOT`, validate the complete
+runtime packet, and reread the identified H1 block from the live baseline.
 
-## Narrative And Front-Matter Mode
+Do not read existing files in `2-outputs` as source material.
+
+## Narrative Or Front-Matter Mode
 
 When `RUNTIME_SECTION_ROLE` is `narrative` or `front matter`:
 
-1. Extract the current H1, nested H2s, annotations, and baseline prose.
-2. Identify the section's intellectual purpose from its headings, prose,
-   position, and relation to neighboring sections.
-3. Search the complete coded-summary corpus for relevant evidence rather than
-   relying only on metadata suggestions or previous draft prose.
-4. Develop the baseline prose into thematic synthesis using the evidence and
-   limitations in the shared contract.
-5. Preserve exact runtime heading order and satisfy the runtime word target.
-6. End with implications or narrative movement appropriate to the section's
-   actual role. Do not force a transition when the section is genuinely front
-   matter.
-7. Return the completed section and its in-memory working ledger.
+1. Validate the supplied block against its ordinal position and source lines.
+2. Extract its H1, every nested H2-H6, annotations, and prose passages.
+3. Infer its intellectual purpose from the live block and neighboring heading
+   metadata, not from its position alone.
+4. Search the complete eligible coded-summary corpus for relevant evidence,
+   counterevidence, null findings, context differences, and evidence limits.
+5. Develop baseline prose into thematic, cross-source synthesis.
+6. Preserve exact heading wording, level, and order after removing only
+   trailing drafting annotations.
+7. Give practical GBLS implications where appropriate to the section's role.
+8. Create narrative movement toward the next section without prewriting it.
+9. Meet or explicitly account for the runtime word target.
+10. Return the completed section and structured working ledger.
 
-Do not use topic instructions from an earlier prompt or assume what this
-section should contain from its ordinal position alone.
+The opening paragraph should frame the section's collective question and
+principal patterns. Paragraphs should be organized around ideas, not papers.
+Where the evidence base is mainly descriptive, say so.
 
 ## Reference Mode
 
 When `RUNTIME_SECTION_ROLE` is `reference`:
 
-1. Read every completed citation-bearing runtime section and working ledger.
-2. Extract all author-year citations, including citations inherited from
-   baseline prose.
-3. Match citations to coded-summary headings or approved bibliographic
-   records.
-4. Deduplicate and alphabetize entries.
-5. Include only cited works.
-6. Add a verification subsection only when cited records cannot be matched
-   confidently.
-7. Preserve the runtime H1 and any baseline-defined H2s.
-8. Return the completed reference section to the master orchestrator.
-9. Write the bidirectional results to
-   `2-outputs/audits_and_synthetic_reviews/citation_audit.md`.
+1. Read every completed citation-bearing section and ledger from active context
+   or the disposable run-state directory.
+2. Extract every in-text citation, including citations inherited from baseline
+   prose.
+3. Match each citation to coded-summary bibliographic headings or explicitly
+   approved records.
+4. Resolve same-author/same-year suffixes consistently.
+5. Deduplicate and alphabetize matched entries.
+6. Include only works cited in the manuscript.
+7. Preserve the runtime H1 and all baseline-defined nested headings.
+8. If unmatched citations remain, place them in a verification subsection only
+   when that exact subsection already exists in the baseline. Otherwise list
+   them only in `citation_audit.md`; never add a manuscript heading.
+9. Check references back against the manuscript and remove uncited entries.
+10. Return the completed reference section and update data for the citation
+    audit.
 
-Do not invent missing bibliographic data. If the baseline contains prose in a
-reference-role section, preserve or account for it under the baseline-prose
-rules.
+Never invent bibliographic data. Account for prose found in a reference-role
+block under the baseline-prose rules.
 
 ## Completion Check
 
 Before returning:
 
-- reread the runtime block;
-- compare all H1/H2 headings exactly;
-- check baseline-prose traceability;
-- check citations against the working ledger;
-- check the runtime word target or reference directive;
-- confirm that no standalone section or ledger file was created.
+- compare the complete H1-H6 sequence with the live block;
+- verify every baseline passage has a ledger disposition;
+- verify every citation has a source match or unresolved status;
+- calculate actual section word count and target deviation;
+- confirm no output section or ledger directory was created;
+- return a clear success or blocking-error status.

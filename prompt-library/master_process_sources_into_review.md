@@ -1,121 +1,157 @@
 # Master Prompt: Build the Complete GBLS Literature Review
 
-This prompt transforms the current baseline structure and coded-summary corpus
-into a reviewed manuscript. The baseline determines the manuscript structure
-at runtime; no section inventory is encoded in the prompt library.
+This prompt is self-contained. It must work in a new conversation with no
+knowledge of earlier runs, drafts, filenames, section titles, source counts, or
+decisions made outside the project files.
 
-## Project Configuration
+## Invocation
 
-- Project root: `/Users/djgagnon/Library/CloudStorage/GoogleDrive-djgagnon@wisc.edu/.shortcut-targets-by-id/1P-yeNAX497qAu3txZnKjZZ1ztx8V2nSJ/Phase I - Research, Needs Assessment, and Lit Review Resources/GBLS Lit Review Working Docs`
-- Baseline: `0-human-sources/baseline_structure_and_prose.md`
-- Coded summaries: `1-coded-summaries/*.md`, excluding `template.md`
-- Runtime section writer: `prompt-library/section-prompts/01_runtime_section_writer.md`
-- Assembly prompt: `prompt-library/section-prompts/02_assemble_and_transition.md`
-- Review prompt: `prompt-library/section-prompts/03_review_and_revision.md`
-- Output directory: `2-outputs`
-- Audit directory: `2-outputs/audits_and_synthetic_reviews`
+Run this prompt file from anywhere. Define `PROJECT_ROOT` as the parent
+directory of the `prompt-library` directory containing this file. Resolve all
+paths below relative to `PROJECT_ROOT`; do not depend on the current working
+directory or a remembered absolute path.
 
-`2-outputs` is the canonical location for manuscript drafts. Audits and
-synthetic reviews belong only in `2-outputs/audits_and_synthetic_reviews`.
-Do not create section or section-ledger directories.
-
-## Objective
-
-Produce a cohesive, publishable literature review by developing the
-author-supplied baseline prose through synthesis with the coded-summary
-corpus. The number, names, sequence, hierarchy, prose, and word targets of
-manuscript sections must come from the baseline as it exists when the run
-begins.
-
-## Runtime Structure Discovery
-
-At the beginning of the run, read the baseline directly from disk and parse it
-into an ordered section manifest.
-
-For every H1:
-
-1. Assign a stable runtime identifier based on its ordinal position, such as
-   `section_01`, without using the title as a filename or prompt name.
-2. Capture the complete H1 line.
-3. Derive the manuscript H1 by removing only trailing parenthetical drafting
-   annotations.
-4. Capture every consecutive H2 and its order until the next H1.
-5. Capture all non-heading prose and associate each passage with the nearest
-   preceding H1 or H2.
-6. Parse any word target or drafting directive contained in the H1 or H2
-   annotations.
-7. Classify the section's runtime role from its content and annotations:
-   narrative section, front matter, or bibliography/reference section.
-8. Record its exact ordinal position in the baseline.
-
-Do not use a section list, title list, topic list, expected count, or expected
-order from any prompt or previous run. If the baseline gains, loses, renames,
-or reorders an H1 or H2, the runtime manifest must change with it.
-
-Write the parsed manifest to
-`2-outputs/audits_and_synthetic_reviews/runtime_structure_manifest.md`.
-This manifest is an audit artifact, not a source of authority; reread the
-baseline before each section task.
-
-## Execution Rules
-
-1. Treat files in `0-human-sources` and `1-coded-summaries` as authoritative
-   inputs.
-2. Treat the baseline as both the structural authority and author-supplied
-   starting draft.
-3. Read `00_shared_section_contract.md` before every section task.
-4. Use only `01_runtime_section_writer.md` for section generation. Supply it
-   with the current runtime section identifier and freshly extracted section
-   block.
-5. Execute one fresh writing task for each narrative or front-matter section.
-6. Defer any bibliography/reference section until all sections containing
-   citations have been drafted. Build it using the reference mode in the same
-   runtime writer.
-7. Keep completed section text and working ledgers in the master context. Do
-   not write standalone section or ledger files.
-8. Never invent evidence, procedures, citations, or bibliographic data.
-9. Do not alter human sources or coded summaries.
-10. Treat rubric scores as internal editorial diagnostics, not external peer
-    review or publication decisions.
-
-## Preflight
-
-Confirm that these inputs exist:
+Required paths:
 
 - `0-human-sources/baseline_structure_and_prose.md`
 - `0-human-sources/metadata-schema-and-lexicon.md`
 - `0-human-sources/explicit_values.md`
 - `0-human-sources/publishability_rubric.md`
-- the coded-summary corpus
-- all four runtime prompt files
+- `1-coded-summaries/*.md`, excluding `template.md` and hidden files
+- `prompt-library/section-prompts/00_shared_section_contract.md`
+- `prompt-library/section-prompts/01_runtime_section_writer.md`
+- `prompt-library/section-prompts/02_assemble_and_transition.md`
+- `prompt-library/section-prompts/03_review_and_revision.md`
 
-Create or empty `2-outputs/audits_and_synthetic_reviews`. Remove prior
-generated drafts from `2-outputs`. Remove obsolete `2-outputs/sections` and
-`2-outputs/section-ledgers` directories if present.
+Canonical outputs:
 
-## Runtime Section Loop
+- Manuscripts: `2-outputs/FIRST_DRAFT.md`, `SECOND_DRAFT.md`,
+  `THIRD_DRAFT.md`, and `FINAL_DRAFT.md`
+- Audits: `2-outputs/audits_and_synthetic_reviews/`
 
-Iterate through the runtime manifest rather than a prompt-defined section
-sequence.
+Do not use any existing file in `2-outputs` as evidence, a structural source,
+or draft seed. Do not use prior manuscripts elsewhere in the repository unless
+the baseline explicitly identifies one as an input.
 
-For each non-reference section:
+## Objective
 
-1. Reread the baseline and re-extract that section by its ordinal position.
-2. Execute `01_runtime_section_writer.md` in narrative mode.
-3. Verify the H1 and H2 sequence against the freshly extracted block.
-4. Verify baseline-prose traceability, evidence calibration, word target, and
-   working-ledger completeness.
-5. Retain the completed text and ledger in the master context.
+Produce a cohesive, publishable literature review by developing the current
+author-supplied baseline prose through synthesis of the complete coded-summary
+corpus. The baseline at run time is the sole authority for manuscript
+structure, heading order, starting prose, annotations, and word targets.
 
-After all citation-bearing sections are complete, execute the runtime writer
-in reference mode for every section classified as bibliography/reference
-material.
+The manuscript must explain what the literature collectively examines, where
+findings converge or diverge, what evidence is strongest, what lessons matter
+for Games-Based Library Services, and what remains uncertain. It must not read
+as an annotated bibliography.
 
-If no bibliography/reference section exists, do not invent one. Record that
-fact in the citation audit. If more than one exists, process each in baseline
-order.
+## Approval Gate
 
-## Audits
+Before modifying `2-outputs`, report:
+
+1. the resolved `PROJECT_ROOT`;
+2. the number of eligible coded summaries;
+3. the number and levels of headings discovered in the baseline;
+4. the exact directories and generated files that will be cleared.
+
+Then ask the user for approval to clear generated contents of `2-outputs`.
+Do not delete or overwrite anything before approval. After approval, complete
+the entire workflow without asking again unless a required input is missing or
+an external permission prevents writing.
+
+## Preflight
+
+After approval:
+
+1. Confirm every required path exists and is readable.
+2. Read all four prompt files before synthesis.
+3. Empty generated files and directories under `2-outputs`.
+4. Recreate only `2-outputs/audits_and_synthetic_reviews`.
+5. Do not create `2-outputs/sections`, `2-outputs/section-ledgers`, or any
+   topic-specific section directory.
+6. Create a disposable run-state directory outside `2-outputs`, preferably in
+   the system temporary directory. Store section drafts, ledgers, manifests,
+   and checkpoints there if they cannot safely remain in active context.
+7. Record the temporary run-state path in the runtime manifest and delete it
+   after successful installation and verification.
+
+Never modify `0-human-sources` or `1-coded-summaries`.
+
+## Runtime Structure Discovery
+
+Read the baseline directly from disk and parse it into an ordered manifest.
+Do not use a heading list, expected count, or order from a previous run.
+
+For every H1 block:
+
+1. Assign an ordinal ID such as `section_01`.
+2. retain the complete raw H1;
+3. derive the manuscript H1 by removing only a trailing parenthetical drafting
+   annotation;
+4. capture every nested Markdown heading of level H2 through H6, preserving
+   exact level, wording, and order;
+5. associate every non-heading passage with its nearest preceding heading;
+6. parse word targets and drafting directives from trailing annotations;
+7. classify the block as `front matter`, `narrative`, or `reference` from its
+   actual content and directives;
+8. record its exact ordinal position and source line span.
+
+Text before the first H1 is workflow material unless it explicitly identifies
+itself as manuscript prose.
+
+Write the manifest to
+`2-outputs/audits_and_synthetic_reviews/runtime_structure_manifest.md`.
+The baseline remains authoritative: reread it before every section task and
+again before final verification.
+
+## Source Rules
+
+1. The coded summaries are the evidence corpus. Search the complete corpus for
+   each section, not only filenames or metadata suggestions.
+2. The baseline is author-supplied prose and interpretation, not evidence by
+   itself. Support, qualify, relocate, or label its claims appropriately.
+3. `explicit_values.md` supplies declared interpretive commitments, not
+   empirical evidence.
+4. `metadata-schema-and-lexicon.md` guides consistent terminology and metadata
+   interpretation.
+5. Give greatest weight to empirical studies, systematic reviews,
+   meta-analyses, surveys, interviews, observations, and experiments.
+6. Use practitioner reflections, columns, reviews, and opinion pieces
+   cautiously and identify their evidentiary limits.
+7. Use historical sources for origins and continuity, not contemporary outcome
+   claims.
+8. Never invent findings, methods, quotations, citations, dates, page numbers,
+   DOI data, or reference details.
+9. Treat baseline citations not represented in the coded corpus as unresolved
+   until independently matched to an approved bibliographic record. Preserve
+   the claim only with appropriate qualification and list the record in the
+   citation audit.
+
+## Section Execution
+
+Iterate through the live runtime manifest.
+
+For each non-reference H1 block:
+
+1. Reread the baseline and extract the block by ordinal position.
+2. Build the complete runtime packet required by
+   `01_runtime_section_writer.md`.
+3. Apply `00_shared_section_contract.md`.
+4. Search the full coded corpus and write the section in thematic,
+   cross-source scholarly prose.
+5. Preserve all nested headings exactly after removing only drafting
+   annotations.
+6. Produce a working ledger with passage dispositions, sources consulted,
+   citations, evidence limits, and unresolved records.
+7. Save the section and ledger only in active context or the disposable
+   run-state directory.
+8. Verify structure and traceability before continuing.
+
+After all citation-bearing blocks are complete, process every reference-role
+block in baseline order using reference mode. If the baseline has no reference
+block, do not invent one; record that fact in the citation audit.
+
+## Required Audits
 
 Create these files in `2-outputs/audits_and_synthetic_reviews`:
 
@@ -125,37 +161,58 @@ Create these files in `2-outputs/audits_and_synthetic_reviews`:
 - `citation_audit.md`
 - `reviewer_notes.md`
 
-The baseline prose audit must account for every substantive passage. The
-corpus audit must account for every coded summary. The citation audit must
-check citations and references in both directions and list unresolved records.
+Requirements:
 
-## Assembly and Review
+- The baseline audit accounts for every substantive passage and records
+  retained, revised, relocated, qualified, or omitted status with a reason.
+- The corpus audit lists every eligible summary exactly once as cited,
+  substantively consulted but not cited, or excluded from synthesis, with a
+  defensible reason. Do not infer citation status from filename text alone.
+- The citation audit checks every in-text citation against references and every
+  reference against the manuscript. List unmatched and ambiguous records.
+- Audit counts must be calculated from current files, never copied from an
+  earlier run.
 
-1. Execute `02_assemble_and_transition.md`. Assemble all completed runtime
-   sections strictly by their current baseline ordinal positions. Save
-   `FIRST_DRAFT.md` and `SECOND_DRAFT.md`.
-2. Execute `03_review_and_revision.md`. Save `THIRD_DRAFT.md`,
-   `FINAL_DRAFT.md`, and the synthetic reviews in
-   `audits_and_synthetic_reviews/reviewer_notes.md`.
+## Assembly And Review
+
+1. Execute `02_assemble_and_transition.md`.
+2. Save the literal first assembly as `FIRST_DRAFT.md`.
+3. Perform a whole-manuscript integration pass and save a materially reviewed
+   `SECOND_DRAFT.md`.
+4. Execute `03_review_and_revision.md`.
+5. Conduct review round one, revise, and save `THIRD_DRAFT.md`.
+6. Conduct an independent review round two, revise, and save
+   `FINAL_DRAFT.md`.
+7. If a review finds no textual change is warranted, document that explicitly
+   in `reviewer_notes.md`; do not falsely claim a revision occurred.
+
+Rubric scores are internal editorial diagnostics, not peer review or
+publication decisions.
 
 ## Final Verification
 
-Before finishing:
+Before reporting completion:
 
-- Reread the baseline and rebuild the runtime manifest independently.
-- Compare every H1 and H2 in `FINAL_DRAFT.md` with the fresh manifest after
-  removing only trailing parenthetical drafting annotations.
-- Fail verification for any missing, added, renamed, duplicated, or reordered
-  heading.
-- Confirm that each word target derived from the baseline was evaluated.
-- Confirm that all baseline prose, coded summaries, citations, references, and
-  unresolved records are represented in the appropriate audits.
-- Confirm that no topic-specific section prompt was used.
-- Confirm that `2-outputs/sections` and `2-outputs/section-ledgers` do not
-  exist.
-- Report all output files and manuscript word counts.
+1. Reparse the baseline independently from disk.
+2. Compare every H1-H6 heading in `FINAL_DRAFT.md` with the fresh manifest,
+   removing only trailing drafting annotations from baseline headings.
+3. Fail verification for any missing, added, renamed, level-changed,
+   duplicated, or reordered heading.
+4. Calculate narrative and total word counts for all four drafts.
+5. Evaluate every baseline word target and report deviations.
+6. Confirm every baseline passage and eligible coded summary appears exactly
+   once in its audit.
+7. Perform bidirectional citation/reference verification.
+8. Confirm drafts represent the documented stages; compare checksums and
+   explain any identical stages.
+9. Confirm the installed outputs match the verified run-state artifacts.
+10. Confirm no obsolete section or ledger directories exist.
+11. Delete the disposable run-state directory only after successful output
+    installation.
 
-The task is complete only when the manuscript, audits, and two synthetic
-review rounds have been generated and verified against the current baseline.
+Report the output paths, summary count, heading count by level, manuscript word
+counts, unresolved bibliography count, target deviations, and verification
+result.
 
-Before you start, ask for approval to clear all the contents of the OUTPUTS folder, then start with a clean slate. 
+The task is complete only when the four manuscripts, five audits, and two
+documented review rounds are installed and verified against the current files.

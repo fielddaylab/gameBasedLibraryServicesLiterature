@@ -1,42 +1,47 @@
-# Assemble and Integrate Runtime Sections
+# Assemble And Integrate Runtime Sections
 
-Read the shared contract, current baseline, runtime structure manifest, and all
-completed section texts and working ledgers retained by the master process.
+This prompt can run without conversation history. Resolve `PROJECT_ROOT`, read
+the shared contract and live baseline, and load all completed section texts and
+ledgers from the active run-state identified in
+`runtime_structure_manifest.md`. Do not use an older file in `2-outputs` as a
+draft seed.
 
 ## First Assembly
 
-Reread the baseline and rebuild the ordered H1 manifest. Assemble completed
-sections strictly by current H1 ordinal position. Do not use a topic-based or
-hard-coded order.
-
-If a runtime section is missing, duplicated, or no longer corresponds to the
-baseline block at that ordinal position, stop and regenerate it.
-
-Remove accidental repeated transitions but preserve substantive baseline
-ideas and source-supported distinctions. Save the result as
-`2-outputs/FIRST_DRAFT.md`.
-
-Compare the assembled H1/H2 sequence with the freshly rebuilt manifest after
-removing only trailing parenthetical drafting annotations.
+1. Reparse the baseline from disk into an ordered H1-H6 manifest.
+2. Match each completed section to its runtime ID, ordinal position, source
+   line span, and heading fingerprint.
+3. Stop if a section is missing, duplicated, stale, or structurally mismatched.
+4. Assemble sections strictly by current H1 ordinal position.
+5. Preserve substantive baseline ideas and source-supported distinctions.
+6. Remove only accidental boundary duplication introduced by separate drafting.
+7. Save this literal first complete assembly as
+   `PROJECT_ROOT/2-outputs/FIRST_DRAFT.md`.
+8. Verify complete heading parity with the live baseline.
 
 ## Integration Pass
 
-Read the manuscript as a whole and infer each section's role from the current
-baseline and manuscript, not from a predefined topic model.
+Read the manuscript as a single argument. Infer section functions from the
+live baseline rather than a predefined topic model.
 
-Revise boundaries so the argument develops cumulatively. Harmonize
-terminology, citation style, evidentiary language, and voice. Remove
-unnecessary repetition while respecting runtime word targets and baseline
-prose traceability.
+Revise the whole manuscript to:
 
-Check that:
+- create cumulative argument and accurate transitions;
+- remove unnecessary repetition without erasing meaningful differences;
+- harmonize terminology, citation style, evidentiary language, and voice;
+- ensure each substantive heading opens with synthesis;
+- preserve null findings, outliers, context differences, and limitations;
+- connect findings to library practice without overstating evidence;
+- support, qualify, or label baseline propositions;
+- keep audits and ledgers synchronized with textual revisions;
+- account for word-target deviations.
 
-- adjacent sections perform distinct intellectual work;
-- transitions reflect their actual runtime relationship;
-- each H1 and H2 opens synthetically where prose follows it;
-- null findings, outliers, and evidence limitations remain visible;
-- baseline propositions are supported, qualified, or labeled appropriately;
-- working ledgers and audits agree with the integrated manuscript;
-- all unresolved records appear in the reference material and citation audit.
+Save the integrated manuscript as
+`PROJECT_ROOT/2-outputs/SECOND_DRAFT.md`.
 
-Save the integrated manuscript as `2-outputs/SECOND_DRAFT.md`.
+## Verification
+
+Reparse the baseline after integration and compare every H1-H6 heading for
+wording, level, count, and order. Calculate word counts and checksums for both
+drafts. If the drafts are identical, document why no integration change was
+warranted; otherwise summarize the material changes in the review record.
