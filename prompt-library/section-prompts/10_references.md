@@ -8,7 +8,7 @@ Write `2-outputs/sections/09_references.md`.
 
 ## Runtime Structure
 
-Reread `0-human-sources/outline_structure.md` at runtime. Use its final H1
+Reread `0-human-sources/baseline_structure_and_prose.md` at runtime. Use its final H1
 section and any H2 headings nested beneath that H1. Do not rely on headings
 from a previous run. The verification heading described below may be added
 only when unresolved cited records exist.
@@ -16,6 +16,10 @@ only when unresolved cited records exist.
 ## Section Task
 
 Extract every author-year citation used in the section artifacts. Match each citation to the full bibliographic heading in the coded summaries or an approved human-source record. Deduplicate and alphabetize the references. Include only cited works.
+
+Include citations inherited from baseline prose in the same audit. Do not
+assume that a citation appearing in the baseline is complete or correct;
+verify it against an approved bibliographic record.
 
 Perform a bidirectional audit:
 

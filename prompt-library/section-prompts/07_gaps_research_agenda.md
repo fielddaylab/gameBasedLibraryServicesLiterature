@@ -6,7 +6,7 @@ Write `2-outputs/sections/07_gaps_research_agenda.md`.
 
 ## Runtime Structure and Target
 
-Reread `0-human-sources/outline_structure.md` at runtime. Use its eighth H1
+Reread `0-human-sources/baseline_structure_and_prose.md` at runtime. Use its eighth H1
 section and all H2 headings nested beneath that H1. Use the word target in that
 H1's parenthetical annotation. Do not rely on headings or targets from a
 previous run.

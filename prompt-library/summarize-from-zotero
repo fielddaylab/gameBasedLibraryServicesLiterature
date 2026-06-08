@@ -27,7 +27,7 @@ COLLECTION_EXCLUDE_KEY: 4YRAP7AJ
 PROJECT_ROOT: /Users/djgagnon/Library/CloudStorage/GoogleDrive-djgagnon@wisc.edu/.shortcut-targets-by-id/1P-yeNAX497qAu3txZnKjZZ1ztx8V2nSJ/Phase I - Research, Needs Assessment, and Lit Review Resources/GBLS Lit Review Working Docs
 SUMMARY_FOLDER: ${PROJECT_ROOT}/1-coded-summaries
 METADATA_SCHEMA_FILE: ${PROJECT_ROOT}/0-human-sources/metadata-schema-and-lexicon.md
-OUTLINE_FILE: ${PROJECT_ROOT}/0-human-sources/outline_structure.md
+BASELINE_FILE: ${PROJECT_ROOT}/0-human-sources/baseline_structure_and_prose.md
 VALUES_FILE: ${PROJECT_ROOT}/0-human-sources/explicit_values.md
 
 PER-SOURCE DERIVED VARIABLES
@@ -61,7 +61,7 @@ Never append a source summary to a shared or cumulative summaries file. Each sou
 
 This is a summary-only workflow. Never open, read, modify, stage, or commit `review.md` or any full review document. Suggested review contributions and placements must exist only inside `${SOURCE_SUMMARY_FILE}`.
 
-Treat `${METADATA_SCHEMA_FILE}`, `${OUTLINE_FILE}`, and `${VALUES_FILE}` as provisional analytic tools. Use them consistently where they fit, but remain open to sources that challenge, exceed, contradict, or require revision of those frameworks.
+Treat `${METADATA_SCHEMA_FILE}`, `${BASELINE_FILE}`, and `${VALUES_FILE}` as provisional analytic tools. Use them consistently where they fit, but remain open to sources that challenge, exceed, contradict, or require revision of those frameworks.
 
 Resolve `${SOURCE_SUMMARY_FILENAME}` as follows:
 
@@ -198,7 +198,7 @@ PREPARATION
 Before summarizing sources:
 
 1. Read `${METADATA_SCHEMA_FILE}`.
-2. Read `${OUTLINE_FILE}`.
+2. Read `${BASELINE_FILE}`.
 3. Read `${VALUES_FILE}`.
 4. Inspect `${SUMMARY_FOLDER}/template.md`, when present, plus a small sample
    of recent standalone summaries. Follow the template and current formatting
@@ -206,7 +206,7 @@ Before summarizing sources:
 5. Check git status in `${PROJECT_ROOT}` and preserve unrelated changes.
 6. Confirm that `${SUMMARY_FOLDER}` exists.
 7. Derive all per-source variables and confirm that `${SOURCE_SUMMARY_FILE}` is unique before reading or writing output.
-8. Do not inspect or use `review.md`; derive suggested placements only from `${OUTLINE_FILE}` and the source.
+8. Do not inspect or use `review.md`; derive suggested placements only from `${BASELINE_FILE}` and the source.
 
 SOURCE FIDELITY
 
@@ -246,12 +246,12 @@ When moving from source description to GBLS interpretation, signal the transitio
 
 PRODUCTIVE INCONGRUENCE AND CHALLENGE
 
-Do not force a source to conform to `${METADATA_SCHEMA_FILE}`, `${OUTLINE_FILE}`, or `${VALUES_FILE}`. Treat these documents as provisional frameworks rather than boundaries on what the literature is allowed to say.
+Do not force a source to conform to `${METADATA_SCHEMA_FILE}`, `${BASELINE_FILE}`, or `${VALUES_FILE}`. Treat these documents as provisional frameworks rather than boundaries on what the literature is allowed to say.
 
 Identify cases where the source:
 
 - advances concepts `${METADATA_SCHEMA_FILE}` cannot represent adequately;
-- crosses or challenges categories in `${OUTLINE_FILE}`;
+- crosses or challenges categories in `${BASELINE_FILE}`;
 - presents evidence, assumptions, priorities, or conclusions that conflict with `${VALUES_FILE}`;
 - exposes blind spots, tensions, exclusions, or unsupported assumptions in the project framework;
 - defines games, play, libraries, evidence, learning, culture, access, or public purpose differently from the project;
@@ -261,7 +261,7 @@ Identify cases where the source:
 Distinguish among:
 
 - Omission: the project framework does not address something important in the source.
-- Category mismatch: the source does not fit cleanly within the available metadata or outline.
+- Category mismatch: the source does not fit cleanly within the available metadata or baseline structure.
 - Conceptual disagreement: the source and project framework interpret an issue differently.
 - Evidentiary challenge: the source supplies evidence that weakens, complicates, or contradicts a project assumption.
 - Value tension: the source advances priorities that conflict with or substantially qualify `${VALUES_FILE}`.
@@ -364,7 +364,7 @@ For every identified incongruence:
 
 1. Name its type.
 2. Describe the relevant idea, argument, or evidence in the source.
-3. Identify which part of `${METADATA_SCHEMA_FILE}`, `${OUTLINE_FILE}`, or `${VALUES_FILE}` it challenges.
+3. Identify which part of `${METADATA_SCHEMA_FILE}`, `${BASELINE_FILE}`, or `${VALUES_FILE}` it challenges.
 4. Explain why the current framework does not represent it adequately.
 5. Recommend a response when appropriate.
 
@@ -373,32 +373,32 @@ Possible recommendations include:
 - a proposed controlled-vocabulary term;
 - revision or expansion of an existing metadata definition;
 - a new review subsection;
-- movement or reorganization of an outline section;
+- movement or reorganization of a baseline section;
 - qualification or reconsideration of an authorial value;
 - retention of the disagreement as an unresolved tension in the review.
 
-Clearly label all such recommendations as proposals. Do not automatically modify `${METADATA_SCHEMA_FILE}`, `${OUTLINE_FILE}`, or `${VALUES_FILE}`.
+Clearly label all such recommendations as proposals. Do not automatically modify `${METADATA_SCHEMA_FILE}`, `${BASELINE_FILE}`, or `${VALUES_FILE}`.
 
 If no meaningful incongruence is present, write:
 
-"No substantial incongruence identified. The source can be represented adequately by the current metadata schema, outline, and values framework."
+"No substantial incongruence identified. The source can be represented adequately by the current metadata schema, baseline structure, and values framework."
 
 SUGGESTED REVIEW CONTRIBUTIONS
 
-Use sections and subsections from `${OUTLINE_FILE}` whenever they adequately represent the source.
+Use sections and subsections from `${BASELINE_FILE}` whenever they adequately represent the source.
 
 For each defensible contribution, write the following in `${SOURCE_SUMMARY_FILE}`:
 
 Contributions:
-- Target_Section: "[exact heading from ${OUTLINE_FILE}]"
-  Target_Section_Raw: "[exact heading from ${OUTLINE_FILE}]"
+- Target_Section: "[exact heading from ${BASELINE_FILE}]"
+  Target_Section_Raw: "[exact heading from ${BASELINE_FILE}]"
   Placement: "[precise location within that section]"
   Contribution_Text: >
     [Concise review-ready prose synthesizing the source and naming the author and year.]
 
 Contribution rules:
 
-- Quote existing target headings from `${OUTLINE_FILE}` exactly.
+- Quote existing target headings from `${BASELINE_FILE}` exactly.
 - Select the most specific appropriate subsection.
 - Synthesize rather than repeat the full summary.
 - Distinguish empirical evidence, historical precedent, practitioner knowledge, methodological caution, and theoretical argument.
@@ -408,22 +408,22 @@ Contribution rules:
 - Multiple contributions are permitted only when the source makes genuinely distinct contributions.
 - Preserve disagreement when a source complicates the review's existing argument.
 
-If the source does not fit `${OUTLINE_FILE}`, do not force placement. Instead write:
+If the source does not fit `${BASELINE_FILE}`, do not force placement. Instead write:
 
 Contributions:
 - Target_Section: proposed_new_section
   Target_Section_Raw: "[proposed heading]"
-  Placement: "[proposed location in ${OUTLINE_FILE}]"
+  Placement: "[proposed location in ${BASELINE_FILE}]"
   Contribution_Text: >
     [Review-ready text.]
   Rationale: >
     [Why no existing section represents this contribution adequately.]
 
-Clearly identify this as a proposed structural change. Do not silently add or rename sections in `${OUTLINE_FILE}`.
+Clearly identify this as a proposed structural change. Do not silently add or rename sections in `${BASELINE_FILE}`.
 
 If no review contribution is warranted, use `unspecified` and explain briefly why the source should be filed in `${COLLECTION_EXCLUDE}`.
 
-All suggested review contributions are advisory. Record them only under `## Suggested Review Contributions` in `${SOURCE_SUMMARY_FILE}`. Do not apply them to `review.md`, another review draft, `${OUTLINE_FILE}`, or any other project file.
+All suggested review contributions are advisory. Record them only under `## Suggested Review Contributions` in `${SOURCE_SUMMARY_FILE}`. Do not apply them to `review.md`, another review draft, `${BASELINE_FILE}`, or any other project file.
 
 ZOTERO FILING
 
@@ -441,7 +441,7 @@ After successfully writing and verifying `${SOURCE_SUMMARY_FILE}`:
 4. Preserve all existing collection memberships by taking the union of
    current and required collection keys.
 5. Do not classify a source as excluded solely because it challenges
-   `${METADATA_SCHEMA_FILE}`, `${OUTLINE_FILE}`, or `${VALUES_FILE}`.
+   `${METADATA_SCHEMA_FILE}`, `${BASELINE_FILE}`, or `${VALUES_FILE}`.
 6. File only the parent item. Leave PDF attachment collection state unchanged.
 7. Do not file an item as complete until `${SOURCE_SUMMARY_FILE}` has been
    written and verified.
@@ -464,7 +464,7 @@ For every source:
    final path exactly matches `${SUMMARY_FILENAME_TEMPLATE}`.
 5. Stage only `${SOURCE_SUMMARY_FILE}` using its exact path.
 6. Never stage another source's summary file as part of the current source's commit.
-7. Never stage or commit `review.md`, `${OUTLINE_FILE}`, `${METADATA_SCHEMA_FILE}`, or `${VALUES_FILE}` as part of this workflow.
+7. Never stage or commit `review.md`, `${BASELINE_FILE}`, `${METADATA_SCHEMA_FILE}`, or `${VALUES_FILE}` as part of this workflow.
 8. Review the staged diff for:
    - duplicate summaries;
    - malformed metadata;
@@ -501,7 +501,7 @@ Before marking each source complete, verify:
 - authorial values from `${VALUES_FILE}` have not been attributed to the source;
 - disagreement with the project framework has not been suppressed;
 - incongruences are grounded in the source rather than invented;
-- suggested review headings match `${OUTLINE_FILE}` or are explicitly labeled as proposed additions;
+- suggested review headings match `${BASELINE_FILE}` or are explicitly labeled as proposed additions;
 - suggested contribution text is concise and calibrated to the evidence;
 - all suggested review contributions appear only in `${SOURCE_SUMMARY_FILE}`;
 - `review.md` and all full review documents were not opened, modified, staged, or committed;
@@ -523,7 +523,7 @@ Report:
 - `${SOURCE_ZOTERO_ITEM_KEY}`;
 - `${SOURCE_CITATION_KEY}`;
 - suggested review placements recorded in each `${SOURCE_SUMMARY_FILE}`;
-- proposed metadata, outline, or values revisions;
+- proposed metadata, baseline-structure, or values revisions;
 - Zotero filing destinations;
 - commit hashes when `${COMMIT_AFTER_EACH_SOURCE}` is `YES`;
 - confirmation that no cumulative summaries file was created or modified;
