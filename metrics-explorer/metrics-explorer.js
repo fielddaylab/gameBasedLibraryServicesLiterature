@@ -2,32 +2,27 @@
   "use strict";
 
   const data = window.GBLS_METRICS;
-  const groupLabels = {
-    service_area: "Topic area / service area",
-    intended_outcome: "Intended outcome",
-    audience: "Audience",
-    game_format: "Game format",
-    primary_methodology: "Primary methodology",
-    evidence_type: "Evidence type",
-    source_type: "Source type",
-    peer_review: "Peer review",
-    library_context: "Library context",
-    coding_confidence: "Coding confidence",
-  };
-  const articleColumns = {
-    service_area: "service_area",
-    intended_outcome: "intended_outcome",
-    audience: "audience",
-    game_format: "game_format",
-    primary_methodology: "primary_methodology",
-    evidence_type: "evidence_type",
-    source_type: "source_type",
-    peer_review: "peer_review",
-    library_context: "library_context",
-    coding_confidence: "coding_confidence",
-  };
+  if (!data || !Array.isArray(data.articles) || !Array.isArray(data.featureGroups)) {
+    document.body.classList.add("data-error");
+    const message = document.getElementById("dataError");
+    if (message) message.hidden = false;
+    console.error(
+      "GBLS metrics data did not load. Rebuild 2-outputs/metrics with prompt-library/calculate_summary_metrics.md.",
+    );
+    return;
+  }
+
+  const featureGroups = data.featureGroups;
+  const groupLabels = Object.fromEntries(
+    featureGroups.map((group) => [group.key, group.label]),
+  );
+  const articleColumns = Object.fromEntries(
+    featureGroups.map((group) => [group.key, group.column || group.key]),
+  );
+  const defaultGroup = featureGroups.find((group) => group.key === "service_area")?.key
+    || featureGroups[0]?.key;
   const state = {
-    group: "service_area",
+    group: defaultGroup,
     limit: 15,
     yearStart: data.years[0],
     yearEnd: data.years[data.years.length - 1],
@@ -36,6 +31,12 @@
   };
 
   const $ = (id) => document.getElementById(id);
+  const escapeHtml = (value) => String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
   const pretty = (value) => String(value || "").replaceAll("_", " ");
   const splitLabels = (value) => String(value || "").split("|").filter(Boolean);
   const svgEl = (name, attributes = {}) => {
@@ -46,7 +47,7 @@
 
   function renderSummary() {
     $("datasetSubtitle").textContent =
-      `Explore ${data.summary.total_articles.toLocaleString()} coded source summaries by service area, intended outcome, evidence, format, audience, and year.`;
+      `Explore ${data.summary.total_articles.toLocaleString()} coded source summaries by ${featureGroups.map((group) => group.label.toLowerCase()).join(", ")} and year.`;
     const metrics = [
       ["Articles", data.summary.total_articles.toLocaleString()],
       ["Coded labels", data.summary.unique_feature_labels.toLocaleString()],
@@ -55,15 +56,16 @@
     ];
     $("summaryCards").innerHTML = metrics.map(([label, value]) => `
       <article class="summary-card">
-        <span class="summary-value">${value}</span>
-        <span class="summary-label">${label}</span>
+        <span class="summary-value">${escapeHtml(value)}</span>
+        <span class="summary-label">${escapeHtml(label)}</span>
       </article>
     `).join("");
   }
 
   function setupControls() {
-    $("groupSelect").innerHTML = Object.keys(groupLabels)
-      .map((key) => `<option value="${key}">${groupLabels[key]}</option>`).join("");
+    $("groupSelect").innerHTML = featureGroups
+      .map((group) => `<option value="${escapeHtml(group.key)}">${escapeHtml(group.label)}</option>`)
+      .join("");
     const yearOptions = data.years.map((year) => `<option value="${year}">${year}</option>`).join("");
     $("yearStart").innerHTML = yearOptions;
     $("yearEnd").innerHTML = yearOptions;
@@ -99,7 +101,7 @@
       renderAll();
     });
     $("resetButton").addEventListener("click", () => {
-      state.group = "service_area";
+      state.group = defaultGroup;
       state.limit = 15;
       state.yearStart = data.years[0];
       state.yearEnd = data.years[data.years.length - 1];
@@ -125,9 +127,7 @@
   function currentCounts() {
     const counts = new Map();
     for (const article of articlesInRange()) {
-      const values = state.group === "coding_confidence"
-        ? [article.coding_confidence]
-        : splitLabels(article[articleColumns[state.group]]);
+      const values = splitLabels(article[articleColumns[state.group]]);
       new Set(values).forEach((value) => counts.set(value, (counts.get(value) || 0) + 1));
     }
     return [...counts.entries()]
@@ -167,7 +167,10 @@
       };
       group.addEventListener("click", select);
       group.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") select();
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          select();
+        }
       });
       group.append(label, bar, value);
       svg.append(group);
@@ -211,7 +214,11 @@
   }
 
   function renderYears() {
-    const counts = new Map(data.publicationYears.map((row) => [Number(row.year_label), row.article_count]));
+    const counts = new Map(
+      data.publicationYears
+        .filter((row) => row.year_label !== "n.d.")
+        .map((row) => [Number(row.year_label), row.article_count]),
+    );
     const rows = data.years
       .filter((year) => year >= state.yearStart && year <= state.yearEnd)
       .map((year) => ({ label: String(year), value: counts.get(year) || 0 }));
@@ -241,17 +248,19 @@
 
   function hasSelectedFeature(article) {
     if (!state.selectedFeature) return true;
-    const values = state.group === "coding_confidence"
-      ? [article.coding_confidence]
-      : splitLabels(article[articleColumns[state.group]]);
-    return values.includes(state.selectedFeature);
+    return splitLabels(article[articleColumns[state.group]]).includes(state.selectedFeature);
   }
 
   function renderTags(value, max = 4) {
     const labels = splitLabels(value);
     const visible = labels.slice(0, max);
     if (labels.length > max) visible.push(`+${labels.length - max}`);
-    return `<div class="tag-list">${visible.map((label) => `<span class="tag">${pretty(label)}</span>`).join("")}</div>`;
+    return `<div class="tag-list">${visible.map((label) => `<span class="tag">${escapeHtml(pretty(label))}</span>`).join("")}</div>`;
+  }
+
+  function valuesFor(article, preferredKey, fallback = "") {
+    const key = featureGroups.find((group) => group.key === preferredKey)?.column;
+    return key ? article[key] : fallback;
   }
 
   function renderArticles() {
@@ -267,12 +276,12 @@
       : "";
     $("articleRows").innerHTML = filtered.slice(0, 250).map((article) => `
       <tr>
-        <td>${article.year || "n.d."}</td>
-        <td class="citation-cell">${article.citation}</td>
-        <td>${renderTags(article.library_context, 3)}</td>
-        <td>${renderTags(article.game_format, 4)}</td>
-        <td>${renderTags(article.service_area, 5)}</td>
-        <td>${renderTags(article.intended_outcome, 5)}</td>
+        <td>${escapeHtml(article.year || "n.d.")}</td>
+        <td class="citation-cell">${escapeHtml(article.citation)}</td>
+        <td>${renderTags(valuesFor(article, "library_context"), 3)}</td>
+        <td>${renderTags(valuesFor(article, "game_format"), 4)}</td>
+        <td>${renderTags(valuesFor(article, "service_area"), 5)}</td>
+        <td>${renderTags(valuesFor(article, "intended_outcome"), 5)}</td>
       </tr>
     `).join("");
   }

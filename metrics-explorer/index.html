@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="metrics-explorer.css">
   </head>
   <body>
+    <div id="dataError" class="data-error-message" role="alert" hidden>
+      <strong>Metrics data could not be loaded.</strong>
+      Rebuild <code>2-outputs/metrics</code> using
+      <code>prompt-library/calculate_summary_metrics.md</code>, then reload this page.
+    </div>
     <header class="hero">
       <div>
         <p class="eyebrow">Games-Based Library Services</p>
@@ -98,7 +103,7 @@
                 <th>Citation</th>
                 <th>Library context</th>
                 <th>Game format</th>
-                <th>Topic areas</th>
+                <th>Service areas</th>
                 <th>Intended outcomes</th>
               </tr>
             </thead>
@@ -112,7 +117,7 @@
       Counts represent coded article presence, not frequency of terms in article prose.
     </footer>
 
-    <script src="../2-outputs/metrics/metrics-explorer-synthesized-data.js?v=20260608"></script>
-    <script src="metrics-explorer.js?v=20260608"></script>
+    <script src="../2-outputs/metrics/metrics-explorer-synthesized-data.js?v=20260608b"></script>
+    <script src="metrics-explorer.js?v=20260608b"></script>
   </body>
 </html>
