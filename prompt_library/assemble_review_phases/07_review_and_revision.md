@@ -6,7 +6,7 @@ read:
 - the live baseline;
 - the runtime manifest and disposable run-state location;
 - `0_human_sources/publishability_rubric.md`;
-- `3_article_outputs/stage_5_topical_cohesion_draft.md`;
+- `3_article_outputs/stage_6_corpus_integration_draft.md`;
 - all working ledgers;
 - every current audit file.
 
@@ -26,7 +26,7 @@ baseline, never from memory.
 
 ## Round One
 
-Review `stage_5_topical_cohesion_draft.md` against every weighted rubric criterion. Evaluate:
+Review `stage_6_corpus_integration_draft.md` against every weighted rubric criterion. Evaluate:
 
 - contribution and field-level framing;
 - thematic and cross-study synthesis;
@@ -44,13 +44,13 @@ Keep round-one findings in the disposable run-state ledger. Do not make an
 internal process score the primary content of `reviewer_notes.md`.
 
 Revise the complete manuscript, synchronize affected ledgers and audits, and
-save `3_article_outputs/stage_6_first_publishability_review_draft.md`. Append a concise revision record. If no text
+save `3_article_outputs/stage_7_first_publishability_review_draft.md`. Append a concise revision record. If no text
 changes are warranted, state that explicitly and do not claim otherwise.
 
 ## Round Two
 
 Conduct a genuinely independent review of
-`stage_6_first_publishability_review_draft.md` against the rubric, the
+`stage_7_first_publishability_review_draft.md` against the rubric, the
 non-destructive factual-reliability audit, and the newly reparsed structure.
 Treat quotation-retrieval scores as leads rather than proof. Inspect each
 flagged claim semantically and revise only when source evidence warrants a
@@ -62,12 +62,12 @@ citation problems, traceability gaps, and venue-readiness concerns.
 Keep round-two findings in the disposable run-state ledger. Use them to inform
 the final venue simulations.
 
-Revise again, synchronize audits, and save `3_article_outputs/stage_7_final_independent_review_draft.md`. If no
+Revise again, synchronize audits, and save `3_article_outputs/stage_8_final_independent_review_draft.md`. If no
 further text changes are warranted, document that explicitly.
 
 ## Required Reviewer Notes Output
 
-After `stage_7_final_independent_review_draft.md` is complete, overwrite
+After `stage_8_final_independent_review_draft.md` is complete, overwrite
 `3_article_outputs/audits_and_synthetic_reviews/reviewer_notes.md` with a mock
 peer-review report driven directly by every target profile in
 `publishability_rubric.md`.
@@ -123,8 +123,8 @@ End with:
 Do not include internal 90/100-style scores. Do not present a single global
 publishability score. Do not claim that a venue reviewed the manuscript.
 
-Finally, compare checksums for `stage_5_topical_cohesion_draft.md`,
-`stage_6_first_publishability_review_draft.md`, and
-`stage_7_final_independent_review_draft.md`, explain any identical stages in
+Finally, compare checksums for `stage_6_corpus_integration_draft.md`,
+`stage_7_first_publishability_review_draft.md`, and
+`stage_8_final_independent_review_draft.md`, explain any identical stages in
 the run-state ledger, and
 perform one last H1-H6 parity check against the live baseline.

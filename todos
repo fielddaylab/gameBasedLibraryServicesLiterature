@@ -2,6 +2,6 @@ todos
 
 add a versioning system so each generation has an incrementing number. It's currently at 102. 
 
-convert as many prompts as possible to pythin scripts that dont need an llm
+convert as many prompts as possible to python scripts that dont need an llm
 
 develop a full RAG

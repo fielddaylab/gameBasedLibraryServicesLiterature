@@ -25,13 +25,15 @@ Required paths:
 - `prompt_library/assemble_review_phases/03_heading_framing_review.md`
 - `prompt_library/assemble_review_phases/04_terminology_introduction_review.md`
 - `prompt_library/assemble_review_phases/05_topical_cohesion_review.md`
-- `prompt_library/assemble_review_phases/06_review_and_revision.md`
+- `prompt_library/assemble_review_phases/06_corpus_integration_review.md`
+- `prompt_library/assemble_review_phases/07_review_and_revision.md`
 
 Canonical outputs:
 
 - Manuscripts: `3_article_outputs/stage_1_initial_assembly_draft.md`, `stage_2_whole_manuscript_integration_draft.md`,
   `stage_3_heading_framing_draft.md`, `stage_4_terminology_introduction_draft.md`, `stage_5_topical_cohesion_draft.md`,
-  `stage_6_first_publishability_review_draft.md`, and `stage_7_final_independent_review_draft.md`
+  `stage_6_corpus_integration_draft.md`, `stage_7_first_publishability_review_draft.md`, and
+  `stage_8_final_independent_review_draft.md`
 - Audits: `3_article_outputs/audits_and_synthetic_reviews/`
 
 Do not use any existing file in `3_article_outputs` as evidence, a structural source,
@@ -69,7 +71,7 @@ an external permission prevents writing.
 After approval:
 
 1. Confirm every required path exists and is readable.
-2. Read all seven prompt files before synthesis.
+2. Read all eight prompt files before synthesis.
 3. Empty generated files and directories under `3_article_outputs`.
 4. Recreate only `3_article_outputs/audits_and_synthetic_reviews`.
 5. Do not create `3_article_outputs/sections`, `3_article_outputs/section-ledgers`, or any
@@ -199,17 +201,20 @@ Requirements:
 6. Execute `05_topical_cohesion_review.md`. Critique every section for
    author-centered or paper-by-paper narration, revise toward topic-led
    synthesis, and save `stage_5_topical_cohesion_draft.md`.
-7. Execute `06_review_and_revision.md`.
-8. Conduct publishability review round one, revise, and save `stage_6_first_publishability_review_draft.md`.
-9. Conduct the non-destructive quotation-backed factual reliability audit
-   below against `stage_6_first_publishability_review_draft.md`. Do not create
+7. Execute `06_corpus_integration_review.md`. Reconsider every uncited eligible
+   summary, integrate sources that substantively improve or qualify existing
+   synthesis, and save `stage_6_corpus_integration_draft.md`.
+8. Execute `07_review_and_revision.md`.
+9. Conduct publishability review round one, revise, and save `stage_7_first_publishability_review_draft.md`.
+10. Conduct the non-destructive quotation-backed factual reliability audit
+   below against `stage_7_first_publishability_review_draft.md`. Do not create
    a fact-check rewrite stage.
-10. Conduct an independent publishability review round two using
-   `stage_6_first_publishability_review_draft.md` and the factual audit as
+11. Conduct an independent publishability review round two using
+   `stage_7_first_publishability_review_draft.md` and the factual audit as
    inputs. Revise only where semantic review warrants a correction,
    qualification, citation change, or removal, and save
-   `stage_7_final_independent_review_draft.md`.
-11. If a revision round finds no textual change is warranted, document that in
+   `stage_8_final_independent_review_draft.md`.
+12. If a revision round finds no textual change is warranted, document that in
    the disposable run-state ledger; do not falsely claim a revision occurred.
 
 Venue reviews are synthetic pre-submission simulations, not actual peer review
@@ -307,11 +312,11 @@ also not sufficient reason for automatic deletion.
 Before reporting completion:
 
 1. Reparse the baseline independently from disk.
-2. Compare every H1-H6 heading in `stage_7_final_independent_review_draft.md` with the fresh manifest,
+2. Compare every H1-H6 heading in `stage_8_final_independent_review_draft.md` with the fresh manifest,
    removing only trailing drafting annotations from baseline headings.
 3. Fail verification for any missing, added, renamed, level-changed,
    duplicated, or reordered heading.
-4. Calculate narrative and total word counts for all seven drafts.
+4. Calculate narrative and total word counts for all eight drafts.
 5. Evaluate every baseline word target and report deviations.
 6. Confirm every baseline passage and eligible coded summary appears exactly
    once in its audit.
@@ -330,7 +335,7 @@ Report the output paths, summary count, heading count by level, manuscript word
 counts, unresolved bibliography count, target deviations, and verification
 result.
 
-The task is complete only when the seven manuscripts, six audits, heading
+The task is complete only when the eight manuscripts, six audits, heading
 framing pass, terminology-introduction pass, topical-cohesion pass, and two
 documented publishability review rounds are installed and verified against the
 current files.
