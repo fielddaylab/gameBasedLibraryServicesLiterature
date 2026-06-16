@@ -7,10 +7,10 @@ Zotero_Item_Key: 849MR2XQ
 Better_BibTeX_Citation_Key: CreatingTTRPGResources2023
 Attachment_Key: 9S9GL8YI
 
-Source_Type: toolkit_or_guidance_document
+Source_Type: professional_community_working_document
 Peer_Review: unknown
-Evidence_Type: practitioner_reflection
-Primary_Methodology: none
+Evidence_Type: professional_practice_artifact
+Primary_Methodology: community_curation
 Library_Context: unspecified_library_context
 Game_Format: tabletop_roleplaying_game
 
@@ -21,10 +21,10 @@ Intended_Outcome: not_applicable
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: unspecified
-  Contribution_Text: No suggested addition. This is a short TTRPG resource handout rather than
-    research or a documented library program, and should remain in `Explicitly Excluded Literature`
-    after summary completion.
+- Target_Section: Programming Formats and Service Models > Tabletop Role-Playing and Live-Action Role-Playing Programs
+  Contribution_Text: This LSHM/GameRT professional community working document contributes as a practice artifact rather than outcome evidence. It documents how game-library professionals prepare TTRPG-oriented programming and advisory work through concise game descriptions, creator/context links, play-alikes, read-alikes, watch-alikes, safety tools, streaming norms, session outlines, and facilitation supports. As a group, these documents show that library TTRPG service depends on shared professional curation, safety language, media advisory, event preparation, and community knowledge infrastructure, not only on local campaign reports.
+- Target_Section: Cross-Cutting Conditions for Effective Games-Based Library Services > Build Institutional Capacity and Sustainable Service Models
+  Contribution_Text: The LSHM/GameRT working-document format also illustrates distributed professional capacity. These artifacts preserve reusable advisory and facilitation knowledge across a community of practice, making it easier for librarians to discover unfamiliar games, plan streamed or in-person sessions, identify safety considerations, and connect games to adjacent books, media, creators, and professional resources.
 ### Summary
 # **Creating a TTRPG Resources. (2023, August 15). *Google Docs*. https://docs.google.com/document/d/1RxxSUrfIN9GB3jE94GzgwfUztm09xZCpUtVWltKm3_c/edit**
 

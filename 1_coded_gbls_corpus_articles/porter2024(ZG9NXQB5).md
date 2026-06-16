@@ -7,12 +7,10 @@ Zotero_Item_Key: ZG9NXQB5
 Better_BibTeX_Citation_Key: RTRTInternationalGames2024
 Attachment_Key: 5P5GQ55S
 
-Source_Type: toolkit_or_guidance_document
+Source_Type: professional_community_working_document
 Peer_Review: unknown
-Evidence_Type:
-- implementation_case
-- practitioner_reflection
-Primary_Methodology: case_or_design_study
+Evidence_Type: professional_practice_artifact
+Primary_Methodology: community_curation
 Library_Context: public_library
 Game_Format: multiple_game_formats
 
@@ -23,10 +21,10 @@ Intended_Outcome: not_applicable
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: unspecified
-  Contribution_Text: No addition recommended. Exclude from the GBLS literature review because this
-    is a brief GameRT/International Games Month resource link sheet rather than a substantive study,
-    program report, or practitioner article.
+- Target_Section: Service Purposes and Library Functions > Description, Discovery, and Games Advisory
+  Contribution_Text: This GameRT/RTRT professional community working document contributes as a practice artifact rather than outcome evidence. It documents how game-library professionals curate media recommendations, resource lists, grant and censorship resources, program ideas, read-alikes, play-alikes, community links, and event supports across games, fandom, TTRPGs, zines, childhood development, queer media, and pop-culture programming. As a group, these documents show that GBLS advisory and programming are sustained by community-curated professional knowledge as well as by formal research and local case studies.
+- Target_Section: Programming Formats and Service Models > Fandom Festivals and Pop-Culture Events
+  Contribution_Text: The broader GameRT/RTRT resource documents also help contextualize fandom and pop-culture programming as a professional community practice. They show librarians assembling cross-media recommendations, policy and advocacy resources, grant leads, event themes, and programming supports that can connect games with comics, zines, queer media, childhood development, censorship conversations, and International Games Month.
 ### Summary
 # **Porter, M., Sewell, A., Bergstrom, G., & Costello, D. (2024). RTRT: International Games Month. *Google Docs*. https://docs.google.com/document/d/1cC7xc5nZrYRHbFUBOKRetIaRZBtpVP_fAbv4p6Q1Zjs/edit?usp=sharing&usp=embed_facebook**
 

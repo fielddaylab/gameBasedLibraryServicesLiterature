@@ -7,10 +7,10 @@ Zotero_Item_Key: NCPXFTAT
 Better_BibTeX_Citation_Key: LSHMWereYou2024
 Attachment_Key: 9GU3XWS2
 
-Source_Type: toolkit_or_guidance_document
+Source_Type: professional_community_working_document
 Peer_Review: unknown
-Evidence_Type: practitioner_reflection
-Primary_Methodology: none
+Evidence_Type: professional_practice_artifact
+Primary_Methodology: community_curation
 Library_Context: unspecified_library_context
 Game_Format: multiple_game_formats
 
@@ -24,8 +24,10 @@ Intended_Outcome: not_applicable
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_direct_addition_recommended
+- Target_Section: Programming Formats and Service Models > Tabletop Role-Playing and Live-Action Role-Playing Programs
+  Contribution_Text: This LSHM/GameRT professional community working document contributes as a practice artifact rather than outcome evidence. It documents how game-library professionals prepare TTRPG-oriented programming and advisory work through concise game descriptions, creator/context links, play-alikes, read-alikes, watch-alikes, safety tools, streaming norms, session outlines, and facilitation supports. As a group, these documents show that library TTRPG service depends on shared professional curation, safety language, media advisory, event preparation, and community knowledge infrastructure, not only on local campaign reports.
+- Target_Section: Cross-Cutting Conditions for Effective Games-Based Library Services > Build Institutional Capacity and Sustainable Service Models
+  Contribution_Text: The LSHM/GameRT working-document format also illustrates distributed professional capacity. These artifacts preserve reusable advisory and facilitation knowledge across a community of practice, making it easier for librarians to discover unfamiliar games, plan streamed or in-person sessions, identify safety considerations, and connect games to adjacent books, media, creators, and professional resources.
 ### Summary
 # **Beth and Angel Make Games. (2024). *LSHM: Were You Paying Attention?!* Google Docs.**
 

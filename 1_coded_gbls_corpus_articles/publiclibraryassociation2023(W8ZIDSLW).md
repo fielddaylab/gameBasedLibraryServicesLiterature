@@ -27,8 +27,8 @@ Intended_Outcome: institutional_capacity
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_suggested_addition_found
+- Target_Section: Introduction: Why Games-Based Library Services Matter > Games as Mainstream Cultural Media
+  Contribution_Text: Public Library Association (2023) gives national scale to the claim that public-library gaming services are already underway. In a weighted survey of 1,167 U.S. public library administrative entities, games and gaming programs were reported by 65.6% of libraries for teens, making them the second most common teen program type after summer reading and ahead of teen STEAM programs. The report also shows why local examples need infrastructure context: staffing, funding, space, attendance, teen spaces, meeting rooms, outdoor programming areas, makerspaces, technology training spaces, and mobile facilities shape which GBLS formats libraries can offer.
 ### Summary
 # **Public Library Association. (2023). *Public Library Services for Strong Communities Report: Results from the 2022 PLA Annual Survey*. Public Library Association.**
 

@@ -23,8 +23,8 @@ Intended_Outcome: learning_and_literacy
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_suggested_addition_found
+- Target_Section: Programming Formats and Service Models > Library Services Inside Games and Virtual Worlds
+  Contribution_Text: Mon (2012) adds a staff-facing account of avatar-mediated professionalism in Second Life. Through participant observation, 12 in-world interviews with librarians and educators, and visits to 50 virtual workplaces, Mon shows that virtual-world library service depended on professional avatar presentation, trust cues, and spatial staging: conservative humanoid avatars and familiar bookshelves or reference desks helped reassure newcomers, while polished avatar appearance signaled credibility to experienced residents. For GBLS, the study explains why services inside game-like worlds require platform fluency, identity management, and credible staff presence, not only a virtual room or collection.
 ### Summary
 # **Mon, L. M. (2012). Professional avatars: Librarians and educators in virtual worlds. *Journal of Documentation, 68*(3), 318-329. https://doi.org/10.1108/00220411211225566**
 

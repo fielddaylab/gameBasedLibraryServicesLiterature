@@ -25,8 +25,10 @@ Intended_Outcome: belonging_and_community
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_suggested_addition_found
+- Target_Section: Programming Formats and Service Models > Tabletop Role-Playing and Live-Action Role-Playing Programs
+  Contribution_Text: Nelson and Matthews (2025) provide a contemporary empirical public-library D&D account through observations and interviews at two Midwestern libraries. Their study shows that library TTRPG programs do more than provide a table: libraries stabilize campaigns through regular schedules, supply or cultivate DMs, provide books, Roll20 access, 3D printing, and staff support, and create a beginner-friendly alternative to game stores where women, LGBTQ+ players, and inexperienced players may feel more welcome.
+- Target_Section: Service Purposes and Library Functions > Community, Belonging, Wellness, and the Public Commons
+  Contribution_Text: Nelson and Matthews (2025) also frame public-library D&D as a democratic third-place practice. Players balance individual self-expression, hero moments, moral choices, and character attachment with party decision-making, mutual aid, shared storytelling, and respect for the DM as facilitator; because the library draws from a broader public than private friend groups or game stores, it can keep the "tavern door" open for a more diverse community of players.
 ### Summary
 # **Nelson, S. B., & Matthews, A. (2025). Roll for initiative: Balancing player and party in library D&D games. *Public Library Quarterly*, 1-22. https://doi.org/10.1080/01616846.2025.2522620**
 

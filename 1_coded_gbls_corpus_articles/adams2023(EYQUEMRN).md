@@ -21,8 +21,8 @@ Intended_Outcome: institutional_capacity
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_direct_addition_recommended
+- Target_Section: Cross-Cutting Conditions for Effective Games-Based Library Services > Build Institutional Capacity and Sustainable Service Models
+  Contribution_Text: Adams, Finch, and Gamble (2023) extend GBLS capacity-building by treating scenario planning as serious play for public-library strategy. Their Reading Public Library case shows how staff and trustees used imagined futures, uncertainty mapping, and playful reframing to identify robust strategic tracks around representative staffing, co-designed programs, digital opportunities, and collection management. The source is staff-facing rather than patron-program evidence, but it supports the manuscript's claim that sustainable GBLS depends on institutional imagination, local adaptation, and planning under uncertain service conditions.
 ### Summary
 # **Adams, M. J., Finch, M., & Gamble, B. (2023). More than a game: Scenario planning, imagination, and the public library's future. *Public Library Quarterly, 42*(6), 665-687. https://doi.org/10.1080/01616846.2022.2154068**
 

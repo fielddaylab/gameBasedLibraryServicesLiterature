@@ -24,8 +24,10 @@ Intended_Outcome: not_applicable
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_suggested_addition_found
+- Target_Section: Service Purposes and Library Functions > Collections, Circulation, and Equitable Access
+  Contribution_Text: Boyle (2018) sharpens the access argument for urban academic libraries by treating video games as essential collection materials rather than optional recreation. Because commuter students and digitally divided users may have fewer reasons or resources to linger on campus, video game collections, labs, clubs, and events can provide equitable access to game media, support research and information-seeking across formats, and draw students into contact with library spaces, staff, sources, and services.
+- Target_Section: Service Purposes and Library Functions > Community, Belonging, Wellness, and the Public Commons
+  Contribution_Text: Boyle (2018) adds an urban academic-library version of the belonging claim: video games can give commuter students a low-stakes reason to enter and remain in the library, meet peers with shared interests, collaborate through group play, and interact with staff outside formal research-help encounters. The article is advocacy rather than assessment, but it names why urban campus libraries may need game collections and events as community infrastructure, not only curriculum support.
 ### Summary
 # **Boyle, C. (2018). Play time: Why video games are essential to urban academic libraries. *Urban Library Journal, 24*(1), 1-11.**
 

@@ -29,8 +29,8 @@ Intended_Outcome:
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_suggested_addition_found
+- Target_Section: Conceptual Terrain: Games, Play, and Library Service > Libraries as Playful Spaces and Service Environments
+  Contribution_Text: Hassinger-Das et al. (2020) provide empirical support for treating play as library spatial design rather than only as a program or collection. In three Free Library of Philadelphia branches, Play-and-Learn installations such as a letter climbing wall, movable Tangram-like seating, magnetic story surfaces, a stage, and a perching tower were associated with higher children's program attendance, longer visits, higher child and caregiver/child interaction scores, more spatial and letter/sound language, more laughter, less child technology use, and more physical interaction with the space; the study does not prove learning gains, but it shows that library environments can invite playful literacy, STEM talk, movement, and caregiver-child engagement.
 ### Summary
 # **Hassinger-Das, B., Zosh, J. M., Hansen, N., Talarowski, M., Zmich, K., Golinkoff, R. M., & Hirsh-Pasek, K. (2020). Play-and-learn spaces: Leveraging library spaces to promote caregiver and child interaction. *Library & Information Science Research, 42*(1), 101002. https://doi.org/10.1016/j.lisr.2020.101002**
 

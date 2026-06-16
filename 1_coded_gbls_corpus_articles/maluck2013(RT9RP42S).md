@@ -30,8 +30,10 @@ Intended_Outcome:
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_suggested_addition_found
+- Target_Section: Programming Formats and Service Models > Clubs and Recurring Play Groups
+  Contribution_Text: Maluck (2013) provides a public-library youth counterpart through Richland Library Northeast's Play It Loud program, a recurring Wii and tabletop gaming series that averaged twenty-one participants and became a weekend fixture. The case shows how recurring play groups depend on local demand signals, multiplayer-friendly game selection, room acoustics, regular scheduling, staff facilitation, teen volunteers, age boundaries, and links to adjacent programs such as Go instruction, anime club, volunteering, and Teen Advisory Board participation.
+- Target_Section: Cross-Cutting Conditions for Effective Games-Based Library Services > Evaluate, Adapt, and Decide What to Sustain
+  Contribution_Text: Maluck (2013) also argues that public-library gaming outcomes can be read through youth-development assets rather than attendance alone. Observations of Play It Loud and Go Your Own Way connect gaming to family communication, supportive nonparent adults, fair play, youth service, safety, responsibility, cultural competence, cross-gender participation, and pathways into other library relationships, while also showing the limits of anecdotal assessment and the need to separate entertainment value from educational extension.
 ### Summary
 # **Maluck, T. (2013). Tales from Play It Loud. *Library Trends, 61*(4), 779-789. https://doi.org/10.1353/lib.2013.0014**
 

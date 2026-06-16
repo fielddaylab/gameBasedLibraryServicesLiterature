@@ -26,8 +26,8 @@ Intended_Outcome: learning_and_literacy
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_suggested_addition_found
+- Target_Section: Programming Formats and Service Models > Library Services Inside Games and Virtual Worlds
+  Contribution_Text: Webber and Nahl (2011) show how Second Life became professional infrastructure for library and information science education and continuing professional development. Their Sheffield and Hawaii cases used avatar interviews, information-literacy exhibits, virtual-world librarianship courses, reference shadowing, student-produced professional events, librarian mentors, poster conferences, and in-world CPD to make virtual worlds a laboratory for information behavior, reference, teaching, collaboration, and professional identity. The source supports the manuscript's claim that virtual-world GBLS requires active professional practice and social presence rather than static replicas of physical libraries.
 ### Summary
 # **Webber, S., & Nahl, D. (2011). Sustaining learning for LIS through use of a virtual world. *IFLA Journal, 37*(1), 5-15. https://doi.org/10.1177/0340035210397137**
 

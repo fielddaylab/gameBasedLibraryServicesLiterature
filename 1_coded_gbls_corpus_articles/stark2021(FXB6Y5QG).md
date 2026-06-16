@@ -21,8 +21,10 @@ Intended_Outcome: learning_and_literacy
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_suggested_addition_found
+- Target_Section: Service Purposes and Library Functions > Instruction, Orientation, and Information Literacy
+  Contribution_Text: Stark et al. (2021) provide an evidence-quality anchor for academic-library scavenger hunts. Their systematic review of 13 assessed studies found that scavenger hunts are commonly framed as active, playful orientation and instruction tools, but that publications often emphasize fun and implementation while reporting sample sizes, timeframes, and measures unevenly and using no validated instruments. The source supports careful claims about active learning and engagement while cautioning against treating scavenger-hunt popularity as demonstrated learning impact.
+- Target_Section: Cross-Cutting Conditions for Effective Games-Based Library Services > Evaluate, Adapt, and Decide What to Sustain
+  Contribution_Text: Stark et al. (2021) make assessment alignment visible: library games should report who participated, what they did, how long the intervention lasted, what outcomes were measured, and whether instruments can support claims about learning, confidence, retention, or behavior. Their review strengthens the manuscript's argument that attendance, satisfaction, and novelty are insufficient evidence for GBLS effectiveness.
 ### Summary
 # **Stark, R. K., Opuda, E., McElfresh, J., & Kauffroath, K. (2021). Scavenging for evidence: A systematic review of scavenger hunts in academic libraries. *The Journal of Academic Librarianship, 47*(3), Article 102345. https://doi.org/10.1016/j.acalib.2021.102345**
 

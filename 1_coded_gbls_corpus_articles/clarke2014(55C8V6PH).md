@@ -23,8 +23,8 @@ Intended_Outcome: discovery_and_advisory
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_direct_addition_recommended
+- Target_Section: Service Purposes and Library Functions > Collections, Circulation, and Equitable Access > Challenges to Cataloging Games
+  Contribution_Text: Clarke, Lee, Jett, and Sacchi (2014) provide a concise relationship-metadata precursor to the fuller GAMER Group work by showing why editions, series, subseries, downloadable content, mods, patches, platform versions, re-releases, and influence relationships strain conventional bibliographic models. The source is a short poster and should not carry the main evidence burden, but it reinforces the manuscript's argument that game discovery depends on relationship data that supports playability, research, preservation, and advisory.
 ### Summary
 # **Clarke, R. I., Lee, J. H., Jett, J., & Sacchi, S. (2014). Exploring relationships among video games. In *2014 IEEE/ACM Joint Conference on Digital Libraries* (pp. 481-482). IEEE. https://doi.org/10.1109/JCDL.2014.6970235**
 

@@ -7,10 +7,10 @@ Zotero_Item_Key: 4UDVWW6X
 Better_BibTeX_Citation_Key: QueertacularResourceList2024
 Attachment_Key: B45P2R39
 
-Source_Type: toolkit_or_guidance_document
+Source_Type: professional_community_working_document
 Peer_Review: unknown
-Evidence_Type: practitioner_reflection
-Primary_Methodology: none
+Evidence_Type: professional_practice_artifact
+Primary_Methodology: community_curation
 Library_Context: cultural_heritage_institution
 Game_Format: digital_game
 
@@ -24,10 +24,10 @@ Intended_Outcome: not_applicable
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: unspecified
-  Contribution_Text: No addition recommended. Exclude from the GBLS literature review because this
-    is a crowd-sourced queer media recommendation and event-resource sheet, not a substantive study,
-    program report, or practitioner article about game-based library services.
+- Target_Section: Service Purposes and Library Functions > Description, Discovery, and Games Advisory
+  Contribution_Text: This GameRT/RTRT professional community working document contributes as a practice artifact rather than outcome evidence. It documents how game-library professionals curate media recommendations, resource lists, grant and censorship resources, program ideas, read-alikes, play-alikes, community links, and event supports across games, fandom, TTRPGs, zines, childhood development, queer media, and pop-culture programming. As a group, these documents show that GBLS advisory and programming are sustained by community-curated professional knowledge as well as by formal research and local case studies.
+- Target_Section: Programming Formats and Service Models > Fandom Festivals and Pop-Culture Events
+  Contribution_Text: The broader GameRT/RTRT resource documents also help contextualize fandom and pop-culture programming as a professional community practice. They show librarians assembling cross-media recommendations, policy and advocacy resources, grant leads, event themes, and programming supports that can connect games with comics, zines, queer media, childhood development, censorship conversations, and International Games Month.
 ### Summary
 # **Queertacular Resource List. (2024). *Google Docs*. https://docs.google.com/document/d/1TZ8Ub6hqYjbFaD0LO6LBwxxZvHcsJRuxMcJk0WA5in4/edit?usp=sharing&usp=embed_facebook**
 

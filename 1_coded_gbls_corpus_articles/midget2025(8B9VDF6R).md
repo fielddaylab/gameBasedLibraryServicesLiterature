@@ -23,8 +23,8 @@ Intended_Outcome:
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_direct_addition_recommended
+- Target_Section: Gaps in the Literature and Future Research Agenda > Infrastructure, Metadata, Licensing, and Preservation Gaps
+  Contribution_Text: Midget (2025) adds a tabletop role-playing licensing and open-culture dimension to GBLS infrastructure gaps. Although the source is legal scholarship rather than library evidence, its analysis of open gaming licenses, copyrightable and noncopyrightable game elements, Dungeons & Dragons, Paizo's ORC license, third-party publishing, and contested openness helps explain why TTRPG collections, design workshops, creator support, and open-culture programming depend on legal and platform conditions beyond library control.
 ### Summary
 # **Midget, R. (2025). Intellectual property or modern folklore? The problem with open gaming licenses in tabletop gaming. *Seattle University Law Review, 48*, 1129.**
 

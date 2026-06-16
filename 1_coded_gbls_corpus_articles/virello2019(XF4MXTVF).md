@@ -23,8 +23,8 @@ Intended_Outcome: not_applicable
 Coding_Confidence: high
 
 ### Contributions
-- Target_Section: none
-  Contribution_Text: no_suggested_addition_found
+- Target_Section: Programming Formats and Service Models > Fandom Festivals and Pop-Culture Events
+  Contribution_Text: Virello (2019) shows how a public library can scale a fandom event from a passive Free Comic Book Day program into a full library comic con. Southington Library ComiCon combined comic giveaways, cosplay, storytimes, crafts, scavenger hunts, video game tournaments, tabletop gaming, themed displays, performers, community partners, traffic planning, costume and prop rules, food logistics, and rotating activities; attendance grew from about thirty people in the initial FCBD program to nearly nine hundred at the first full ComiCon, making the case useful for GBLS as an access-oriented pop-culture festival model rather than a stand-alone game night.
 ### Summary
 # **Virello, M. (2019). Putting the "Extra" in Extraordinary: Creating a Library Comic Con. *Children & Libraries: The Journal of the Association for Library Service to Children, 17*(1), 31-34. https://doi.org/10.5860/cal.17.1.31**
 
