@@ -111,7 +111,45 @@ Controlled Lexicon
 - institutional_capacity: The service improves staff confidence, training, facilitation, infrastructure, implementation capacity, assessment, or sustainable operations.
 - not_applicable: The source does not describe or assess a specific program, service, collection, or intervention outcome.
 
+# Evidence_Confidence
+Evidence confidence describes the strength, rigor, and generalizability of evidence claims within the source. This field helps distinguish between demonstrated outcomes, promising evidence, practitioner knowledge, and theoretical claims—a critical distinction in the GBLS literature where findings range from controlled experiments to local case studies and conceptual arguments.
+
+- demonstrated_outcome: Rigorous design with significant sample size, validated measures, comparison/control groups, or longitudinal follow-up. Evidence supports the claimed outcome with reasonable confidence.
+- promising_evidence: Smaller sample, self-report, limited comparison group, or single-site study. Outcome is plausible but requires confirmation with stronger methods.
+- practitioner_knowledge: Based on practitioner experience, field observation, or informal reflection rather than formal assessment. Describes what practitioners believe works or recommend.
+- descriptive_only: Case study, narrative report, or implementation account without specific outcome claims. Describes what was done and how, without evaluating results.
+- theoretical_or_conceptual: Argument, model, definition, or conceptual framework without empirical test or direct outcome evidence. Useful for understanding assumptions but not for demonstrating impact.
+- not_applicable: The source does not make or support any specific outcome claims.
+
+# Service_Conditions_Addressed
+Service conditions are prerequisites, design principles, and ecological factors that research identifies as necessary or important for GBLS to succeed. Sources may describe conditions, address how they were met, or discuss gaps. This field helps distinguish between descriptions of what works in isolation versus what works when embedded in supportive contexts—a recurring lesson in the GBLS literature.
+
+- access_infrastructure_required: Source discusses or addresses material barriers such as hardware, broadband, space, equipment, or assistive technology needed for participation.
+- skilled_facilitation_required: Source emphasizes or examines the role of trained staff, peer facilitators, or experienced guides in creating meaningful experiences and ensuring learning or belonging.
+- community_assessment_needed: Source indicates that success depends on understanding local needs, cultures, existing resources, or participant characteristics rather than applying a universal model.
+- sustainable_operations: Source addresses continuity, staffing models, funding, maintenance, or long-term sustainability rather than treating a service as a one-time event.
+- inclusive_design_or_accessibility: Source explicitly discusses barriers for disabled participants, marginalized communities, or underrepresented groups and describes accommodation or universal design approaches.
+- evaluation_or_reflection: Source includes or recommends assessment of whether intended outcomes actually occurred rather than assuming engagement proves benefit.
+- other: Source addresses a service condition or prerequisite not covered by the categories above. Summary should describe the condition in the "Productive Incongruences" section to document what the schema did not capture.
+- not_applicable: The source does not discuss or address implementation conditions.
+
+# Conceptual_Theme
+Conceptual themes capture the theoretical, philosophical, or disciplinary grounding of a source. These themes help identify which broader intellectual traditions inform a source's approach to games and library services, connecting practice to the literature's conceptual foundations.
+
+- games_as_cultural_media: Treats games as legitimate cultural media comparable to books, film, or music; emphasizes games as art, artistic expression, or vehicles for exploring social values.
+- participatory_culture_and_production: Emphasizes user creation, remix, fan production, community knowledge-making, or the shift from consumers to producers in participatory media systems.
+- game_literacy: Focus on critical reading of game systems including mechanics, design, rules, incentives, representations, and how players interpret and construct meaning from games.
+- service_ecology: Emphasizes interconnections among collections, programs, spaces, expertise, partnerships, and policies; argues that outcomes depend on fit among multiple elements rather than isolated initiatives.
+- conditional_benefits: Explicitly discusses context-dependent effects; distinguishes between universal claims and conditional findings; emphasizes that benefits depend on facilitation, community fit, or other factors.
+- information_behavior_and_practice: Grounds analysis in how people seek, evaluate, use, or create information; treats games as sites for practicing information work or literacy.
+- educational_psychology: Applies learning science frameworks such as situated learning, transfer, motivation, cognitive load, or zone of proximal development to understand game-based learning.
+- social_equity_and_access: Centers equity, inclusion, and access as service purposes; examines barriers, benefits for underrepresented populations, and whether services reinforce or interrupt privilege.
+- multiple_themes: Source integrates multiple conceptual traditions.
+- not_identified: Source does not foreground explicit theoretical or conceptual grounding.
+
 # Coding_Confidence
+Coding confidence describes the coder's confidence in assigning the metadata values for a given article. High confidence indicates that the evidence is explicit and unambiguous; low confidence indicates that the coder made inferences from limited information.
+
 - high
 - low
 - medium

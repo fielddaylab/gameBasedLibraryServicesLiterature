@@ -57,7 +57,7 @@ output. Prefer less.
 
 ## Authority and Structure
 
-`0_human_sources/baseline_structure_and_prose.md` is the sole authority for
+`0_human_sources/current_manuscript.md` is the sole authority for
 manuscript headings, order, annotations, starting prose, and word targets.
 
 For a section job, reread only:

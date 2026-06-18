@@ -11,7 +11,7 @@ containing this file. Resolve every path relative to it.
 
 Required inputs:
 
-- `0_human_sources/baseline_structure_and_prose.md`
+- `0_human_sources/current_manuscript.md`
 - `0_human_sources/metadata-schema-and-lexicon.md`
 - `0_human_sources/explicit_values.md`
 - `0_human_sources/publishability_rubric.md`

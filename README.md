@@ -53,7 +53,7 @@ define the authors' structure, values, terminology, and evaluation criteria.
 ```text
 .
 ├── 0-human-sources/
-│   ├── baseline_structure_and_prose.md
+│   ├── current_manuscript.md
 │   ├── explicit_values.md
 │   ├── metadata-schema-and-lexicon.md
 │   └── publishability_rubric.md
@@ -89,7 +89,7 @@ define the authors' structure, values, terminology, and evaluation criteria.
 
 Authoritative, human-maintained inputs:
 
-- **`baseline_structure_and_prose.md`** defines the live manuscript hierarchy,
+- **`current_manuscript.md`** defines the live manuscript hierarchy,
   section word targets, drafting instructions, and author-supplied prose. The
   synthesis process discovers the section structure from this file at run
   time.
@@ -288,7 +288,7 @@ coding consistency, evidentiary limits, and fidelity to the source.
 Update the files in `0-human-sources` as the research team's understanding
 develops. In particular:
 
-- revise `baseline_structure_and_prose.md` to change manuscript organization
+- revise `current_manuscript.md` to change manuscript organization
   or author-supplied arguments;
 - revise the metadata schema when sources expose missing or ambiguous coding
   categories;
