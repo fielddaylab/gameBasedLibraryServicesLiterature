@@ -1,15 +1,15 @@
 {
-  "source_markdown_count": 200,
-  "parsed_article_count": 200,
-  "unique_article_id_count": 200,
+  "source_markdown_count": 201,
+  "parsed_article_count": 201,
+  "unique_article_id_count": 201,
   "duplicate_article_id_count": 0,
   "missing_year_count": 1,
-  "article_feature_assignment_count": 2277,
-  "feature_counts_sum": 2277,
-  "matrix_row_count": 200,
-  "binary_feature_column_count": 87,
+  "article_feature_assignment_count": 2286,
+  "feature_counts_sum": 2286,
+  "matrix_row_count": 201,
+  "binary_feature_column_count": 97,
   "parse_warnings": [
     "statistaunknown(XEC7KLHI).md: Unparseable year: 'unknown'"
   ],
-  "generated_at": "2026-06-13T06:15:06.029694+00:00"
+  "generated_at": "2026-06-18T05:23:34.353413+00:00"
 }

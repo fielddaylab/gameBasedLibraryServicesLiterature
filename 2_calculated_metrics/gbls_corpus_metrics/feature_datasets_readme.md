@@ -1,7 +1,7 @@
 # GBLS Feature Datasets
 
-Generated: 2026-06-13 01:15
-Articles: 200 | Feature assignments: 2277
+Generated: 2026-06-18 00:23
+Articles: 201 | Feature assignments: 2286
 
 ## Quick start (Python / Colab)
 
@@ -43,6 +43,9 @@ matrix   = pd.read_csv(f"{metrics_dir}/article_feature_matrix.csv")
 - **Service_Area** (multi-label)
 - **Audience** (multi-label)
 - **Intended_Outcome** (multi-label)
+- **Evidence_Confidence**
+- **Service_Conditions_Addressed**
+- **Conceptual_Theme**
 - **Coding_Confidence**
 
 ## Undated records

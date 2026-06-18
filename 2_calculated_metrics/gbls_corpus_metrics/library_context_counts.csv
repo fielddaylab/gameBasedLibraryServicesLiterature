@@ -1,9 +1,9 @@
 feature_group,feature_value,article_count,total_articles,article_pct,rank_within_group
-library_context,non_library_context,47,200,23.5,1
-library_context,unspecified_library_context,47,200,23.5,1
-library_context,public_library,30,200,15.0,2
-library_context,cultural_heritage_institution,22,200,11.0,3
-library_context,academic_library,22,200,11.0,3
-library_context,multiple_library_types,20,200,10.0,4
-library_context,school_library,9,200,4.5,5
-library_context,library_school,3,200,1.5,6
+library_context,non_library_context,47,201,23.4,1
+library_context,unspecified_library_context,47,201,23.4,1
+library_context,public_library,30,201,14.9,2
+library_context,academic_library,23,201,11.4,3
+library_context,cultural_heritage_institution,22,201,10.9,4
+library_context,multiple_library_types,20,201,10.0,5
+library_context,school_library,9,201,4.5,6
+library_context,library_school,3,201,1.5,7

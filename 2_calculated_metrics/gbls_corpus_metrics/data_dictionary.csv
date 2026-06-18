@@ -33,5 +33,11 @@ audience_matrix.csv,Binary article × Audience matrix,article_id
 audience_counts.csv,Aggregate counts for Audience,feature_group + feature_value
 intended_outcome_matrix.csv,Binary article × Intended_Outcome matrix,article_id
 intended_outcome_counts.csv,Aggregate counts for Intended_Outcome,feature_group + feature_value
+evidence_confidence_matrix.csv,Binary article × Evidence_Confidence matrix,article_id
+evidence_confidence_counts.csv,Aggregate counts for Evidence_Confidence,feature_group + feature_value
+service_conditions_addressed_matrix.csv,Binary article × Service_Conditions_Addressed matrix,article_id
+service_conditions_addressed_counts.csv,Aggregate counts for Service_Conditions_Addressed,feature_group + feature_value
+conceptual_theme_matrix.csv,Binary article × Conceptual_Theme matrix,article_id
+conceptual_theme_counts.csv,Aggregate counts for Conceptual_Theme,feature_group + feature_value
 coding_confidence_matrix.csv,Binary article × Coding_Confidence matrix,article_id
 coding_confidence_counts.csv,Aggregate counts for Coding_Confidence,feature_group + feature_value

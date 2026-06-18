@@ -1,12 +1,13 @@
 feature_group,feature_value,article_count,total_articles,article_pct,rank_within_group
-audience,not_applicable,123,200,61.5,1
-audience,students,51,200,25.5,2
-audience,teens,18,200,9.0,3
-audience,children,13,200,6.5,4
-audience,general_public,8,200,4.0,5
-audience,families,7,200,3.5,6
-audience,underserved_or_special_population,6,200,3.0,7
-audience,young_adults,6,200,3.0,7
-audience,educators,3,200,1.5,8
-audience,older_adults,1,200,0.5,9
-audience,adults,1,200,0.5,9
+audience,not_applicable,123,201,61.2,1
+audience,students,51,201,25.4,2
+audience,teens,18,201,9.0,3
+audience,children,13,201,6.5,4
+audience,general_public,8,201,4.0,5
+audience,families,7,201,3.5,6
+audience,underserved_or_special_population,6,201,3.0,7
+audience,young_adults,6,201,3.0,7
+audience,educators,3,201,1.5,8
+audience,older_adults,1,201,0.5,9
+audience,"[students, educators]",1,201,0.5,9
+audience,adults,1,201,0.5,9
