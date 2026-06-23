@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # GBLS Complete Application
+  # Includes: Lit Coder API, Metrics Explorer, and all research materials
+  gbls:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gbls
+    ports:
+      - "8787:8787"
+    environment:
+      PORT: 8787
+      DATA_DIR: /data
+      NODE_ENV: production
+    volumes:
+      - gbls-coding-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8787/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  gbls-coding-data:
+    driver: local

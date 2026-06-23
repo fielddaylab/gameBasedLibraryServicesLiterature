@@ -1,15 +1,31 @@
 {
-  "source_markdown_count": 201,
-  "parsed_article_count": 201,
-  "unique_article_id_count": 201,
+  "source_markdown_count": 224,
+  "parsed_article_count": 224,
+  "unique_article_id_count": 224,
   "duplicate_article_id_count": 0,
-  "missing_year_count": 1,
-  "article_feature_assignment_count": 2286,
-  "feature_counts_sum": 2286,
-  "matrix_row_count": 201,
-  "binary_feature_column_count": 97,
+  "missing_year_count": 17,
+  "article_feature_assignment_count": 2377,
+  "feature_counts_sum": 2377,
+  "matrix_row_count": 224,
+  "binary_feature_column_count": 113,
   "parse_warnings": [
-    "statistaunknown(XEC7KLHI).md: Unparseable year: 'unknown'"
+    "ariya2025(T4UPT5AD).md: No Metadata heading found",
+    "bjorling2024(UFLYVNGX).md: No Metadata heading found",
+    "borgman2007(J3RYW247).md: No Metadata heading found",
+    "buckland1991(Q6FMLEH4).md: No Metadata heading found",
+    "dahya2021(WEFGCFM2).md: No Metadata heading found",
+    "gagnon2012(NKFASIAW).md: No Metadata heading found",
+    "garry(B4MZ6RWR).md: No Metadata heading found",
+    "harris2008(RRXYR94F).md: No Metadata heading found",
+    "ip2024(NL36DZ5A).md: No Metadata heading found",
+    "jorm2023(QQ7ADQDZ).md: No Metadata heading found",
+    "kerstetter2025(PGKAPGM9).md: No Metadata heading found",
+    "lankes2011(XKGP8R5M).md: No Metadata heading found",
+    "lau2025(KYL4ZQKB).md: No Metadata heading found",
+    "myers2025(U928VE4Z).md: No Metadata heading found",
+    "post2024(D7E2C46X).md: No Metadata heading found",
+    "statistaunknown(XEC7KLHI).md: Unparseable year: 'unknown'",
+    "zhou2023(YKHZPVGU).md: No Metadata heading found"
   ],
-  "generated_at": "2026-06-18T05:23:34.353413+00:00"
+  "generated_at": "2026-06-23T18:58:46.556525+00:00"
 }

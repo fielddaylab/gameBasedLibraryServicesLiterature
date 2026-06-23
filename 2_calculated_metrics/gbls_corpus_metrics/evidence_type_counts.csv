@@ -1,9 +1,9 @@
 feature_group,feature_value,article_count,total_articles,article_pct,rank_within_group
-evidence_type,empirical_study,76,201,37.8,1
-evidence_type,practitioner_reflection,38,201,18.9,2
-evidence_type,theoretical_or_conceptual,26,201,12.9,3
-evidence_type,implementation_case,24,201,11.9,4
-evidence_type,professional_practice_artifact,20,201,10.0,5
-evidence_type,evidence_synthesis,13,201,6.5,6
-evidence_type,instrument_or_framework_development,13,201,6.5,6
-evidence_type,content_or_artifact_analysis,12,201,6.0,7
+evidence_type,empirical_study,76,224,33.9,1
+evidence_type,practitioner_reflection,39,224,17.4,2
+evidence_type,theoretical_or_conceptual,26,224,11.6,3
+evidence_type,implementation_case,24,224,10.7,4
+evidence_type,professional_practice_artifact,20,224,8.9,5
+evidence_type,evidence_synthesis,17,224,7.6,6
+evidence_type,instrument_or_framework_development,15,224,6.7,7
+evidence_type,content_or_artifact_analysis,12,224,5.4,8

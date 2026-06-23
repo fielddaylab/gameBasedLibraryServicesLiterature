@@ -1,0 +1,25 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "GBL Corpus Coder home" [ref=e3] [cursor=pointer]:
+      - /url: "#summary"
+      - generic [ref=e4]: GBL
+      - generic [ref=e5]: Corpus Coder
+    - navigation "Primary" [ref=e6]:
+      - button "Summary quality" [ref=e7] [cursor=pointer]
+      - button "Metadata coding" [ref=e8] [cursor=pointer]
+      - button "Review codings" [ref=e9] [cursor=pointer]
+      - link "Metrics explorer" [ref=e10] [cursor=pointer]:
+        - /url: /metrics_explorer/
+    - generic [ref=e11]:
+      - generic [ref=e13]: No user
+      - button "Change" [ref=e14] [cursor=pointer]
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - paragraph [ref=e18]: Games-Based Library Services
+      - heading "Human judgment, carefully recorded." [level=1] [ref=e19]
+      - paragraph [ref=e20]: Enter a short usercode. It identifies your codings; no password or personal details are collected.
+      - generic [ref=e21]:
+        - generic [ref=e22]: Usercode
+        - textbox "Usercode" [ref=e23]
+        - generic "Previously used usercodes"
+        - button "Begin coding" [ref=e24] [cursor=pointer]

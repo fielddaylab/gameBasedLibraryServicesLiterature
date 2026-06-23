@@ -1,7 +1,7 @@
 # GBLS Feature Datasets
 
-Generated: 2026-06-18 00:23
-Articles: 201 | Feature assignments: 2286
+Generated: 2026-06-23 13:58
+Articles: 224 | Feature assignments: 2377
 
 ## Quick start (Python / Colab)
 
@@ -50,4 +50,4 @@ matrix   = pd.read_csv(f"{metrics_dir}/article_feature_matrix.csv")
 
 ## Undated records
 
-1 article(s) have no year and are labelled `n.d.` in year summaries.
+17 article(s) have no year and are labelled `n.d.` in year summaries.

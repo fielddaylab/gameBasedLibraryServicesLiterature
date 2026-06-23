@@ -1,5 +1,5 @@
 feature_group,feature_value,article_count,total_articles,article_pct,rank_within_group
-peer_review,peer_reviewed,116,201,57.7,1
-peer_review,editorial_reviewed,40,201,19.9,2
-peer_review,unknown,35,201,17.4,3
-peer_review,not_applicable,10,201,5.0,4
+peer_review,peer_reviewed,119,224,53.1,1
+peer_review,editorial_reviewed,44,224,19.6,2
+peer_review,unknown,35,224,15.6,3
+peer_review,not_applicable,10,224,4.5,4

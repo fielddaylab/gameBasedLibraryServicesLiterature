@@ -1,2 +1,4 @@
 feature_group,feature_value,article_count,total_articles,article_pct,rank_within_group
-service_conditions_addressed,"[access_infrastructure_required, skilled_facilitation_required, inclusive_design_or_accessibility, evaluation_or_reflection]",1,201,0.5,1
+service_conditions_addressed,not_applicable,6,224,2.7,1
+service_conditions_addressed,"community_assessment_needed, skilled_facilitation_required",1,224,0.4,2
+service_conditions_addressed,"[access_infrastructure_required, skilled_facilitation_required, inclusive_design_or_accessibility, evaluation_or_reflection]",1,224,0.4,2

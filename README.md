@@ -12,6 +12,41 @@ games, tabletop role-playing games, esports, escape rooms, immersive
 technologies, game creation, collections, cataloging, instruction, outreach,
 community formation, cultural stewardship, and research support.
 
+## Quick Start
+
+### With Docker (Recommended)
+
+The entire project is containerized and deploys as a single image:
+
+```bash
+# Build and run
+docker-compose up -d
+
+# Check status
+docker-compose ps
+
+# View logs
+docker-compose logs -f gbls
+
+# Stop
+docker-compose down
+```
+
+**Available at**: http://localhost:8787
+
+The Docker image contains everything: the lit coder, metrics explorer, all research materials, and data storage.
+
+### Local Development (No Docker)
+
+```bash
+cd tools/web/gbls_lit_coder
+npm install
+npm run dev:server
+# Lit Coder runs on http://localhost:8787
+```
+
+For deployment guides and detailed Docker documentation, see [tools/web/website/README.md](tools/web/website/README.md).
+
 ## Project Goals
 
 The project is designed to:

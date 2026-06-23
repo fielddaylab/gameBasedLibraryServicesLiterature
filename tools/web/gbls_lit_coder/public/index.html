@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Human coding interface for the Games-Based Library Services corpus.">
+    <title>GBL Corpus Coder</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#summary" aria-label="GBL Corpus Coder home">
+        <span class="brand-mark">GBL</span>
+        <span>Corpus Coder</span>
+      </a>
+      <a id="return-to-metrics" class="return-link" href="/metrics_explorer/" hidden>
+        Back to metrics explorer
+      </a>
+      <nav aria-label="Primary">
+        <button class="nav-button active" data-view="summary">Summary quality</button>
+        <button class="nav-button" data-view="metadata">Metadata coding</button>
+        <button class="nav-button" data-view="review">Review codings</button>
+        <a class="nav-link" href="/metrics_explorer/">Metrics explorer</a>
+      </nav>
+      <div class="user-chip">
+        <span class="status-dot"></span>
+        <span id="active-user">No user</span>
+        <button id="change-user" class="text-button">Change</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="login-view" class="login-shell">
+        <div class="login-card">
+          <p class="eyebrow">Games-Based Library Services</p>
+          <h1>Human judgment, carefully recorded.</h1>
+          <p>Enter a short usercode. It identifies your codings; no password or personal details are collected.</p>
+          <form id="login-form">
+            <label for="usercode">Usercode</label>
+            <input id="usercode" name="usercode" maxlength="40" autocomplete="off" required pattern="[A-Za-z0-9][A-Za-z0-9 _.-]{0,39}">
+            <div id="known-users" class="known-users" aria-label="Previously used usercodes"></div>
+            <button class="primary-button" type="submit">Begin coding</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="code-view" class="app-view" hidden>
+        <div class="article-heading">
+          <div>
+            <p class="eyebrow">Article <span id="article-position"></span></p>
+            <h1 id="article-citation">Loading article...</h1>
+          </div>
+          <button id="random-article" class="secondary-button">Choose another random article</button>
+        </div>
+
+        <section id="summary-function" class="coding-function">
+          <div class="function-grid summary-function-grid">
+            <section class="source-card function-source">
+              <div>
+                <div class="section-heading">
+                  <div>
+                    <p class="eyebrow">Full extracted text</p>
+                    <h2>Article</h2>
+                  </div>
+                  <span class="source-word-count muted"></span>
+                </div>
+                <div id="summary-source-text" class="source-text function-source-text" tabindex="0"></div>
+              </div>
+            </section>
+            <div class="summary-function-right">
+              <section class="panel summary-panel">
+                <div class="section-heading">
+                  <div>
+                    <p class="eyebrow">Read</p>
+                    <h2>Article summary</h2>
+                  </div>
+                </div>
+                <div id="summary-text" class="summary-text"></div>
+              </section>
+              <section class="panel ratings-panel">
+                <div class="section-heading">
+                  <div>
+                    <p class="eyebrow">Evaluate</p>
+                    <h2>Summary rankings</h2>
+                  </div>
+                  <a id="rubric-version" class="muted" href="/summary_quality_rubric.md" target="_blank" rel="noopener">
+                    Loading rubric...
+                  </a>
+                </div>
+                <div id="rubric-form" class="rubric-form"></div>
+              </section>
+            </div>
+          </div>
+          <div class="save-bar">
+            <p id="summary-save-status" role="status">Complete all summary ratings to save.</p>
+            <button id="save-summary" class="primary-button" disabled>Save summary quality and continue</button>
+          </div>
+        </section>
+
+        <section id="metadata-function" class="coding-function" hidden>
+          <div class="function-grid metadata-function-grid">
+            <section class="source-card function-source">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Full extracted text</p>
+                  <h2>Article</h2>
+                </div>
+                <span class="source-word-count muted"></span>
+              </div>
+              <div id="metadata-source-text" class="source-text function-source-text" tabindex="0"></div>
+            </section>
+            <section class="panel lexicon-panel">
+              <div class="section-heading sticky-heading">
+                <div>
+                  <p class="eyebrow">Assign</p>
+                  <h2>Metadata selections</h2>
+                </div>
+                <input id="lexicon-search" type="search" placeholder="Filter terms" aria-label="Filter metadata terms">
+              </div>
+              <p class="helper">Select every item that applies. Hover over any term to see its definition. Suggested passages are leads, not conclusions.</p>
+              <div id="lexicon-form"></div>
+            </section>
+          </div>
+          <div class="save-bar">
+            <p id="metadata-save-status" role="status">Select all applicable metadata, then save.</p>
+            <button id="save-metadata" class="primary-button">Save metadata and continue</button>
+          </div>
+        </section>
+      </section>
+
+      <section id="review-view" class="app-view review-view" hidden>
+        <aside class="article-list-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Corpus</p>
+              <h1>Review codings</h1>
+            </div>
+          </div>
+          <input id="article-search" type="search" placeholder="Find an article" aria-label="Find an article">
+          <div id="review-article-list" class="review-article-list"></div>
+        </aside>
+        <div class="review-detail">
+          <section>
+            <p class="eyebrow">Selected article</p>
+            <h2 id="review-citation">Choose an article</h2>
+            <div id="metric-cards" class="metric-cards"></div>
+          </section>
+          <section class="review-section">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Across all multiply-coded articles</p>
+                <h2>Lexicon reliability</h2>
+              </div>
+            </div>
+            <div id="reliability-table" class="reliability-table"></div>
+          </section>
+          <section class="review-section">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Raw records</p>
+                <h2>Individual codings</h2>
+              </div>
+              <button id="export-json" class="secondary-button">Export all JSON</button>
+            </div>
+            <div id="coding-table-wrap" class="table-wrap"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <template id="evidence-template">
+      <button class="evidence-quote" type="button">
+        <span class="evidence-signal"></span>
+        <q></q>
+      </button>
+    </template>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

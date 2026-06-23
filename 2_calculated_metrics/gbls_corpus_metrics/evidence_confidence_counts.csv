@@ -1,2 +1,4 @@
 feature_group,feature_value,article_count,total_articles,article_pct,rank_within_group
-evidence_confidence,practitioner_knowledge,1,201,0.5,1
+evidence_confidence,theoretical_or_conceptual,4,224,1.8,1
+evidence_confidence,practitioner_knowledge,2,224,0.9,2
+evidence_confidence,not_applicable,2,224,0.9,2

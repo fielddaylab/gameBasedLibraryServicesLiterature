@@ -1,4 +1,4 @@
 feature_group,feature_value,article_count,total_articles,article_pct,rank_within_group
-coding_confidence,high,196,201,97.5,1
-coding_confidence,medium,3,201,1.5,2
-coding_confidence,low,2,201,1.0,3
+coding_confidence,high,201,224,89.7,1
+coding_confidence,medium,5,224,2.2,2
+coding_confidence,low,2,224,0.9,3

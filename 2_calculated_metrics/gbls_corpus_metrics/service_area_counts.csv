@@ -1,12 +1,17 @@
 feature_group,feature_value,article_count,total_articles,article_pct,rank_within_group
-service_area,learning_and_literacy,99,201,49.3,1
-service_area,collections_and_access,77,201,38.3,2
-service_area,programming_and_facilitation,56,201,27.9,3
-service_area,discovery_and_advisory,35,201,17.4,4
-service_area,community_and_inclusion,29,201,14.4,5
-service_area,professional_capacity,19,201,9.5,6
-service_area,cultural_heritage_and_research,14,201,7.0,7
-service_area,space_and_infrastructure,13,201,6.5,8
-service_area,outreach_and_partnerships,5,201,2.5,9
-service_area,creation_and_making,4,201,2.0,10
-service_area,"[collections_and_access, programming_and_facilitation, learning_and_literacy, outreach_and_partnerships, professional_capacity]",1,201,0.5,11
+service_area,learning_and_literacy,99,224,44.2,1
+service_area,collections_and_access,77,224,34.4,2
+service_area,programming_and_facilitation,56,224,25.0,3
+service_area,discovery_and_advisory,35,224,15.6,4
+service_area,community_and_inclusion,29,224,12.9,5
+service_area,professional_capacity,19,224,8.5,6
+service_area,cultural_heritage_and_research,15,224,6.7,7
+service_area,space_and_infrastructure,13,224,5.8,8
+service_area,outreach_and_partnerships,5,224,2.2,9
+service_area,creation_and_making,4,224,1.8,10
+service_area,not_applicable,2,224,0.9,11
+service_area,"space_and_infrastructure, professional_capacity",1,224,0.4,12
+service_area,"learning_and_literacy, community_and_inclusion",1,224,0.4,12
+service_area,"space_and_infrastructure, community_and_inclusion",1,224,0.4,12
+service_area,"[collections_and_access, programming_and_facilitation, learning_and_literacy, outreach_and_partnerships, professional_capacity]",1,224,0.4,12
+service_area,"engagement_and_participation, programming_and_facilitation",1,224,0.4,12

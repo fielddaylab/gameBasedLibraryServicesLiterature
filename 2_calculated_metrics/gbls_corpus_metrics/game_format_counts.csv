@@ -1,13 +1,13 @@
 feature_group,feature_value,article_count,total_articles,article_pct,rank_within_group
-game_format,digital_game,62,201,30.8,1
-game_format,multiple_game_formats,50,201,24.9,2
-game_format,tabletop_game,20,201,10.0,3
-game_format,tabletop_roleplaying_game,19,201,9.5,4
-game_format,virtual_or_augmented_reality,14,201,7.0,5
-game_format,gamification,13,201,6.5,6
-game_format,escape_room_or_breakout_box,8,201,4.0,7
-game_format,unspecified_game_format,7,201,3.5,8
-game_format,toy_or_open_play,3,201,1.5,9
-game_format,game_creation,3,201,1.5,9
-game_format,"[tabletop_game, digital_game, escape_room_or_breakout_box, gamification]",1,201,0.5,10
-game_format,pervasive_game,1,201,0.5,10
+game_format,digital_game,63,224,28.1,1
+game_format,multiple_game_formats,50,224,22.3,2
+game_format,tabletop_game,20,224,8.9,3
+game_format,tabletop_roleplaying_game,19,224,8.5,4
+game_format,gamification,14,224,6.2,5
+game_format,virtual_or_augmented_reality,14,224,6.2,5
+game_format,unspecified_game_format,12,224,5.4,6
+game_format,escape_room_or_breakout_box,8,224,3.6,7
+game_format,toy_or_open_play,3,224,1.3,8
+game_format,game_creation,3,224,1.3,8
+game_format,"[tabletop_game, digital_game, escape_room_or_breakout_box, gamification]",1,224,0.4,9
+game_format,pervasive_game,1,224,0.4,9
