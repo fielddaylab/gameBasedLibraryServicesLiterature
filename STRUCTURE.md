@@ -9,7 +9,7 @@ The GBLS project is designed to be completely self-contained in a Docker image. 
 - The entire project (research materials, code, data) gets built into a single Docker image
 - Deploy anywhere Docker runs - no external dependencies needed
 - Everything you need is in `/app/` inside the container
-- User coding records persist in a mounted volume at `/data/`
+- User submissions persist in a mounted volume at `/app/submissions/`
 
 ## Root Level
 
@@ -17,15 +17,19 @@ All project files, including Docker configuration:
 
 ```
 /
-├── 0_human_sources/                    # Research framework & documentation
+├── 0_human_sources/                    # Research framework, submissions & documentation
 │   ├── metadata-schema-and-lexicon.md  # Coding schema definitions
 │   ├── explicit_values.md              # Project values & assumptions
+│   ├── submitted_article_coding.json   # User article classification submissions
+│   ├── submitted_summary_reviews.json  # User summary review submissions
 │   └── ...
 ├── 1_coded_gbls_corpus_articles/       # Human-coded source summaries (224 articles)
 ├── 1_coded_reference_corpus_articles/  # Reference corpus journal articles (7,201)
 ├── 2_calculated_metrics/               # Generated analysis & visualizations
 ├── prompt_library/                     # LLM prompts for synthesis
-├── tools/                              # Scripts and applications
+├── site/                               # Web applications
+│   └── gbls_literature_reviewer/       # ⭐ Unified review application
+├── tools/                              # Scripts and utilities
 ├── .dockerignore                       # Docker build optimization
 ├── Dockerfile                          # ⭐ Container definition (includes entire project)
 ├── docker-compose.yml                  # ⭐ Run: docker-compose up -d
@@ -36,7 +40,7 @@ All project files, including Docker configuration:
 
 ## Tools Directory
 
-All project utilities organized by type:
+All project utilities and data processing:
 
 ```
 tools/
@@ -47,29 +51,30 @@ tools/
 │   ├── extract_and_attach_chapters.py  # Extract + upload to Zotero
 │   ├── fetch_unfiled.py                # Zotero integration
 │   └── attach_chapters_to_zotero.py    # Attach PDFs to Zotero
-└── web/                                # 🌐 Web applications & deployment
-    ├── gbls_lit_coder/                 # 🎯 Main coding application
-    │   ├── public/                     # Static files served by Express server
-    │   │   ├── index.html              # Lit Coder interface
-    │   │   ├── app.js                  # Application logic
-    │   │   ├── styles.css              # Styling
-    │   │   ├── data/                   # Article metadata
-    │   │   ├── metrics_explorer/       # Bundled metrics dashboard
-    │   │   └── summary_quality_rubric.md   # Coding rubric
-    │   ├── worker/                     # Cloudflare Worker code (reference)
-    │   ├── scripts/                    # Build utilities
-    │   ├── package.json                # Node.js dependencies
-    │   ├── server.mjs                  # ⭐ Express server (runs in Docker)
-    │   └── readme.md
-    ├── metrics_explorer/               # Legacy metrics dashboard
-    │   ├── index.html
-    │   ├── metrics_explorer.js
-    │   ├── metrics_explorer.css
-    │   └── readme.md
-    └── website/                        # Deployment documentation
-        ├── README.md                   # Docker quick start
-        ├── DOCKER_README.md            # Detailed Docker guide
-        └── DEPLOYMENT.md               # Production patterns
+```
+
+## Site Directory
+
+The web application:
+
+```
+site/
+└── gbls_literature_reviewer/           # 🎯 Unified literature review application
+    ├── public/                         # Static files served by Express server
+    │   ├── index.html                  # Main application interface with 4 tabs
+    │   ├── app.js                      # Unified application logic
+    │   ├── styles.css                  # Responsive styling
+    │   ├── data/                       # Article metadata & lexicon
+    │   │   ├── articles/               # 224 article JSON files
+    │   │   ├── manifest.json           # Article index
+    │   │   ├── catalog.json            # Coding catalog
+    │   │   ├── lexicon.json            # Metadata vocabulary
+    │   │   └── metrics_explorer_data.js    # Generated metrics data
+    │   └── summary_quality_rubric.md   # Coding rubric
+    ├── package.json                    # Node.js dependencies
+    ├── server.mjs                      # ⭐ Express server (runs in Docker)
+    ├── README.md                       # Application documentation
+    └── .gitignore
 ```
 
 ## Docker & Deployment Files
@@ -88,24 +93,26 @@ When you run the container, everything is at `/app/`:
 
 ```
 /app/
-├── 0_human_sources/                    # ✓ Included
-├── 1_coded_gbls_corpus_articles/       # ✓ Included
-├── 1_coded_reference_corpus_articles/  # ✓ Included
-├── 2_calculated_metrics/               # ✓ Included
-├── prompt_library/                     # ✓ Included
+├── 0_human_sources/                    # ✓ Included (submissions saved here)
+├── 1_coded_gbls_corpus_articles/       # ✓ Included (article source data)
+├── 1_coded_reference_corpus_articles/  # ✓ Included (reference corpus)
+├── 2_calculated_metrics/               # ✓ Included (metrics data)
+├── prompt_library/                     # ✓ Available for scripts
+├── site/
+│   └── gbls_literature_reviewer/
+│       ├── public/                     # ✓ Served by Express
+│       └── server.mjs                  # ✓ Running as main process
 ├── tools/
-│   ├── python/                         # ✓ Available for scripts
-│   └── web/
-│       └── gbls_lit_coder/
-│           ├── public/                 # ✓ Served by Express
-│           └── server.mjs              # ✓ Running as main process
-└── /data/                              # 📦 Mounted volume (persistent coding records)
+│   └── python/                         # ✓ Available for scripts
+└── /app/submissions/                   # 📦 Mounted volume (persistent user submissions)
 ```
 
-The Express server runs at `/app/tools/web/gbls_lit_coder/` and:
-- Serves static files from `./public/`
-- Stores coding records in `/data/`
-- Has access to all project materials (research, Python scripts, etc.)
+The Express server runs at `/app/site/` and:
+- Serves unified app interface from `./public/`
+- Reads article data from `1_coded_gbls_corpus_articles/`
+- Reads metrics from `2_calculated_metrics/`
+- Saves user submissions to `0_human_sources/` (mapped from `/app/submissions/`)
+- Has access to all project materials (research, Python scripts, metrics data)
 
 ## Quick Navigation
 
@@ -117,7 +124,7 @@ The Express server runs at `/app/tools/web/gbls_lit_coder/` and:
 docker-compose up -d
 
 # Or locally
-cd tools/gbls_lit_coder && npm run dev:server
+cd site && npm install && npm start
 ```
 
 **Stop the server:**
@@ -130,6 +137,10 @@ docker-compose down
 docker-compose logs -f gbls
 ```
 
+**Access the application:**
+- Local: http://localhost:8787
+- Production: http://your-server:8787
+
 ### For Research & Content
 
 - **Coded summaries**: `1_coded_gbls_corpus_articles/` (224 articles)
@@ -140,18 +151,18 @@ docker-compose logs -f gbls
 
 ### For Development
 
-- **Server code**: `tools/web/gbls_lit_coder/server.mjs`
-- **Frontend code**: `tools/web/gbls_lit_coder/public/`
-- **Dependencies**: `tools/web/gbls_lit_coder/package.json`
-- **API definition**: `tools/web/gbls_lit_coder/worker/index.js` (reference)
-- **Python scripts**: `tools/python/`
+- **Server code**: `site/server.mjs`
+- **Frontend code**: `site/public/app.js` & `index.html`
+- **Styling**: `site/public/styles.css`
+- **Dependencies**: `site/package.json`
+- **Documentation**: `site/README.md`
+- **Python scripts**: `tools/`
 
 ### For Deployment
 
 - **Docker setup**: `Dockerfile`, `docker-compose.yml` (at project root)
-- **Deployment guides**: `tools/web/website/DEPLOYMENT.md`
-- **Docker docs**: `tools/web/website/DOCKER_README.md`
-- **Quick start**: `tools/web/website/README.md`
+- **Deployment quick start**: See Docker & Deployment Files section below
+- **App documentation**: `site/README.md`
 
 ## How the Docker Build Works
 
@@ -159,8 +170,8 @@ docker-compose logs -f gbls
 
 1. **Base image**: `node:20-alpine` (minimal Node.js)
 2. **Copy entire project**: `COPY . .` copies everything
-3. **Install dependencies**: Installs Node packages for `tools/gbls_lit_coder`
-4. **Set working directory**: Changes to `/app/tools/gbls_lit_coder`
+3. **Install dependencies**: Installs Node packages for `site`
+4. **Set working directory**: Changes to `/app/site`
 5. **Expose port**: Listens on port 8787
 6. **Run server**: Starts `server.mjs`
 
@@ -178,18 +189,18 @@ A single, self-contained image with:
 
 The image runs anywhere:
 ```bash
-docker run -p 8787:8787 -v gbls-data:/data gbls-backend:latest
+docker run -p 8787:8787 -v gbls-submissions:/app/submissions gbls-backend:latest
 ```
 
-No configuration needed - everything is self-contained.
+No configuration needed - everything is self-contained. Submissions are persisted in the mounted volume.
 
 ## File Organization Philosophy
 
 1. **Single-image deployment** - The entire project is containerized as one unit
 2. **Complete self-sufficiency** - No external dependencies; everything needed is in the image
-3. **Research materials protected** - All human sources stay in root, not modified by deployment
-4. **Clean separation** - Deployment docs in `tools/website/`, not scattered everywhere
-5. **Persistent data** - User coding records stored in mounted volume, survives container restarts
+3. **Unified interface** - One application handles metrics, summaries, classifications, and viewing
+4. **Research materials protected** - All human sources stay in root, not modified by deployment
+5. **Persistent data** - User submissions stored in mounted volume, survives container restarts
 
 ## Building and Deploying
 
@@ -215,7 +226,7 @@ docker-compose up -d
 docker run -d \
   --name gbls \
   -p 8787:8787 \
-  -v gbls-coding-data:/data \
+  -v gbls-submissions:/app/submissions \
   gbls-backend:latest
 ```
 
@@ -246,9 +257,9 @@ These stay on your local machine, not in the container.
 ### Changes to server code
 
 Rebuild needed for changes to:
-- `tools/web/gbls_lit_coder/server.mjs`
-- `tools/web/gbls_lit_coder/public/*`
-- `tools/web/gbls_lit_coder/package.json`
+- `site/server.mjs`
+- `site/public/*`
+- `site/package.json`
 
 ```bash
 docker-compose build --no-cache
@@ -259,7 +270,7 @@ docker-compose up -d
 
 ```bash
 # Regenerate metrics data
-python3 tools/python/calculate_metrics.py
+python3 tools/calculate_metrics.py
 
 # This updates 2_calculated_metrics/ and metrics assets
 # Then rebuild image if you want to deploy with new metrics
@@ -267,30 +278,35 @@ python3 tools/python/calculate_metrics.py
 
 ## Production Deployment
 
-See `tools/web/website/DEPLOYMENT.md` for complete guides:
+The application can be deployed on any platform that supports Docker:
 
 - AWS ECS
 - Azure Container Instances
 - Google Cloud Run
 - Kubernetes
 - Traditional servers
-- SSL/TLS
-- Monitoring & logging
+- Digital Ocean, Heroku, etc.
 
 Quick example:
 
 ```bash
 # Build and push to registry
-docker build -t myregistry.io/gbls:v1.0 .
-docker push myregistry.io/gbls:v1.0
+docker build -t myregistry.io/gbls-reviewer:v1.0 .
+docker push myregistry.io/gbls-reviewer:v1.0
 
-# Deploy on server
-docker pull myregistry.io/gbls:v1.0
+# Deploy on server with persistent submissions
+docker pull myregistry.io/gbls-reviewer:v1.0
 docker run -d \
   -p 8787:8787 \
-  -v /data/gbls:/data \
-  myregistry.io/gbls:v1.0
+  -v /data/gbls-submissions:/app/submissions \
+  myregistry.io/gbls-reviewer:v1.0
 ```
+
+Key considerations:
+- Mount `/app/submissions` volume for persistent user data
+- Expose port 8787 (configurable via `PORT` environment variable)
+- Set `SUBMISSIONS_DIR` env var if using custom submission path
+- All article data and metrics are embedded in the image
 
 ## Troubleshooting
 
@@ -304,7 +320,7 @@ docker logs gbls
 lsof -i :8787
 
 # Remove volume and retry
-docker volume rm gbls-coding-data
+docker volume rm gbls-submissions
 docker-compose up -d
 ```
 
@@ -317,15 +333,18 @@ docker exec gbls ps aux | grep node
 # Test API
 curl http://localhost:8787/api/health
 
-# Check data directory
-docker exec gbls ls -la /data
+# Check submissions directory
+docker exec gbls ls -la /app/submissions
 ```
 
-### Access denied errors
+### Submissions not persisting
 
 ```bash
-# Fix permissions
-docker exec gbls chown -R node:node /data
+# Verify volume is mounted
+docker inspect gbls | grep -A 5 Mounts
+
+# Check permissions on host mount point
+ls -la /data/gbls-submissions
 ```
 
 ## Summary

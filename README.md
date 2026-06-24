@@ -34,18 +34,18 @@ docker-compose down
 
 **Available at**: http://localhost:8787
 
-The Docker image contains everything: the lit coder, metrics explorer, all research materials, and data storage.
+The Docker image contains everything: the unified literature reviewer, all research materials, metrics, and submission storage.
 
 ### Local Development (No Docker)
 
 ```bash
-cd tools/web/gbls_lit_coder
+cd site
 npm install
-npm run dev:server
-# Lit Coder runs on http://localhost:8787
+npm start
+# GBLS Literature Reviewer runs on http://localhost:8787
 ```
 
-For deployment guides and detailed Docker documentation, see [tools/web/website/README.md](tools/web/website/README.md).
+For more information about the application, see [site/README.md](site/README.md).
 
 ## Project Goals
 

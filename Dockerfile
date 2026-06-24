@@ -1,5 +1,5 @@
-# GBLS Complete Application
-# Containerizes the entire literature review project with coding interface and metrics
+# GBLS Literature Reviewer
+# Unified application for corpus exploration, summary review, and article classification
 
 FROM node:20-alpine
 
@@ -8,11 +8,11 @@ WORKDIR /app
 # Copy entire project
 COPY . .
 
-# Install dependencies
-RUN cd tools/web/gbls_lit_coder && npm ci --only=production
+# Install dependencies for unified reviewer
+RUN cd site && npm ci --only=production
 
-# Create data directory for persistent storage
-RUN mkdir -p /data
+# Create submissions directory for persistent storage
+RUN mkdir -p /app/submissions
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
@@ -21,11 +21,13 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 # Environment variables
 ENV NODE_ENV=production \
     PORT=8787 \
-    DATA_DIR=/data
+    SUBMISSIONS_DIR=/app/submissions \
+    CORPUS_DIR=../1_coded_gbls_corpus_articles \
+    METRICS_DIR=../2_calculated_metrics
 
 # Expose port
 EXPOSE 8787
 
-# Run server from tools/web/gbls_lit_coder
-WORKDIR /app/tools/web/gbls_lit_coder
+# Run server from site
+WORKDIR /app/site
 CMD ["node", "server.mjs"]

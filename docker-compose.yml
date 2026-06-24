@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  # GBLS Complete Application
-  # Includes: Lit Coder API, Metrics Explorer, and all research materials
+  # GBLS Literature Reviewer
+  # Unified application for corpus exploration, summary review, and article classification
   gbls:
     build:
       context: .
@@ -12,10 +12,12 @@ services:
       - "8787:8787"
     environment:
       PORT: 8787
-      DATA_DIR: /data
+      SUBMISSIONS_DIR: /app/submissions
+      CORPUS_DIR: ../../../1_coded_gbls_corpus_articles
+      METRICS_DIR: ../../../2_calculated_metrics
       NODE_ENV: production
     volumes:
-      - gbls-coding-data:/data
+      - gbls-submissions:/app/submissions
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8787/health"]
@@ -25,5 +27,5 @@ services:
       start_period: 10s
 
 volumes:
-  gbls-coding-data:
+  gbls-submissions:
     driver: local

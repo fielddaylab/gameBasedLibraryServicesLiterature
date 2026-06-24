@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GBLS Literature Reviewer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <h1>GBLS Literature Reviewer</h1>
+      <p class="subtitle">Unified review interface for metrics exploration and article classification</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="tab-navigation">
+      <button class="tab-btn active" data-tab="metrics">GBLS Lit Explorer</button>
+      <button class="tab-btn" data-tab="summaries">Review Summaries</button>
+      <button class="tab-btn" data-tab="classify">Review Classifications</button>
+      <button class="tab-btn" data-tab="view">View Classifications</button>
+    </nav>
+
+    <!-- Tab Content -->
+    <main class="tab-content">
+
+      <!-- Tab 1: GBLS Lit Explorer (Metrics) -->
+      <div class="tab-pane active" id="metrics">
+        <div class="metrics-container">
+          <div class="hero-section">
+            <h2>GBLS Corpus Explorer</h2>
+            <button id="metrics-reset" class="btn-secondary">Reset Filters</button>
+          </div>
+
+          <!-- Summary Stats -->
+          <div class="summary-cards">
+            <div class="card">
+              <div class="card-label">Total Articles</div>
+              <div class="card-value" id="total-articles">—</div>
+            </div>
+            <div class="card">
+              <div class="card-label">Year Range</div>
+              <div class="card-value" id="year-range">—</div>
+            </div>
+            <div class="card">
+              <div class="card-label">Unique Features</div>
+              <div class="card-value" id="unique-features">—</div>
+            </div>
+            <div class="card">
+              <div class="card-label">Avg Features/Article</div>
+              <div class="card-value" id="avg-features">—</div>
+            </div>
+          </div>
+
+          <!-- Controls Panel -->
+          <div class="controls-panel">
+            <div class="control-group">
+              <label for="feature-select">Feature Family:</label>
+              <select id="feature-select">
+                <option value="service_area">Service Area</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="limit-select">Show Top:</label>
+              <select id="limit-select">
+                <option value="10">10</option>
+                <option value="15" selected>15</option>
+                <option value="25">25</option>
+                <option value="all">All</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="year-from">Year From:</label>
+              <input type="number" id="year-from" min="1950" max="2025" value="1950">
+            </div>
+            <div class="control-group">
+              <label for="year-to">Year To:</label>
+              <input type="number" id="year-to" min="1950" max="2025" value="2025">
+            </div>
+          </div>
+
+          <!-- Charts Section -->
+          <div class="charts-section">
+            <div class="chart-container">
+              <h3>Top Features (Ranking)</h3>
+              <div id="ranking-chart"></div>
+            </div>
+            <div class="chart-container">
+              <h3>Publications Over Time</h3>
+              <div id="year-chart"></div>
+            </div>
+          </div>
+
+          <!-- Trend Section -->
+          <div class="trend-section" id="trend-section" style="display: none;">
+            <h3>Trend: <span id="trend-title">—</span></h3>
+            <div id="trend-chart"></div>
+          </div>
+
+          <!-- Article Explorer Table -->
+          <div class="articles-section">
+            <h3>Article Explorer</h3>
+            <div class="article-search">
+              <input type="text" id="article-search" placeholder="Search articles by citation...">
+            </div>
+            <div class="article-table-wrapper">
+              <table class="article-table">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Citation</th>
+                    <th style="max-width: 200px;">Service Areas</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="article-list">
+                  <tr><td colspan="4" style="text-align: center;">Loading articles...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Review Summaries -->
+      <div class="tab-pane" id="summaries">
+        <div class="summaries-container">
+          <h2>Review Article Summaries</h2>
+          <p>Review and provide feedback on existing article summaries from the corpus.</p>
+          
+          <div class="login-section" id="summaries-login" style="display: none;">
+            <label for="summaries-usercode">Your Code:</label>
+            <input type="text" id="summaries-usercode" placeholder="Enter your reviewer code">
+            <button class="btn-primary" onclick="startSummaryReview()">Start Review</button>
+          </div>
+
+          <div class="summaries-review" id="summaries-review" style="display: none;">
+            <div class="article-selector">
+              <label for="summaries-article-select">Select Article:</label>
+              <select id="summaries-article-select" onchange="loadSummaryArticle()">
+                <option value="">Choose an article...</option>
+              </select>
+              <button class="btn-secondary" onclick="pickRandomSummaryArticle()">Random Article</button>
+            </div>
+
+            <div class="article-display" id="summaries-article-display" style="display: none;">
+              <div class="article-header">
+                <h3 id="summaries-citation"></h3>
+              </div>
+              
+              <div class="article-content">
+                <div class="section">
+                  <h4>Original Source Text</h4>
+                  <div id="summaries-source-text" class="source-text"></div>
+                </div>
+
+                <div class="section">
+                  <h4>Provided Summary</h4>
+                  <div id="summaries-provided-summary" class="provided-summary"></div>
+                </div>
+
+                <form class="review-form" onsubmit="submitSummaryReview(event)">
+                  <div class="form-group">
+                    <label for="summaries-quality">Summary Quality:</label>
+                    <select id="summaries-quality">
+                      <option value="">Select quality rating...</option>
+                      <option value="excellent">Excellent</option>
+                      <option value="good">Good</option>
+                      <option value="adequate">Adequate</option>
+                      <option value="poor">Poor</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="summaries-notes">Your Notes:</label>
+                    <textarea id="summaries-notes" placeholder="Add your review notes..." rows="5"></textarea>
+                  </div>
+
+                  <button type="submit" class="btn-primary">Submit Review</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Review Classifications -->
+      <div class="tab-pane" id="classify">
+        <div class="classify-container">
+          <h2>Review Article Classifications</h2>
+          <p>Code articles with quality ratings and metadata classifications.</p>
+          
+          <div class="login-section" id="classify-login">
+            <label for="classify-usercode">Your Code:</label>
+            <input type="text" id="classify-usercode" placeholder="Enter your coder code">
+            <button class="btn-primary" onclick="startClassification()">Start Coding</button>
+            <div id="known-coders" class="known-coders" style="margin-top: 1rem;"></div>
+          </div>
+
+          <div class="classify-review" id="classify-review" style="display: none;">
+            <div class="article-selector">
+              <label for="classify-article-select">Select Article:</label>
+              <select id="classify-article-select" onchange="loadClassifyArticle()">
+                <option value="">Choose an article...</option>
+              </select>
+              <button class="btn-secondary" onclick="pickRandomClassifyArticle()">Random Article</button>
+              <span class="article-progress" id="article-progress"></span>
+            </div>
+
+            <div class="article-display" id="classify-article-display" style="display: none;">
+              <div class="article-header">
+                <h3 id="classify-citation"></h3>
+              </div>
+              
+              <div class="article-content">
+                <div class="section">
+                  <h4>Source Text</h4>
+                  <div id="classify-source-text" class="source-text"></div>
+                </div>
+
+                <form class="coding-form" onsubmit="submitClassification(event)">
+                  <div class="form-section">
+                    <h4>Summary Quality Rubric</h4>
+                    <div id="classify-rubric-form"></div>
+                  </div>
+
+                  <div class="form-section">
+                    <h4>Article Classifications (Metadata)</h4>
+                    <div id="classify-metadata-form"></div>
+                  </div>
+
+                  <button type="submit" class="btn-primary">Submit Classification</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: View Classifications -->
+      <div class="tab-pane" id="view">
+        <div class="view-container">
+          <h2>View Existing Classifications</h2>
+          <p>Browse and review classifications submitted by all reviewers.</p>
+          
+          <div class="filters-section">
+            <div class="filter-group">
+              <label for="view-article-filter">Filter by Article:</label>
+              <input type="text" id="view-article-filter" placeholder="Search articles...">
+            </div>
+            <div class="filter-group">
+              <label for="view-usercode-filter">Filter by Coder:</label>
+              <select id="view-usercode-filter">
+                <option value="">All coders</option>
+              </select>
+            </div>
+            <button class="btn-secondary" onclick="loadAllClassifications()">Refresh</button>
+          </div>
+
+          <div class="classifications-table-wrapper">
+            <table class="classifications-table">
+              <thead>
+                <tr>
+                  <th>Article ID</th>
+                  <th>Coder</th>
+                  <th>Summary Quality</th>
+                  <th>Submitted</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="classifications-list">
+                <tr><td colspan="5" style="text-align: center;">Loading classifications...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="classification-detail" id="classification-detail" style="display: none;">
+            <h3>Classification Details</h3>
+            <div id="classification-detail-content"></div>
+            <button class="btn-secondary" onclick="closeClassificationDetail()">Close</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
