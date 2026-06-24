@@ -174,7 +174,6 @@ function renderMetricsTab() {
   populateFeatureSelect();
   setupMetricsControls();
   renderMetricsCharts();
-  renderArticlesTable();
 }
 
 function renderMetricsSummary() {
@@ -233,14 +232,7 @@ function setupMetricsControls() {
     document.getElementById('limit-select').value = '15';
     document.getElementById('year-from').value = '1950';
     document.getElementById('year-to').value = '2025';
-    document.getElementById('article-search').value = '';
     renderMetricsCharts();
-    renderArticlesTable();
-  });
-
-  document.getElementById('article-search').addEventListener('input', (e) => {
-    state.metricsState.search = e.target.value.toLowerCase();
-    renderArticlesTable();
   });
 }
 
@@ -371,52 +363,6 @@ function selectMetricsFeature(feature) {
   document.getElementById('trend-title').textContent = feature;
   trendSection.style.display = 'block';
   // TODO: Render trend chart for selected feature
-}
-
-function renderArticlesTable() {
-  const container = document.getElementById('article-list');
-  if (!state.metrics || !state.metrics.articles) {
-    container.innerHTML = '<tr><td colspan="4">No articles loaded</td></tr>';
-    return;
-  }
-
-  let filtered = state.metrics.articles;
-
-  // Filter by year
-  filtered = filtered.filter(a => 
-    a.year >= state.metricsState.yearStart && a.year <= state.metricsState.yearEnd
-  );
-
-  // Filter by search
-  if (state.metricsState.search) {
-    filtered = filtered.filter(a => 
-      (a.citation || '').toLowerCase().includes(state.metricsState.search)
-    );
-  }
-
-  if (filtered.length === 0) {
-    container.innerHTML = '<tr><td colspan="4" style="text-align: center;">No matching articles</td></tr>';
-    return;
-  }
-
-  const html = filtered.slice(0, 100).map(article => {
-    const serviceArea = article.service_area ? article.service_area.replace(/\|/g, ', ') : '—';
-    return `
-      <tr>
-        <td>${article.year}</td>
-        <td>${article.citation}</td>
-        <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">${serviceArea}</td>
-        <td>
-          <button class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;" 
-                  onclick="switchToClassifyArticle('${article.article_id}')">
-            Code
-          </button>
-        </td>
-      </tr>
-    `;
-  }).join('');
-
-  container.innerHTML = html;
 }
 
 // ============================================================================

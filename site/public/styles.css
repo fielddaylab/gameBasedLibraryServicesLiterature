@@ -325,56 +325,6 @@ textarea {
 }
 
 /* Articles Section */
-.articles-section {
-  margin-top: 2rem;
-}
-
-.articles-section h3 {
-  margin-top: 0;
-  font-size: 1.25rem;
-}
-
-.article-search {
-  margin-bottom: 1rem;
-}
-
-.article-search input {
-  width: 100%;
-  max-width: 400px;
-}
-
-.article-table-wrapper {
-  overflow-x: auto;
-  box-shadow: var(--shadow);
-  border-radius: 0.5rem;
-}
-
-.article-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-}
-
-.article-table thead {
-  background: var(--light-bg);
-  font-weight: 600;
-}
-
-.article-table th, .article-table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.article-table tbody tr:hover {
-  background: var(--light-bg);
-}
-
-.article-table button {
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-}
-
 /* Login Section */
 .login-section {
   background: white;
