@@ -1559,7 +1559,11 @@ function validateClassification() {
    }
    
    // Check each category to ensure at least one item is selected
+   // Skip "coding_confidence" as it's not displayed
    state.classifyState.lexicon.forEach(group => {
+     if (group.id === 'coding_confidence') {
+       return; // Skip this category
+     }
      const checkedInputs = document.querySelectorAll(`input[name="meta-${group.id}"]:checked`);
      if (checkedInputs.length === 0) {
        missingCategories.push(group.label || group.id);
