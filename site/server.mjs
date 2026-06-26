@@ -164,7 +164,8 @@ app.use((req, res, next) => {
       req.path === '/register.html' || 
       req.path === '/login.html' ||
       req.path.endsWith('.css') || 
-      req.path.endsWith('.js')) {
+      req.path.endsWith('.js') ||
+      req.path.endsWith('.pdf')) {
     return next();
   }
 

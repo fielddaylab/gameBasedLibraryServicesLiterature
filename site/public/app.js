@@ -567,6 +567,44 @@ function hideSelectedArticlesTable() {
   if (section) section.style.display = 'none';
 }
 
+function renderMarkdown(markdown) {
+  if (!markdown) return '';
+  
+  // Split into lines and process
+  const lines = markdown.split('\n');
+  const html = [];
+  
+  lines.forEach((line) => {
+    // Check for headings at start of line (no trimming for heading detection)
+    if (line.startsWith('# ')) {
+      html.push(`<div style="font-size: 1.8rem; font-weight: 700; margin-top: 1.2rem; margin-bottom: 0.6rem; color: var(--text-dark);">${escapeHTML(line.slice(2))}</div>`);
+    }
+    // H2: ## Text
+    else if (line.startsWith('## ')) {
+      html.push(`<div style="font-size: 1.4rem; font-weight: 600; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--text-dark);">${escapeHTML(line.slice(3))}</div>`);
+    }
+    // H3: ### Text
+    else if (line.startsWith('### ')) {
+      html.push(`<div style="font-size: 1.1rem; font-weight: 600; margin-top: 0.8rem; margin-bottom: 0.4rem; color: var(--text-dark);">${escapeHTML(line.slice(4))}</div>`);
+    }
+    // Regular text with optional formatting
+    else if (line.trim()) {
+      let processed = escapeHTML(line)
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/__(.+?)__/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/_(.+?)_/g, '<em>$1</em>');
+      html.push(`<div>${processed}</div>`);
+    }
+    // Empty lines
+    else {
+      html.push('<div style="height: 0.3rem;"></div>');
+    }
+  });
+  
+  return html.join('');
+}
+
 // ============================================================================
 // SUBMISSION SUCCESS HANDLER
 // ============================================================================
@@ -592,21 +630,25 @@ function showSubmissionSuccess(statusElementId) {
 // ============================================================================
 
 function initializeSummariesTab() {
-  const loginSection = document.getElementById('summaries-login');
-  const reviewSection = document.getElementById('summaries-review');
+   const loginSection = document.getElementById('summaries-login');
+   const reviewSection = document.getElementById('summaries-review');
 
-  if (state.user) {
-    // Show user initials
-    document.getElementById('summaries-user-display').textContent = 
-      `${state.user.fullName} (${state.user.initials})`;
-    loginSection.style.display = 'none';
-    reviewSection.style.display = 'block';
-    populateSummariesArticleSelect();
-  } else {
-    loginSection.style.display = 'block';
-    reviewSection.style.display = 'none';
-  }
-}
+   if (state.user) {
+     // Show user initials
+     document.getElementById('summaries-user-display').textContent = 
+       `${state.user.fullName} (${state.user.initials})`;
+     loginSection.style.display = 'none';
+     reviewSection.style.display = 'block';
+     populateSummariesArticleSelect();
+     // Auto-load a random article
+     if (state.articles && state.articles.length > 0) {
+       pickRandomSummaryArticle();
+     }
+   } else {
+     loginSection.style.display = 'block';
+     reviewSection.style.display = 'none';
+   }
+ }
 
 async function startSummaryReview() {
   if (!state.user) {
@@ -648,9 +690,21 @@ async function loadSummaryArticle() {
   state.summariesState.currentArticle = article;
   state.classifyState.currentArticle = article;
 
-  document.getElementById('summaries-citation').textContent = article.citation;
-  document.getElementById('summaries-source-text').textContent = article.sourceText || 'No source text available';
-  document.getElementById('summaries-provided-summary').textContent = article.summary || 'No summary available';
+   document.getElementById('summaries-citation').textContent = article.citation;
+   
+   // Load PDF viewer
+   const pdfContainer = document.getElementById('summaries-pdf-container');
+   const emptyState = document.getElementById('summaries-empty-state');
+   const pdfPath = `/data/articles/${article.id}.pdf`;
+   pdfContainer.style.display = 'flex';
+   if (emptyState) emptyState.style.display = 'none';
+   pdfContainer.innerHTML = `<object data="${pdfPath}" type="application/pdf" style="width: 100%; height: 100%; border-radius: 0.4rem;">
+     <p>PDF cannot be displayed. <a href="${pdfPath}" target="_blank">Download PDF</a></p>
+   </object>`;
+
+   openSummaryPanel();
+   
+   document.getElementById('summaries-provided-summary').innerHTML = renderMarkdown(article.summary || 'No summary available');
 
   // Reset summary review form
   document.getElementById('summaries-notes').value = '';
@@ -776,12 +830,73 @@ async function loadSummaryArticle() {
    document.getElementById('summaries-article-display').style.display = 'block';
 }
 
-function pickRandomSummaryArticle() {
-  if (!state.articles || state.articles.length === 0) return;
-  const random = state.articles[Math.floor(Math.random() * state.articles.length)];
-  document.getElementById('summaries-article-select').value = random.id;
-  loadSummaryArticle();
+function openSummaryPanel() {
+  const workspace = document.getElementById('summaries-article-display');
+  if (!workspace) return;
+  workspace.classList.add('panel-open');
 }
+
+function closeSummaryPanel() {
+  const workspace = document.getElementById('summaries-article-display');
+  if (!workspace) return;
+  workspace.classList.remove('panel-open');
+}
+
+function pickRandomSummaryArticle() {
+   if (!state.articles || state.articles.length === 0) return;
+   const random = state.articles[Math.floor(Math.random() * state.articles.length)];
+   const selectElement = document.getElementById('summaries-article-select');
+   if (selectElement) {
+     selectElement.value = random.id;
+   }
+   // Directly load without relying on select element
+   state.summariesState.currentArticle = random;
+   state.classifyState.currentArticle = random;
+   
+   document.getElementById('summaries-citation').textContent = random.citation;
+   
+   // Load PDF viewer
+   const pdfContainer = document.getElementById('summaries-pdf-container');
+   const emptyState = document.getElementById('summaries-empty-state');
+   const pdfPath = `/data/articles/${random.id}.pdf`;
+   pdfContainer.style.display = 'flex';
+   if (emptyState) emptyState.style.display = 'none';
+   pdfContainer.innerHTML = `<object data="${pdfPath}" type="application/pdf" style="width: 100%; height: 100%; border-radius: 0.4rem;">
+     <p>PDF cannot be displayed. <a href="${pdfPath}" target="_blank">Download PDF</a></p>
+   </object>`;
+   
+   document.getElementById('summaries-provided-summary').innerHTML = renderMarkdown(random.summary || 'No summary available');
+   
+   // Reset summary review form
+   document.getElementById('summaries-notes').value = '';
+   // Hide success message
+   const statusElement = document.getElementById('summary-form-status');
+   if (statusElement) {
+     statusElement.style.display = 'none';
+   }
+   const submitBtn = document.querySelector('#summary-form button[type="submit"]');
+   if (submitBtn) {
+     submitBtn.textContent = 'Submit Summary Review';
+   }
+   
+   // Load classification rubric, overall quality, and metadata forms
+   renderRubricForm();
+   renderOverallQualityForm();
+   renderMetadataForm();
+   
+   // Reset classification form fields
+   document.getElementById('classification-notes').value = '';
+   document.querySelector('input[name="classification-issues"][value="no"]').checked = true;
+   // Hide success message
+   const classificationStatusElement = document.getElementById('classification-form-status');
+   if (classificationStatusElement) {
+     classificationStatusElement.style.display = 'none';
+   }
+   const classificationSubmitBtn = document.querySelector('#classification-form button[type="submit"]');
+   if (classificationSubmitBtn) {
+     classificationSubmitBtn.textContent = 'Submit Classification';
+   }
+ }
 
 async function submitSummaryReview(event) {
   event.preventDefault();
@@ -946,8 +1061,14 @@ async function loadClassifyArticle() {
 
   state.classifyState.currentArticle = article;
 
-  document.getElementById('classify-citation').textContent = article.citation;
-  document.getElementById('classify-source-text').textContent = article.sourceText || 'No source text';
+   document.getElementById('classify-citation').textContent = article.citation;
+   document.getElementById('classify-source-text').innerHTML = renderMarkdown(article.sourceText || 'No source text');
+   
+   // Also render provided summary if classify tab has one
+   const classifyProvidedSummary = document.getElementById('classify-provided-summary');
+   if (classifyProvidedSummary) {
+     classifyProvidedSummary.innerHTML = renderMarkdown(article.summary || 'No summary available');
+   }
 
   // Reset classification form fields
   document.getElementById('classification-notes').value = '';
