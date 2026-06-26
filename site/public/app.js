@@ -1085,33 +1085,76 @@ function closeAllPanels() {
    }
  }
 
+function validateSummaryReview() {
+   const missingItems = [];
+   
+   // Check if at least one rubric score is selected
+   if (state.classifyState.rubricDefinition && state.classifyState.rubricDefinition.dimensions) {
+     const rubricDimensions = state.classifyState.rubricDefinition.dimensions;
+     let rubricScoresCount = 0;
+     
+     rubricDimensions.forEach(dimension => {
+       const selected = document.querySelector(`input[name="rubric-${dimension.id}"]:checked`);
+       if (selected) {
+         rubricScoresCount++;
+       }
+     });
+     
+     if (rubricScoresCount === 0) {
+       missingItems.push('• At least one Summary Quality Rubric score');
+     }
+   }
+   
+   // Check if overall quality is selected
+   const overallQualitySelected = document.querySelector('input[name="overall-quality"]:checked');
+   if (!overallQualitySelected) {
+     missingItems.push('• Overall Summary Quality rating');
+   }
+   
+   if (missingItems.length > 0) {
+     return {
+       valid: false,
+       message: `Please complete the following before submitting:\n\n${missingItems.join('\n')}`
+     };
+   }
+   
+   return { valid: true };
+}
+
 async function submitSummaryReview(event) {
-  event.preventDefault();
+   event.preventDefault();
 
-  if (!state.summariesState.currentArticle) {
-    alert('Please select an article first');
-    return;
-  }
+   if (!state.summariesState.currentArticle) {
+     alert('Please select an article first');
+     return;
+   }
 
-  if (!state.user) {
-    alert('You must be logged in to submit');
-    return;
-  }
+   if (!state.user) {
+     alert('You must be logged in to submit');
+     return;
+   }
 
-  // Collect rubric scores from the Summary Quality Rubric
-  const rubricScores = {};
-  if (state.classifyState.rubricDefinition) {
-    state.classifyState.rubricDefinition.dimensions.forEach(dimension => {
-      const selected = document.querySelector(`input[name="rubric-${dimension.id}"]:checked`);
-      if (selected) {
-        rubricScores[dimension.id] = parseInt(selected.value);
-      }
-    });
-  }
+   // Validate that required fields are filled
+   const validation = validateSummaryReview();
+   if (!validation.valid) {
+     alert(validation.message);
+     return;
+   }
 
-  // Get overall quality rating from radio buttons
-  const overallQualitySelected = document.querySelector('input[name="overall-quality"]:checked');
-  const overallQuality = overallQualitySelected ? overallQualitySelected.value : '';
+   // Collect rubric scores from the Summary Quality Rubric
+   const rubricScores = {};
+   if (state.classifyState.rubricDefinition) {
+     state.classifyState.rubricDefinition.dimensions.forEach(dimension => {
+       const selected = document.querySelector(`input[name="rubric-${dimension.id}"]:checked`);
+       if (selected) {
+         rubricScores[dimension.id] = parseInt(selected.value);
+       }
+     });
+   }
+
+   // Get overall quality rating from radio buttons
+   const overallQualitySelected = document.querySelector('input[name="overall-quality"]:checked');
+   const overallQuality = overallQualitySelected ? overallQualitySelected.value : '';
 
   const notes = document.getElementById('summaries-notes').value;
 
@@ -1470,45 +1513,78 @@ function pickRandomClassifyArticle() {
   loadClassifyArticle();
 }
 
+function validateClassification() {
+   const missingCategories = [];
+   
+   if (!state.classifyState.lexicon || !Array.isArray(state.classifyState.lexicon)) {
+     return { valid: false, message: 'Classification data not loaded properly' };
+   }
+   
+   // Check each category to ensure at least one item is selected
+   state.classifyState.lexicon.forEach(group => {
+     const checkedInputs = document.querySelectorAll(`input[name="meta-${group.id}"]:checked`);
+     if (checkedInputs.length === 0) {
+       missingCategories.push(group.label || group.id);
+     }
+   });
+   
+   if (missingCategories.length > 0) {
+     const categoryList = missingCategories.map(cat => `• ${cat}`).join('\n');
+     return {
+       valid: false,
+       message: `Please select at least one item in each category:\n\n${categoryList}`
+     };
+   }
+   
+   return { valid: true };
+}
+
 async function submitClassification(event) {
-  event.preventDefault();
+   event.preventDefault();
 
-  if (!state.classifyState.currentArticle) {
-    alert('Please select an article');
-    return;
-  }
+   if (!state.classifyState.currentArticle) {
+     alert('Please select an article');
+     return;
+   }
 
-  if (!state.user) {
-    alert('You must be logged in to submit classifications');
-    return;
-  }
+   if (!state.user) {
+     alert('You must be logged in to submit classifications');
+     return;
+   }
 
-  // Collect metadata selections (codes) - NO rubric scores in classifications
-  const codes = {};
-  console.log('[Submit Classification] Starting code collection');
-  console.log('[Submit Classification] Lexicon exists:', !!state.classifyState.lexicon);
-  console.log('[Submit Classification] Lexicon is array:', Array.isArray(state.classifyState.lexicon));
-  console.log('[Submit Classification] Lexicon length:', state.classifyState.lexicon?.length);
-  
-  if (state.classifyState.lexicon && Array.isArray(state.classifyState.lexicon)) {
-    state.classifyState.lexicon.forEach(group => {
-      console.log(`[Submit Classification] Processing group: ${group.id}`);
-      const selector = `input[name="meta-${group.id}"]:checked`;
-      const allInputs = document.querySelectorAll(`input[name="meta-${group.id}"]`);
-      const checkedInputs = document.querySelectorAll(selector);
-      
-      console.log(`[Submit Classification]   Selector: "${selector}"`);
-      console.log(`[Submit Classification]   Total inputs for this group: ${allInputs.length}`);
-      console.log(`[Submit Classification]   Checked inputs: ${checkedInputs.length}`);
-      
-      const selected = Array.from(checkedInputs).map(cb => cb.value);
-      if (selected.length > 0) {
-        codes[group.id] = selected;
-        console.log(`[Submit Classification]   Selected values: ${selected.join(', ')}`);
-      }
-    });
-  }
-  console.log('[Submit Classification] Final codes object:', codes);
+   // Validate that all categories have at least one selection
+   const validation = validateClassification();
+   if (!validation.valid) {
+     alert(validation.message);
+     return;
+   }
+
+   // Collect metadata selections (codes) - NO rubric scores in classifications
+   const codes = {};
+   console.log('[Submit Classification] Starting code collection');
+   console.log('[Submit Classification] Lexicon exists:', !!state.classifyState.lexicon);
+   console.log('[Submit Classification] Lexicon is array:', Array.isArray(state.classifyState.lexicon));
+   console.log('[Submit Classification] Lexicon length:', state.classifyState.lexicon?.length);
+   
+   if (state.classifyState.lexicon && Array.isArray(state.classifyState.lexicon)) {
+     state.classifyState.lexicon.forEach(group => {
+       console.log(`[Submit Classification] Processing group: ${group.id}`);
+       const selector = `input[name="meta-${group.id}"]:checked`;
+       const allInputs = document.querySelectorAll(`input[name="meta-${group.id}"]`);
+       const checkedInputs = document.querySelectorAll(selector);
+       
+       console.log(`[Submit Classification]   Selector: "${selector}"`);
+       console.log(`[Submit Classification]   Total inputs for this group: ${allInputs.length}`);
+       console.log(`[Submit Classification]   Checked inputs: ${checkedInputs.length}`);
+       
+       const selected = Array.from(checkedInputs).map(cb => cb.value);
+       if (selected.length > 0) {
+         codes[group.id] = selected;
+         console.log(`[Submit Classification]   Selected values: ${selected.join(', ')}`);
+       }
+     });
+   }
+   console.log('[Submit Classification] Final codes object:', codes);
 
   // Collect classification issues flag
   const issuesSelected = document.querySelector('input[name="classification-issues"]:checked');
