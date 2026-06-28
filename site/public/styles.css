@@ -41,6 +41,13 @@ html, body {
   box-shadow: var(--shadow-lg);
 }
 
+/* Render the colored logo as solid white so it reads cleanly on the blue header.
+   brightness(0) makes it fully black, invert(1) flips it to white; the PNG's
+   transparency is preserved. */
+.app-header .header-logo {
+  filter: brightness(0) invert(1);
+}
+
 .header-content {
   display: flex;
   justify-content: space-between;

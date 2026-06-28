@@ -104,6 +104,11 @@ function runMigrations(database) {
     const codingColumns = database.prepare("PRAGMA table_info(article_codings)").all();
     const codingColumnNames = codingColumns.map(col => col.name);
     
+    if (!codingColumnNames.includes('saved_at')) {
+      console.log('[MIGRATION] Adding saved_at column to article_codings');
+      database.exec('ALTER TABLE article_codings ADD COLUMN saved_at DATETIME DEFAULT CURRENT_TIMESTAMP');
+    }
+    
     if (!codingColumnNames.includes('had_issues')) {
       console.log('[MIGRATION] Adding had_issues column to article_codings');
       database.exec('ALTER TABLE article_codings ADD COLUMN had_issues INTEGER DEFAULT 0');
@@ -112,6 +117,14 @@ function runMigrations(database) {
     if (!codingColumnNames.includes('notes')) {
       console.log('[MIGRATION] Adding notes column to article_codings');
       database.exec('ALTER TABLE article_codings ADD COLUMN notes TEXT');
+    }
+
+    const summaryColumns = database.prepare("PRAGMA table_info(summary_reviews)").all();
+    const summaryColumnNames = summaryColumns.map(col => col.name);
+    
+    if (!summaryColumnNames.includes('saved_at')) {
+      console.log('[MIGRATION] Adding saved_at column to summary_reviews');
+      database.exec('ALTER TABLE summary_reviews ADD COLUMN saved_at DATETIME DEFAULT CURRENT_TIMESTAMP');
     }
   } catch (error) {
     console.error('[MIGRATION] Error running migrations:', error.message);
