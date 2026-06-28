@@ -405,7 +405,9 @@ app.get('/api/user', (req, res) => {
     email: req.user.email,
     fullName: req.user.full_name,
     initials: req.user.initials,
-    organizationalAffiliation: req.user.organizational_affiliation
+    organizationalAffiliation: req.user.organizational_affiliation,
+    github: req.user.github_username,
+    githubId: req.user.github_id
   });
 });
 

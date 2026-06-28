@@ -88,15 +88,23 @@ export function initializeDatabase() {
 function runMigrations(database) {
   // Migration: Add had_issues and notes columns to article_codings if they don't exist
   try {
-    const columns = database.prepare("PRAGMA table_info(article_codings)").all();
-    const columnNames = columns.map(col => col.name);
+    const userColumns = database.prepare("PRAGMA table_info(users)").all();
+    const userColumnNames = userColumns.map(col => col.name);
     
-    if (!columnNames.includes('had_issues')) {
+    if (!userColumnNames.includes('github_username')) {
+      console.log('[MIGRATION] Adding github_username column to users');
+      database.exec('ALTER TABLE users ADD COLUMN github_username TEXT');
+    }
+
+    const codingColumns = database.prepare("PRAGMA table_info(article_codings)").all();
+    const codingColumnNames = codingColumns.map(col => col.name);
+    
+    if (!codingColumnNames.includes('had_issues')) {
       console.log('[MIGRATION] Adding had_issues column to article_codings');
       database.exec('ALTER TABLE article_codings ADD COLUMN had_issues INTEGER DEFAULT 0');
     }
     
-    if (!columnNames.includes('notes')) {
+    if (!codingColumnNames.includes('notes')) {
       console.log('[MIGRATION] Adding notes column to article_codings');
       database.exec('ALTER TABLE article_codings ADD COLUMN notes TEXT');
     }
@@ -111,14 +119,14 @@ export function getDatabase() {
 }
 
 // User functions
-export function createUser(email, fullName, initials, organizationalAffiliation = null, githubId = null, googleId = null) {
+export function createUser(email, fullName, initials, organizationalAffiliation = null, githubId = null, googleId = null, githubUsername = null) {
   const db = getDatabase();
   try {
     const stmt = db.prepare(`
-      INSERT INTO users (email, full_name, initials, organizational_affiliation, github_id, google_id, last_login)
-      VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+      INSERT INTO users (email, full_name, initials, organizational_affiliation, github_id, github_username, google_id, last_login)
+      VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
     `);
-    const result = stmt.run(email, fullName, initials, organizationalAffiliation, githubId, googleId);
+    const result = stmt.run(email, fullName, initials, organizationalAffiliation, githubId, githubUsername, googleId);
     return getUserById(result.lastInsertRowid);
   } catch (error) {
     if (error.message.includes('UNIQUE constraint failed')) {

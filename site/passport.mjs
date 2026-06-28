@@ -70,7 +70,7 @@ if (GITHUB_CLIENT_ID && GITHUB_CLIENT_SECRET) {
               initials = 'GH';
             }
 
-            user = createUser(email, fullName, initials, null, profile.id, null);
+            user = createUser(email, fullName, initials, null, profile.id, null, profile.username);
           }
 
           if (!user) {
