@@ -1075,6 +1075,79 @@ app.get('/api/admin/export/submissions', requireAuth, (req, res) => {
   }
 });
 
+// Bulk AI submissions endpoint (requires GitHub authentication)
+app.post('/api/ai/bulk-submissions', requireAuth, (req, res) => {
+  try {
+    // Only allow authenticated users (anyone with GitHub account)
+    if (!req.user) {
+      return res.status(401).json({ error: 'Authentication required' });
+    }
+
+    const { submissions } = req.body;
+    if (!Array.isArray(submissions)) {
+      return res.status(400).json({ error: 'submissions must be an array' });
+    }
+
+    const db = getDatabase();
+    const results = { successful: 0, failed: 0, errors: [] };
+
+    submissions.forEach((submission, index) => {
+      try {
+        const { type, articleId, aiModel, data } = submission;
+
+        if (!type || !articleId || !aiModel || !data) {
+          throw new Error('Missing required fields: type, articleId, aiModel, data');
+        }
+
+        // Get or create AI user
+        let aiUser = db.prepare('SELECT id FROM users WHERE email = ?').get(`ai-${aiModel.toLowerCase()}@gbls.local`);
+        
+        if (!aiUser) {
+          const sanitizedModel = aiModel.replace(/[^a-zA-Z0-9._-]/g, '');
+          db.prepare(`
+            INSERT INTO users (email, full_name, initials, is_active, is_admin)
+            VALUES (?, ?, ?, 1, 0)
+          `).run(`ai-${aiModel.toLowerCase()}@gbls.local`, `AI Model: ${aiModel}`, sanitizedModel.substring(0, 2).toUpperCase());
+          
+          aiUser = db.prepare('SELECT id FROM users WHERE email = ?').get(`ai-${aiModel.toLowerCase()}@gbls.local`);
+        }
+
+        if (type === 'classification') {
+          const { codes, hadIssues, notes } = data;
+          const codingId = `${articleId}-${aiUser.id}-${Date.now()}`;
+          
+          db.prepare(`
+            INSERT INTO article_codings (id, article_id, user_id, codes, had_issues, notes, created_at, saved_at)
+            VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+          `).run(codingId, articleId, aiUser.id, JSON.stringify(codes), hadIssues ? 1 : 0, notes || '');
+          
+          results.successful++;
+        } else if (type === 'summary_review') {
+          const { ratings, qualityRating, notes } = data;
+          const reviewId = `${articleId}-${aiUser.id}-${Date.now()}`;
+          
+          db.prepare(`
+            INSERT INTO summary_reviews (id, article_id, user_id, ratings, quality_rating, notes, created_at, saved_at)
+            VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+          `).run(reviewId, articleId, aiUser.id, JSON.stringify(ratings), qualityRating, notes || '');
+          
+          results.successful++;
+        } else {
+          throw new Error(`Unknown submission type: ${type}`);
+        }
+      } catch (error) {
+        results.failed++;
+        results.errors.push({ index, error: error.message });
+      }
+    });
+
+    res.json(results);
+  } catch (error) {
+    console.error('[AI Bulk Submissions] Error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.use((req, res) => {
   res.status(404).json({ error: 'Not found' });
 });
