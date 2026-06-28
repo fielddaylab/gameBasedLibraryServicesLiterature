@@ -850,8 +850,8 @@ app.post('/api/summaries', requireAuth, async (req, res) => {
 // Admin stats endpoint
 app.get('/api/admin/stats', requireAuth, (req, res) => {
   try {
-    // Only allow mrdavidgagnon or debug mode
-    const isAllowed = req.user?.github_username === 'mrdavidgagnon' || DEBUG_MODE;
+    // Only allow mrdavidgagnon@gmail.com or debug mode
+    const isAllowed = req.user?.email === 'mrdavidgagnon@gmail.com' || DEBUG_MODE;
     if (!isAllowed) {
       return res.status(403).json({ error: 'Access denied' });
     }
@@ -880,8 +880,8 @@ app.get('/api/admin/stats', requireAuth, (req, res) => {
 // Export users as CSV
 app.get('/api/admin/export/users', requireAuth, (req, res) => {
   try {
-    // Only allow mrdavidgagnon or debug mode
-    const isAllowed = req.user?.github_username === 'mrdavidgagnon' || DEBUG_MODE;
+    // Only allow mrdavidgagnon@gmail.com or debug mode
+    const isAllowed = req.user?.email === 'mrdavidgagnon@gmail.com' || DEBUG_MODE;
     if (!isAllowed) {
       return res.status(403).json({ error: 'Access denied' });
     }
@@ -939,8 +939,8 @@ app.get('/api/admin/export/users', requireAuth, (req, res) => {
 // Export submissions as CSV
 app.get('/api/admin/export/submissions', requireAuth, (req, res) => {
   try {
-    // Only allow mrdavidgagnon or debug mode
-    const isAllowed = req.user?.github_username === 'mrdavidgagnon' || DEBUG_MODE;
+    // Only allow mrdavidgagnon@gmail.com or debug mode
+    const isAllowed = req.user?.email === 'mrdavidgagnon@gmail.com' || DEBUG_MODE;
     if (!isAllowed) {
       return res.status(403).json({ error: 'Access denied' });
     }

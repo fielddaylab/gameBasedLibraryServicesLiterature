@@ -167,20 +167,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     trackPageView('summaries');
     trackEvent('page_view');
     
-    // Handle View Classifications tab visibility
+    // Handle Admin tab visibility
     const viewTab = document.querySelector('[data-tab="view"]');
     const isDebug = new URLSearchParams(window.location.search).has('debug');
-    const isAllowedUser = state.user?.github === 'mrdavidgagnon';
-    console.log('[Tab Visibility] User:', state.user?.github, 'Debug:', isDebug, 'Allowed:', isAllowedUser);
+    const isAllowedUser = state.user?.email === 'mrdavidgagnon@gmail.com';
+    console.log('[Tab Visibility] User:', state.user?.email, 'Debug:', isDebug, 'Allowed:', isAllowedUser);
     if (viewTab) {
       if (!isDebug && !isAllowedUser) {
         viewTab.style.display = 'none';
         viewTab.disabled = true;
-        console.log('[Tab Visibility] View tab hidden and disabled');
+        console.log('[Tab Visibility] Admin tab hidden and disabled');
       } else {
         viewTab.style.display = 'block';
         viewTab.disabled = false;
-        console.log('[Tab Visibility] View tab shown and enabled');
+        console.log('[Tab Visibility] Admin tab shown and enabled');
       }
     }
     
@@ -256,10 +256,10 @@ function switchTab(tabName) {
    // Check if user is allowed to access restricted tabs
    if (tabName === 'view') {
      const isDebug = new URLSearchParams(window.location.search).has('debug');
-     const isAllowedUser = state.user?.github === 'mrdavidgagnon';
-     console.warn(`[switchTab] Attempting to access 'view' tab. User: ${state.user?.github}, Debug: ${isDebug}, Allowed: ${isAllowedUser}`);
+     const isAllowedUser = state.user?.email === 'mrdavidgagnon@gmail.com';
+     console.warn(`[switchTab] Attempting to access 'view' tab. User: ${state.user?.email}, Debug: ${isDebug}, Allowed: ${isAllowedUser}`);
      if (!isDebug && !isAllowedUser) {
-       console.warn(`Access denied to tab 'view'. Redirecting to summaries.`);
+       console.warn(`Access denied to Admin tab. Redirecting to summaries.`);
        // Redirect to summaries tab
        switchTab('summaries');
        return;
