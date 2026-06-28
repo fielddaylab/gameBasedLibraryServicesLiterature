@@ -174,14 +174,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const isMainAdmin = state.user?.email === 'mrdavidgagnon@gmail.com';
     const isAllowedUser = isMainAdmin || state.user?.is_admin === 1;
     console.log('[Tab Visibility] User:', state.user?.email, 'is_admin:', state.user?.is_admin, 'Debug:', isDebug, 'Allowed:', isAllowedUser);
-    if (viewTab) {
+    if (viewTab && viewPane) {
       if (!isDebug && !isAllowedUser) {
-        viewTab.style.display = 'none !important';
+        viewTab.style.display = 'none';
         viewTab.disabled = true;
-        if (viewPane) viewPane.style.display = 'none !important';
         console.log('[Tab Visibility] Admin tab hidden and disabled');
       } else {
-        viewTab.style.removeProperty('display');
+        viewTab.style.display = '';
         viewTab.disabled = false;
         console.log('[Tab Visibility] Admin tab shown and enabled');
       }
@@ -270,15 +269,21 @@ function switchTab(tabName) {
      }
    }
    
-   // Update button states
-   document.querySelectorAll('.tab-btn').forEach(btn => {
-     btn.classList.toggle('active', btn.dataset.tab === tabName);
-   });
+    // Update button states
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === tabName);
+    });
 
-   // Update pane visibility
-   document.querySelectorAll('.tab-pane').forEach(pane => {
-     pane.classList.toggle('active', pane.id === tabName);
-   });
+    // Update pane visibility
+    document.querySelectorAll('.tab-pane').forEach(pane => {
+      if (pane.id === tabName) {
+        pane.classList.add('active');
+        // Remove inline display: none if present
+        pane.style.removeProperty('display');
+      } else {
+        pane.classList.remove('active');
+      }
+    });
 
    state.currentTab = tabName;
    

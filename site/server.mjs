@@ -407,7 +407,8 @@ app.get('/api/user', (req, res) => {
     initials: req.user.initials,
     organizationalAffiliation: req.user.organizational_affiliation,
     github: req.user.github_username,
-    githubId: req.user.github_id
+    githubId: req.user.github_id,
+    is_admin: req.user.is_admin || 0
   });
 });
 
